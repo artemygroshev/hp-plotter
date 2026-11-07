@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="430" viewBox="0 0 1280 430" role="img" aria-labelledby="title desc">
+  <title id="title">HP Plotter Lab: компьютер, BTT, USB–parallel и DesignJet 500</title>
+  <desc id="desc">Файл печати идёт с компьютера по сети через CUPS на BTT и USB–parallel к плоттеру. Обратно служба BTT читает LCD и статусы, а браузер показывает проверенный снимок.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0d182a"/><stop offset="1" stop-color="#14263b"/></linearGradient>
+    <linearGradient id="card" x2="0" y2="1"><stop stop-color="#1b2d43"/><stop offset="1" stop-color="#142236"/></linearGradient>
+    <marker id="orange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#ffb36b"/></marker>
+    <marker id="cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#6be4d5"/></marker>
+  </defs>
+  <rect width="1280" height="430" rx="24" fill="url(#bg)"/>
+  <g font-family="DejaVu Sans,Arial,sans-serif">
+    <text x="48" y="52" font-size="31" font-weight="700" fill="#f2f6fb">HP Plotter Lab</text>
+    <text x="48" y="84" font-size="19" fill="#b5c6d9">Печать и чтение состояния через BTT</text>
+    <rect x="1030" y="34" width="202" height="34" rx="17" fill="#243a50"/>
+    <circle cx="1050" cy="51" r="4" fill="#6be4d5"/>
+    <text x="1064" y="57" font-size="13" letter-spacing="1.1" fill="#d5e3ef">RESEARCH PROJECT</text>
+
+    <g fill="url(#card)" stroke="#334b63" stroke-width="1.5">
+      <rect x="48" y="116" width="192" height="208" rx="16"/>
+      <rect x="302" y="116" width="260" height="208" rx="16"/>
+      <rect x="624" y="116" width="250" height="208" rx="16"/>
+      <rect x="936" y="116" width="296" height="208" rx="16"/>
+    </g>
+    <g fill="none" stroke="#ffb36b" stroke-width="3" marker-end="url(#orange)">
+      <path d="M249 190H289"/><path d="M571 190H611"/><path d="M883 190H923"/>
+    </g>
+    <g fill="none" stroke="#6be4d5" stroke-width="3" marker-end="url(#cyan)">
+      <path d="M289 270H249"/><path d="M611 270H571"/><path d="M923 270H883"/>
+    </g>
+
+    <g fill="#8eacc7" font-size="13" letter-spacing="1.4">
+      <text x="68" y="146">01 / КЛИЕНТ</text><text x="324" y="146">02 / ПЛАТА</text>
+      <text x="646" y="146">03 / ПЕРЕХОДНИК</text><text x="958" y="146">04 / ПЛОТТЕР</text>
+    </g>
+    <g fill="#f2f6fb" font-size="25" font-weight="700">
+      <text x="68" y="187">Компьютер</text><text x="324" y="187">BTT / CB1</text>
+      <text x="646" y="187">USB–parallel</text><text x="958" y="187">HP DesignJet 500</text>
+    </g>
+    <g fill="#c0d0df" font-size="17">
+      <text x="68" y="222">Файл печати</text><text x="68" y="248">Браузер с LCD</text>
+      <text x="324" y="222">CUPS + USB backend</text><text x="324" y="248">Локальный сборщик</text>
+      <text x="646" y="222">Мост 1a86:7584</text><text x="646" y="248">Двунаправленный USB</text>
+      <text x="958" y="222">C7769B · A.04.02</text><text x="958" y="248">LCD 128 × 64 и 30 полей</text>
+    </g>
+    <g font-size="14">
+      <text x="68" y="298" fill="#ffb36b">Wi-Fi / IPP / HTTP</text><text x="324" y="298" fill="#6be4d5">Согласование доступа</text>
+      <text x="646" y="298" fill="#6be4d5">Bulk OUT  ↔  Bulk IN</text><text x="958" y="298" fill="#6be4d5">Служебное чтение</text>
+    </g>
+    <path d="M48 363H79" stroke="#ffb36b" stroke-width="3" marker-end="url(#orange)"/>
+    <text x="96" y="370" font-size="18" fill="#f0d4b9">Файл печати</text>
+    <path d="M326 363H296" stroke="#6be4d5" stroke-width="3" marker-end="url(#cyan)"/>
+    <text x="344" y="370" font-size="18" fill="#b3eee5">Экран и статусы</text>
+    <text x="48" y="404" font-size="15" fill="#93acc3">Чтение без перепрошивки. В браузере — проверенные снимки с временем обновления.</text>
+  </g>
+</svg>

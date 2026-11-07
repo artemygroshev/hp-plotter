@@ -13,7 +13,7 @@
 - [Первичный отчёт о CH340S/1156210](https://bugs.launchpad.net/bugs/1156210): потеря короткой OUT-посылки при немедленном status-control на другом экземпляре; перепроверять порядок и интервалы, не приравнивать этот случай к любому тайм-ауту.
 - [libusb: асинхронный I/O и короткие пакеты](https://libusb.sourceforge.io/api-1.0/group__libusb__asyncio.html), [размеры пакетов и overflow](https://libusb.sourceforge.io/api-1.0/libusb_packetoverflow.html).
 - [CUPS backend(7)](https://www.cups.org/doc/man-backend.html): аргументы, права, side/back-channel; [cupsfilter исходники v2.4.10](https://github.com/OpenPrinting/cups/blob/v2.4.10/scheduler/cupsfilter.c): конкретное формирование окружения фильтров.
-- [Ghostscript cdnj500/Mode 10](https://github.com/ArtifexSoftware/ghostpdl/blob/master/devices/gdevcd8.c).
+- [Ghostscript cdnj500/Mode 10](https://github.com/ArtifexSoftware/ghostpdl/blob/master/contrib/gdevcd8.c).
 - [OpenPrinting: DesignJet 500](https://www.openprinting.org/printer/HP/HP-DesignJet_500): драйвер/PPD получать отдельно, с исходной лицензией.
 - [libmspack](https://www.cabextract.org.uk/libmspack/), [libusb](https://libusb.info/), [Pillow](https://python-pillow.org/), [pexpect](https://pexpect.readthedocs.io/), [NumPy](https://numpy.org/), [Capstone](https://www.capstone-engine.org/).
 
