@@ -59,6 +59,13 @@ class MemoryChecks(unittest.TestCase):
             with self.assertRaises(ValueError):
                 extract_tagged_value(bad,'0123ab')
 
+    def test_delayed_old_response_is_not_accepted_as_a_clean_fresh_query(self):
+        old=b'B111aaa\nR111aaa_0\nE111aaa\n'
+        fresh=b'B222bbb\nF222bbb_A.04.02\nE222bbb\n'
+        self.assertEqual(extract_tagged_value(old,'111aaa','R','_'),'0')
+        self.assertEqual(extract_tagged_value(fresh,'222bbb','F','_'),'A.04.02')
+        with self.assertRaises(ValueError):extract_tagged_value(old+fresh,'222bbb','F','_')
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

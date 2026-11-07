@@ -27,3 +27,12 @@ class ConfigChecks(unittest.TestCase):
             with self.assertRaises(ValueError):private_password({'password_file':str(path)})
             path.chmod(0o600)
             self.assertEqual(private_password({'password_file':str(path)}),'unit-test-value')
+
+    def test_local_executor_does_not_require_ssh_files_or_credentials(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path=Path(folder)/'config.json'
+            cfg=dict(DEFAULTS,executor='local',machine_id='1'*32,printer_serial='TEST-ONLY',
+                     known_hosts='/missing/hosts',capture_root=folder)
+            path.write_text(json.dumps(cfg))
+            with patch.dict(os.environ,{'HP_PLOTTER_CONFIG':str(path)}):
+                self.assertEqual(configuration()['executor'],'local')

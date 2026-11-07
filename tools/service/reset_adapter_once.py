@@ -25,10 +25,14 @@ def run(support, lib=None, delay=time.sleep, deadline_utc=None):
         or not before['usb_handles']['inspection_complete']
         or before['usb_handles']['open_handles']):
         raise RuntimeError('queue/interface ownership not verifiably free')
+    expected_driver=support.get('IDLE_DRIVER','/sys/bus/usb/drivers/usblp')
+    expected_alt=support.get('IDLE_ALTERNATE',1)
+    if (expected_driver,expected_alt) not in (('/sys/bus/usb/drivers/usblp',1),(None,0)):
+        raise RuntimeError('unsupported explicit idle policy')
     if (len(devices)!=1 or devices[0]['descriptor_sha256']!=support['ADAPTER_DESCRIPTOR_SHA256']
-        or devices[0]['bConfigurationValue']!='1' or devices[0]['alternate']!=1
-        or devices[0]['driver']!='/sys/bus/usb/drivers/usblp'):
-        raise RuntimeError('recorded bound adapter not uniquely identified')
+        or devices[0]['bConfigurationValue']!='1' or devices[0]['alternate']!=expected_alt
+        or devices[0]['driver']!=expected_driver):
+        raise RuntimeError('recorded adapter or explicit idle binding not uniquely identified')
     adapter=devices[0]
     result={'preflight':before,'operation':'one USB bus reset of recorded 1a86:7584 adapter',
         'reset_attempts':0,'bulk_out_bytes':0,'printer_class_soft_reset_sent':False,
@@ -55,7 +59,8 @@ def run(support, lib=None, delay=time.sleep, deadline_utc=None):
         target=device(handle)
         if (bus(target),address(target))!=(int(adapter['busnum']),int(adapter['devnum'])):
             raise RuntimeError('adapter address changed before recovery; no reset')
-        if active(handle,0)!=1:raise RuntimeError('kernel binding changed; no reset')
+        if active(handle,0)!=int(expected_driver is not None):
+            raise RuntimeError('kernel binding changed; no reset')
         result['reset_attempts']=1
         result['reset_rc']=reset(handle)
     except Exception as error:

@@ -5,6 +5,25 @@ dynamic pointer requires separate, verified firmware and pointer provenance.
 """
 import re
 import struct
+import zlib
+
+
+def native_png(data,scale=1):
+    """Encode complete native pixels without requiring Pillow on a small SBC."""
+    if len(data)!=1024 or type(scale) is not int or not 1<=scale<=8:
+        raise ValueError('a full LCD buffer and integer scale 1..8 are required')
+    rows=[]
+    for y in range(64):
+        row=bytearray()
+        for x in range(128):
+            word=struct.unpack_from('>I',data,4*((x//32)*64+y))[0]
+            value=0 if word & (1 << (31-x%32)) else 255
+            row.extend(bytes([value])*scale)
+        rows.extend([b'\0'+row]*scale)
+    def chunk(kind,payload):
+        return struct.pack('>I',len(payload))+kind+payload+struct.pack('>I',zlib.crc32(kind+payload)&0xffffffff)
+    return (b'\x89PNG\r\n\x1a\n'+chunk(b'IHDR',struct.pack('>IIBBBBB',128*scale,64*scale,8,0,0,0,0))
+            +chunk(b'IDAT',zlib.compress(b''.join(rows)))+chunk(b'IEND',b''))
 
 
 def extract_tagged_value(raw, nonce, tag='P', separator=' '):

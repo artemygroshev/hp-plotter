@@ -131,16 +131,18 @@ SMALL_READ_COMMANDS = {
 }
 
 
-def make_small_read_query(kind, nonce):
+def make_small_read_query(kind, nonce, packet_bytes=128):
+    if type(packet_bytes) is not int or packet_bytes not in (128,129):
+        raise ValueError('only the recorded 128-byte and bounded 129-byte profiles exist')
     if kind not in SMALL_READ_COMMANDS or not re.fullmatch(r'[a-f0-9]{6}', nonce):
         raise ValueError('only fixed, short read-only service queries are implemented')
     command = SMALL_READ_COMMANDS[kind].replace(b'@NONCE@', nonce.encode())
     script = b'puts B'+nonce.encode()+b'\n'+command+b'\nputs E'+nonce.encode()+b'\nexit\n'
     prefix = UEL+b'@PJL ENTER LANGUAGE=TCLWARE\r\n'+script
     tail = b'\n'+UEL+b'\r\n'
-    if len(prefix)+len(tail)+1 > 128:
+    if len(prefix)+len(tail)+1 > packet_bytes:
         raise ValueError('fixed query exceeds two packets')
-    return prefix+b'#'+b' '*(128-len(prefix)-1-len(tail))+tail
+    return prefix+b'#'+b' '*(packet_bytes-len(prefix)-1-len(tail))+tail
 
 
 def extract_small_read(raw, nonce):
@@ -271,7 +273,9 @@ def observe_host_alt(bus, address):
 
 def transact(payload, bus, address, lib=None, now=None, alt_observer=None,
              concurrent_read=False, read_seconds=4, prime_device_id=False,
-             sequential_readback=False, sequential_kind='echo', forward_gap_seconds=0.005, read_packet_mode=False, persistent_sequence=False, finish_on_short=False):
+             sequential_readback=False, sequential_kind='echo', forward_gap_seconds=0.005, read_packet_mode=False, persistent_sequence=False, finish_on_short=False, small_query_bytes=128):
+    if type(small_query_bytes) is not int or small_query_bytes not in (128,129):
+        raise ValueError('unsupported fixed small-query profile')
     if not 1 <= read_seconds <= 15:
         raise ValueError('read_seconds must be within 1..15')
     if forward_gap_seconds not in (0.005, 0.25, 1.0):
@@ -312,7 +316,7 @@ def transact(payload, bus, address, lib=None, now=None, alt_observer=None,
         elif sequential_kind in SMALL_READ_COMMANDS:
             marker = re.search(rb'puts B([a-f0-9]{6})\n', payload)
             if marker:
-                valid_payload = payload == make_small_read_query(sequential_kind, marker[1].decode('ascii'))
+                valid_payload = payload == make_small_read_query(sequential_kind, marker[1].decode('ascii'),small_query_bytes)
         elif sequential_kind in ('drain_only', 'drain_zlp', 'status_only', 'long_drain', 'endpoint_recover', 'class_reset', 'id_cycle'):
             valid_payload = payload == b''
         elif sequential_kind == 'lcd_pair':
@@ -381,6 +385,7 @@ def transact(payload, bus, address, lib=None, now=None, alt_observer=None,
     kernel_before = None
     reader = None; response = bytearray(); reader_result = {}
     result = {'write_attempts': 0, 'written_bytes': 0, 'write_completed': False,
+              'small_query_bytes': small_query_bytes,
               'received_base64': '', 'prequery_received_base64': '',
               'cleanup': {}, 'cleanup_verified': False}
     def read_alt():

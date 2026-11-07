@@ -35,10 +35,16 @@ def snapshot():
       'class_read':{'requests':{'GET_DEVICE_ID':{'decoded':{'hp_c7769b_identified':False}}}}}
 
 class RecoveryChecks(unittest.TestCase):
-    def run_case(self,usb,before=None,after=None):
+    def run_case(self,usb,before=None,after=None,policy=None):
         states=[before or snapshot(),after or snapshot()]
         return module.run({'ADAPTER_DESCRIPTOR_SHA256':'expected',
-            'snapshot':lambda **kwargs:states.pop(0)},lib=usb,delay=lambda _:None,deadline_utc='2099-01-01T00:00:00+00:00')
+            'snapshot':lambda **kwargs:states.pop(0),**(policy or {})},lib=usb,delay=lambda _:None,deadline_utc='2099-01-01T00:00:00+00:00')
+    def test_explicit_unbound_idle_does_not_attach_a_kernel_driver(self):
+        before=snapshot();before['adapters'][0].update(driver=None,alternate=0)
+        usb=USB(kernel=0)
+        r=self.run_case(usb,before,copy.deepcopy(before),{'IDLE_DRIVER':None,'IDLE_ALTERNATE':0})
+        self.assertEqual(usb.resets,1);self.assertTrue(r['cleanup']['verified'])
+        self.assertEqual(r['bulk_out_bytes'],0)
     def test_successful_reset_not_falsely_declared_restored(self):
         usb=USB();r=self.run_case(usb)
         self.assertEqual(usb.resets,1);self.assertTrue(usb.closed and usb.left)

@@ -120,12 +120,17 @@ def adapters():
     return result
 
 
-def backend_pids():
+def backend_pids(proc_root=None):
     found = []
-    for node in Path('/proc').glob('[0-9]*'):
+    for node in (Path('/proc') if proc_root is None else proc_root).glob('[0-9]*'):
         try:
             first = (node/'cmdline').read_bytes().split(b'\0', 1)[0]
-            if b'/cups/backend/' in first and first.endswith(b'/usb'):
+            # CUPS normally sets argv[0] to the device URI. Check the actual
+            # executable too, including the interval before it opens USB.
+            try:executable=str((node/'exe').readlink()).removesuffix(' (deleted)')
+            except OSError:executable=''
+            if ((b'/cups/backend/' in first and first.endswith(b'/usb'))
+                    or executable.endswith('/cups/backend/usb')):
                 found.append(int(node.name))
         except OSError:
             continue

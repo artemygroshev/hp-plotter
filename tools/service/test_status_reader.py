@@ -60,6 +60,15 @@ class USB:
 
 
 class ReaderTests(unittest.TestCase):
+    def test_backend_is_detected_when_cups_replaces_argv_zero_with_usb_uri(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder)
+            for pid,argv,exe in [('123','usb://HP/Example','/usr/lib/cups/backend/usb'),
+                                 ('124','unrelated','/usr/bin/python3')]:
+                node=root/pid;node.mkdir();(node/'cmdline').write_bytes(argv.encode()+b'\0')
+                (node/'exe').symlink_to(exe)
+            self.assertEqual(module.backend_pids(root),[123])
+
     def adapter(self, kernel=1):
         return {'path': '/recorded/5-1', 'alternate': 1,
                 'driver': '/sys/bus/usb/drivers/usblp' if kernel == 1 else None,

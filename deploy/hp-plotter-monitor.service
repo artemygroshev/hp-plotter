@@ -1,0 +1,19 @@
+[Unit]
+Description=Bounded HP DesignJet LCD and status collector
+After=cups.service network.target
+Requires=cups.service
+
+[Service]
+Type=simple
+User=root
+Environment=HP_PLOTTER_CONFIG=/etc/hp-plotter/config.json
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/usr/bin/python3 -u /opt/hp-plotter/current/tools/service/monitor.py --settings /etc/hp-plotter/monitor.json
+UMask=0077
+KillSignal=SIGINT
+TimeoutStopSec=90
+# A failed/uncertain transaction requires inspection. Never auto-restart it.
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

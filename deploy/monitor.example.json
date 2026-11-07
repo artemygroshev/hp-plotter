@@ -1,0 +1,6 @@
+{
+  "run_id": "REPLACE_WITH_YOUR_SESSION_ID",
+  "until_utc": "REPLACE_WITH_AUTHORIZED_ISO8601_DEADLINE",
+  "interval_seconds": 1800,
+  "view_root": "/var/lib/hp-plotter/view"
+}

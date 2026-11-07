@@ -14,9 +14,9 @@ import struct
 import time
 
 from run_service_read import execute, ROOT, PROJECT
-from framebuffer_memory import extract_addressed_reply, extract_tagged_value, decode_native_bitmap
+from framebuffer_memory import extract_addressed_reply, extract_tagged_value, native_png
 from storage import atomic_json
-from local_config import configuration
+from local_config import configuration, capture_directory
 
 _CONFIG = configuration(required=False)
 SERIAL = _CONFIG['printer_serial']
@@ -30,6 +30,10 @@ STATUS_KINDS = ('telemetry_part','telemetry_model','telemetry_error','telemetry_
                     for name in ('head','color','cartridge','level'))
 HEAD_KINDS = tuple('telemetry_head_%s_%d'%(name,index) for index in range(4)
                    for name in ('native','model'))
+
+
+class PrintPriority(RuntimeError):
+    """The queue owns the next transaction; the read left USB restored."""
 
 
 def checked_pointer(value, span=12):
@@ -66,8 +70,8 @@ class Client:
         self.cutoff = cutoff
         self.started = time.monotonic()
         stamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
-        self.folder = ROOT/('panel-live-'+stamp[:8])
-        self.folder.mkdir(mode=0o700,exist_ok=True)
+        self.folder = capture_directory(_CONFIG)/('panel-live-'+stamp[:8])
+        self.folder.mkdir(mode=0o700,parents=True,exist_ok=True)
         self.target = self.folder/('readonly-session-'+stamp+'.json')
         self.state = {'mode':mode,'requested_passes':passes,'complete':False,
                       'print_jobs_created':False,'persistent_device_changes':False,
@@ -77,20 +81,24 @@ class Client:
         atomic_json(self.target,self.state)
 
     def query(self, kind, memory=None):
-        if (self.cutoff-datetime.datetime.now(datetime.timezone.utc)).total_seconds() < 45:
+        if (self.cutoff-datetime.datetime.now(datetime.timezone.utc)).total_seconds() < 90:
             raise RuntimeError('not enough authorized time for another bounded query and cleanup')
         path,report,_ = execute(kind,memory=memory,print_summary=False,finish_on_short=True,
                                 deadline_utc=self.cutoff.isoformat())
         t = report.get('transport',{})
+        if report.get('yield_to_print') is True:
+            raise PrintPriority('CUPS job has priority; service query deferred')
         if (report.get('error') or t.get('error') or t.get('read_error')
-                or not report['cleanup']['verified'] or not t['cleanup_verified']
+                or not report['cleanup'].get('usb_restored',report['cleanup'].get('verified')) or not t['cleanup_verified']
                 or not t['write_completed'] or not t.get('small_stopped_after_end_and_two_quiet_phases')
-                or report['preflight']['machine_id'] != MACHINE_ID
-                or report['postflight']['cups']['unfinished_job_ids']):
+                or report['preflight']['machine_id'] != MACHINE_ID):
             raise RuntimeError('query or restoration did not pass: '+kind)
         self.state['queries'].append({'kind':kind,'memory':memory,
-            'source':str(path.relative_to(PROJECT)),'observed_utc':report['preflight']['observed_utc']})
+            'source':str(path),'observed_utc':report['preflight']['observed_utc']})
         self.checkpoint()
+        jobs=report['postflight']['cups']['unfinished_job_ids']
+        if jobs is None:raise RuntimeError('CUPS postflight could not be verified')
+        if jobs:raise PrintPriority('CUPS job arrived during the read; USB is restored')
         return report
 
     def value(self, kind, tag='R', separator='_'):
@@ -153,22 +161,20 @@ class Client:
         if serial_after != SERIAL:
             raise RuntimeError('target printer changed during capture')
         data = b''.join(blocks)
-        image = decode_native_bitmap(data)
         stem = self.target.stem+'-screen-'+str(number)
         binary = self.folder/(stem+'.bin')
         png = self.folder/(stem+'.png')
         large = self.folder/(stem+'-8x.png')
         with os.fdopen(os.open(binary,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600),'wb') as out:
             out.write(data)
-        image.save(png)
-        image.resize((1024,512),resample=0).save(large)
-        png.chmod(0o600)
-        large.chmod(0o600)
+        for path,scale in ((png,1),(large,8)):
+            with os.fdopen(os.open(path,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600),'wb') as out:
+                out.write(native_png(data,scale))
         self.state['screens'].append({'pass':number,'phase_index':phase_index,'began_utc':began,
             'ended_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
             'geometry':[128,64],'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),
-            'all_requested_bytes_accounted':True,'binary':str(binary.relative_to(PROJECT)),
-            'png':str(png.relative_to(PROJECT)),'large_png':str(large.relative_to(PROJECT))})
+            'all_requested_bytes_accounted':True,'binary':str(binary),
+            'png':str(png),'large_png':str(large)})
         self.checkpoint()
         return data
 
@@ -183,13 +189,9 @@ class Client:
 
     def status(self,kinds=STATUS_KINDS):
         for kind in kinds:
-            try:
-                value = self.value(kind)
-            except ValueError as error:
-                self.state['status'][kind.removeprefix('telemetry_')] = {
-                    'available':False,'error':str(error),'source':self.state['queries'][-1]['source']}
-                self.checkpoint()
-                continue
+            # A malformed/mismatched fresh tag is a transport validation
+            # failure, not an unavailable field. Never accept it silently.
+            value = self.value(kind)
             self.state['status'][kind.removeprefix('telemetry_')] = {
                 'raw':value,'available':value not in ('(null)','(meta)',''),
                 'units':None,'percentage_claimed':False}

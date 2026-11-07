@@ -315,6 +315,23 @@ class SequentialChecks(unittest.TestCase):
                     lib=SequentialUSB(), prime_device_id=True, sequential_readback=True,
                     sequential_kind=kind)
 
+    def test_short_primary_out_profile_preserves_script_and_is_explicit(self):
+        nonce='0123ab'
+        original=probe.make_small_read_query('rom_flush',nonce)
+        short=probe.make_small_read_query('rom_flush',nonce,129)
+        self.assertEqual(len(short),129)
+        self.assertEqual(short.replace(b'# \n',b'#\n'),original)
+        with self.assertRaises(ValueError):
+            probe.transact(short,6,2,lib=SequentialUSB(),prime_device_id=True,
+                sequential_readback=True,sequential_kind='rom_flush')
+        usb=SequentialUSB()
+        result=probe.transact(short,6,2,lib=usb,now=Clock(),read_seconds=1,
+            prime_device_id=True,sequential_readback=True,sequential_kind='rom_flush',
+            small_query_bytes=129,read_packet_mode=True,finish_on_short=True)
+        self.assertEqual(len(usb.out[0]),129)
+        self.assertTrue(all(len(p)==64 for p in usb.out[1:]))
+        self.assertTrue(result['cleanup_verified'])
+
     def test_short_out_tick_changes_only_the_comment_packet_length(self):
         usb = SequentialUSB()
         result = probe.transact(probe.make_pattern_query('0123ab'), 6, 2,

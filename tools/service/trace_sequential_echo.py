@@ -17,6 +17,20 @@ import threading
 import time
 
 
+class PreflightError(RuntimeError):
+    """A refusal before USB transfers or ownership changes begin."""
+    def __init__(self,message,print_pending=False):
+        super().__init__(message);self.print_pending=print_pending
+
+
+def idle_adapter(adapters,support):
+    if (len(adapters)!=1 or adapters[0]['descriptor_sha256']!=support['ADAPTER_DESCRIPTOR_SHA256']
+            or adapters[0]['alternate']!=support.get('IDLE_ALTERNATE',1)
+            or adapters[0]['driver']!=support.get('IDLE_DRIVER','/sys/bus/usb/drivers/usblp')):
+        raise PreflightError('recorded adapter or explicit idle binding changed')
+    return adapters[0]
+
+
 def run(support, probe, address_of, kind='echo', finish_on_short=False, deadline_utc=None):
     is_small = kind in probe.get('SMALL_READ_COMMANDS', {})
     if not is_small and kind not in ('echo', 'echo_framed', 'echo_pair', 'drain_comment', 'pattern_read', 'pattern_short', 'pattern_63tick', 'lcd', 'tcl_ping', 'lcd_single', 'tcl_flush', 'lcd_pair', 'persistent', 'drain_zlp', 'drain_only', 'status_only', 'terminate_line', 'long_drain', 'endpoint_recover', 'class_reset', 'id_cycle'):
@@ -35,13 +49,10 @@ def run(support, probe, address_of, kind='echo', finish_on_short=False, deadline
             or cups['attributes'].get('printer-state', {}).get('raw_value') != 'idle'
             or before['usb_handles']['open_handles']
             or not before['usb_handles']['inspection_complete']):
-        raise RuntimeError('queue or interface ownership not clear')
+        raise PreflightError('queue or interface ownership not clear',
+                             print_pending=isinstance(cups['unfinished_job_ids'],list) and bool(cups['unfinished_job_ids']))
     adapters = before['adapters']
-    if (len(adapters) != 1 or adapters[0]['descriptor_sha256'] != support['ADAPTER_DESCRIPTOR_SHA256']
-            or adapters[0]['alternate'] != 1
-            or adapters[0]['driver'] != '/sys/bus/usb/drivers/usblp'):
-        raise RuntimeError('recorded bound adapter changed')
-    adapter = adapters[0]
+    adapter = idle_adapter(adapters,support)
     bus, dev = int(adapter['busnum']), int(adapter['devnum'])
     nonce = secrets.token_hex(3 if is_small or kind in ('tcl_ping', 'tcl_flush', 'lcd_pair', 'pattern_read', 'pattern_short', 'pattern_63tick') else 8)
     if kind == 'terminate_line':
@@ -57,7 +68,7 @@ def run(support, probe, address_of, kind='echo', finish_on_short=False, deadline
     elif kind in ('pattern_read', 'pattern_short', 'pattern_63tick'):
         payload = probe['make_pattern_query'](nonce, 64 if kind == 'pattern_short' else 1024)
     elif is_small:
-        payload = probe['make_small_read_query'](kind, nonce)
+        payload = probe['make_small_read_query'](kind, nonce,support.get('SMALL_QUERY_BYTES',128))
     elif kind == 'lcd':
         payload = probe['make_lcd_query'](nonce)
     elif kind == 'lcd_pair':
@@ -68,7 +79,7 @@ def run(support, probe, address_of, kind='echo', finish_on_short=False, deadline
         payload = probe['make_tcl_ping_query'](nonce)
     else:
         payload = probe['make_lcd_single_query']()
-    if (kind == 'echo' and len(payload) != 56) or len(payload) > 128:
+    if (kind == 'echo' and len(payload) != 56) or len(payload) > (129 if is_small else 128):
         raise RuntimeError('short ECHO template changed')
     report = {'preflight': before, 'panel_observation': None,
               'panel_observation_reason': 'current front panel not observed; no Ready inference',
@@ -122,7 +133,8 @@ def run(support, probe, address_of, kind='echo', finish_on_short=False, deadline
                                       sequential_kind='echo' if kind == 'persistent' else kind,
                                       forward_gap_seconds=1.0 if kind in ('lcd_single', 'tcl_flush', 'lcd_pair') else (0.25 if is_small or kind in ('echo_framed', 'echo_pair', 'drain_comment', 'pattern_read', 'pattern_short', 'pattern_63tick') else 0.005),
                                       read_packet_mode=is_small or kind in ('tcl_flush', 'lcd_pair', 'persistent', 'drain_zlp', 'terminate_line', 'echo_framed', 'echo_pair', 'drain_comment', 'pattern_read', 'pattern_short', 'pattern_63tick'),
-                                      persistent_sequence=kind == 'persistent', finish_on_short=finish_on_short)
+                                      persistent_sequence=kind == 'persistent', finish_on_short=finish_on_short,
+                                      small_query_bytes=support.get('SMALL_QUERY_BYTES',128))
         report['transport'] = transport
         raw = base64.b64decode(transport['received_base64'])
         if kind in ('drain_zlp', 'drain_only', 'status_only', 'terminate_line', 'long_drain', 'endpoint_recover', 'class_reset', 'id_cycle', 'drain_comment'):
@@ -183,12 +195,13 @@ def run(support, probe, address_of, kind='echo', finish_on_short=False, deadline
         after = support['snapshot'](class_read=False)
         report['postflight'] = after
         same = [x for x in after['adapters'] if x['path'] == adapter['path']]
-        report['cleanup']['verified'] = (len(same) == 1
+        report['cleanup']['usb_restored'] = (len(same) == 1
             and all(same[0][key] == adapter[key] for key in
                     ('alternate', 'driver', 'descriptor_sha256', 'busnum', 'devnum'))
             and report['cleanup']['reader_closed']
             and report['cleanup']['usbmon_loaded_after'] == report['usbmon_loaded_before']
-            and after['cups']['unfinished_job_ids'] == []
             and after['usb_handles']['inspection_complete']
             and not after['usb_handles']['open_handles'])
+        report['cleanup']['verified'] = (report['cleanup']['usb_restored']
+                                         and after['cups']['unfinished_job_ids'] == [])
     return report

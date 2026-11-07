@@ -7,6 +7,9 @@ __pycache__/
 build/
 private/
 tools/panel-live-*/
+tools/transaction-unverified.json
+tools/monitor-events.jsonl
+tools/archived-unverified*.json
 tools/firmware/*.fmw
 tools/firmware/*.bin
 tools/firmware/*.zip
@@ -18,3 +21,4 @@ tools/firmware/native-access-evidence.json
 *.p12
 id_rsa*
 id_ed25519*
+tools/pipeline-uri-*/

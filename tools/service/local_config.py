@@ -3,9 +3,16 @@ import json
 import os
 from pathlib import Path
 import re
+from device_guard import DEFAULT_GUARD_FILE
 
 PROJECT = Path(__file__).resolve().parents[2]
 DEFAULTS = {
+    'executor': 'ssh',
+    'capture_root': None,
+    'lock_file': '/run/lock/hp-plotter-usb.lock',
+    'idle_driver': 'usblp',
+    'small_query_bytes': 128,
+    'device_guard_file': DEFAULT_GUARD_FILE,
     'ssh_target': 'btt-plotter',
     'known_hosts': '~/.ssh/known_hosts',
     'machine_id': '00000000000000000000000000000000',
@@ -35,14 +42,40 @@ def configuration(required=True):
             raise ValueError('pin the actual printer serial before connecting')
         if not re.fullmatch(r'[0-9a-f]{64}',config['adapter_descriptor_sha256']):
             raise ValueError('invalid adapter descriptor pin')
-        if not re.fullmatch(r'[A-Za-z0-9_.@:-]+',config['ssh_target']) or config['ssh_target'].startswith('-'):
-            raise ValueError('SSH target must be a host alias or user@host')
+        if config['executor'] not in ('ssh','local'):
+            raise ValueError('executor must be ssh or local')
+        idle_binding(config)
+        if type(config['small_query_bytes']) is not int or config['small_query_bytes'] not in (128,129):
+            raise ValueError('small_query_bytes must be the explicit 128 or 129 byte profile')
+        for key in ('capture_root','lock_file','device_guard_file'):
+            if config[key] is not None and (not isinstance(config[key],str) or not Path(config[key]).is_absolute()):
+                raise ValueError(key+' must be an absolute path')
+        if config['lock_file'] is None:
+            raise ValueError('an interprocess USB lock is required')
+        if config['device_guard_file'] is None:
+            raise ValueError('a shared device-side guard is required')
         if not re.fullmatch(r'[A-Za-z0-9_-]+',config['queue']):
             raise ValueError('invalid CUPS queue name')
-        config['known_hosts'] = str(Path(config['known_hosts']).expanduser().resolve())
-        if not Path(config['known_hosts']).is_file():
-            raise ValueError('a verified known_hosts file is required')
+        if config['executor']=='ssh':
+            if not re.fullmatch(r'[A-Za-z0-9_.@:-]+',config['ssh_target']) or config['ssh_target'].startswith('-'):
+                raise ValueError('SSH target must be a host alias or user@host')
+            config['known_hosts'] = str(Path(config['known_hosts']).expanduser().resolve())
+            if not Path(config['known_hosts']).is_file():
+                raise ValueError('a verified known_hosts file is required')
     return config
+
+
+def capture_directory(config=None):
+    config = configuration(False) if config is None else config
+    return Path(config['capture_root']) if config['capture_root'] else PROJECT/'tools'
+
+
+def idle_binding(config):
+    """Explicitly pinned idle state; never detach/bind hardware implicitly."""
+    mode=config.get('idle_driver','usblp')
+    if mode=='usblp':return '/sys/bus/usb/drivers/usblp',1
+    if mode=='none':return None,0
+    raise ValueError('idle_driver must be usblp or none')
 
 
 def private_password(config):
