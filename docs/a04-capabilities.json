@@ -1093,7 +1093,7 @@
       "registration_address": "0xa025d726",
       "registration_call_target": "0xa0320330",
       "handler_link_prologue": true,
-      "review": "static_candidate_arguments_and_output_unverified"
+      "review": "static_binary_as_string_can_truncate_not_enabled"
     },
     {
       "name": "eeReadEeromByteArrayElement",
@@ -1102,7 +1102,7 @@
       "registration_address": "0xa025d876",
       "registration_call_target": "0xa0320330",
       "handler_link_prologue": true,
-      "review": "not_assessed_not_enabled"
+      "review": "static_zero_ambiguous_with_read_failure_not_enabled"
     },
     {
       "name": "eeReadEeromMem",
@@ -3655,6 +3655,21 @@
       "address": "0xa027c068",
       "bytes": 28,
       "sha256": "0a5020f3710cd9845856fd225628c3528e1983a3117d08a19488833ab0232bfc"
+    },
+    "eerom_binary_as_string": {
+      "address": "0xa02753fc",
+      "bytes": 272,
+      "sha256": "8997c22e6fabbf973ae002a4e1993b18fe9f034ca06e89f80626c392b76ff318"
+    },
+    "eerom_byte_element": {
+      "address": "0xa027550c",
+      "bytes": 176,
+      "sha256": "6bcb7da9e4321c7dd0c0a7d7f0f79059f6721cc3cd5062629ee8c582df9bc0af"
+    },
+    "eerom_name_to_group": {
+      "address": "0xa0274d8c",
+      "bytes": 304,
+      "sha256": "3c782e9e67a6a915dcc1a2fec0c65cb74e23e3f6003f4513709c621a01e0f6b2"
     }
   },
   "head_index_mapping": [
@@ -3710,7 +3725,14 @@
     "ring_index_tag": 810,
     "read_function": "0xa0295818",
     "live_read_implemented": false,
-    "layout_fully_validated": false
+    "layout_fully_validated": false,
+    "memory_name_to_group": {
+      "MAIN": 8,
+      "BACKUP": 9
+    },
+    "binary_array_string_output_is_lossless": false,
+    "byte_element_exposes_separate_read_status": false,
+    "required_next_design": "separate_read_return_code_and_exact_binary_length"
   },
   "limits": [
     "No arbitrary command runner is generated.",

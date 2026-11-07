@@ -30,6 +30,10 @@ STATUS_KINDS = ('telemetry_part','telemetry_model','telemetry_error','telemetry_
                     for name in ('head','color','cartridge','level'))
 HEAD_KINDS = tuple('telemetry_head_%s_%d'%(name,index) for index in range(4)
                    for name in ('native','model'))
+DIAGNOSTIC_KINDS = tuple('telemetry_diag_'+name for name in (
+    'peripheral_blocking','peripheral_nonblocking','mechanical','media',
+    'writing_system','writing_system_nonblocking','pdl','spooler','rmc',
+    'intervention','cover_open','paper_jam','busy','printing'))
 
 
 class PrintPriority(RuntimeError):
@@ -200,7 +204,7 @@ class Client:
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('mode',choices=('screen','status','all','heads'))
+    parser.add_argument('mode',choices=('screen','status','all','heads','diagnostics'))
     parser.add_argument('--passes',type=int,choices=(1,2),default=2)
     parser.add_argument('--include-blink',action='store_true',help='also read the alternate native phase of flashing icons')
     parser.add_argument('--until-utc',required=True,help='authorized session deadline, ISO8601 including timezone')
@@ -223,6 +227,10 @@ def main():
             client.status()
         if args.mode in ('heads','all'):
             client.status(HEAD_KINDS)
+        if args.mode=='diagnostics':
+            client.status(DIAGNOSTIC_KINDS)
+            if client.value('telemetry_serial')!=SERIAL:
+                raise RuntimeError('printer identity changed at the end of diagnostics')
         client.state['complete'] = True
     except Exception as error:
         client.state['error'] = str(error)

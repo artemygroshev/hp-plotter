@@ -127,6 +127,24 @@ SMALL_READ_COMMANDS = {
     'telemetry_head_model_2': b'puts R@NONCE@_[sysODBGet PH-MODEL-2 u]',
     'telemetry_head_native_3': b'puts R@NONCE@_[sysODBGet PH-STATUS-3 u]',
     'telemetry_head_model_3': b'puts R@NONCE@_[sysODBGet PH-MODEL-3 u]',
+    # Additional A.04.02 names; separate diagnostic mode, outside the 30-field
+    # monitor series. Raw values have no inferred enum/physical-cause labels.
+    'telemetry_diag_peripheral_blocking': b'puts R@NONCE@_[sysODBGet PERIPHERAL-B-ERROR u]',
+    'telemetry_diag_peripheral_nonblocking': b'puts R@NONCE@_[sysODBGet PERIPHERAL-NB-ERROR u]',
+    'telemetry_diag_mechanical': b'puts R@NONCE@_[sysODBGet MECH-B-ERROR u]',
+    'telemetry_diag_media': b'puts R@NONCE@_[sysODBGet MEDIA-B-ERROR u]',
+    'telemetry_diag_writing_system': b'puts R@NONCE@_[sysODBGet WS-B-ERROR u]',
+    'telemetry_diag_writing_system_nonblocking': b'puts R@NONCE@_[sysODBGet WS-NB-ERROR u]',
+    'telemetry_diag_pdl': b'puts R@NONCE@_[sysODBGet PDL-ERROR u]',
+    'telemetry_diag_spooler': b'puts R@NONCE@_[sysODBGet SP-ERROR u]',
+    'telemetry_diag_rmc': b'puts R@NONCE@_[sysODBGet RMC-B-ERROR u]',
+    # These two names need the native default object type to fit. The longest
+    # fits 129 exactly without a padding comment; all B/R/E markers stay intact.
+    'telemetry_diag_intervention': b'puts R@NONCE@_[sysODBGet IO-STATUS-INTERVENTION]',
+    'telemetry_diag_cover_open': b'puts R@NONCE@_[sysODBGet IO-STATUS-COVER-OPEN]',
+    'telemetry_diag_paper_jam': b'puts R@NONCE@_[sysODBGet IO-STATUS-PAPER-JAM b]',
+    'telemetry_diag_busy': b'puts R@NONCE@_[sysODBGet IO-STATUS-BUSY b]',
+    'telemetry_diag_printing': b'puts R@NONCE@_[sysODBGet IO-STATUS-PRINTING b]',
     'lcd_direct': b'fpDumpDisplay BMP',
 }
 
@@ -140,9 +158,12 @@ def make_small_read_query(kind, nonce, packet_bytes=128):
     script = b'puts B'+nonce.encode()+b'\n'+command+b'\nputs E'+nonce.encode()+b'\nexit\n'
     prefix = UEL+b'@PJL ENTER LANGUAGE=TCLWARE\r\n'+script
     tail = b'\n'+UEL+b'\r\n'
-    if len(prefix)+len(tail)+1 > packet_bytes:
+    padding=packet_bytes-len(prefix)-len(tail)
+    if padding < 0:
         raise ValueError('fixed query exceeds two packets')
-    return prefix+b'#'+b' '*(packet_bytes-len(prefix)-1-len(tail))+tail
+    if padding==0:
+        return prefix+tail
+    return prefix+b'#'+b' '*(padding-1)+tail
 
 
 def extract_small_read(raw, nonce):

@@ -21,6 +21,12 @@ FUNCTIONS = {
         '673fd161b07278c75a7ea009384f39713384b0686a70a0e3d4ed6599f7ae0d42'),
     'panel_status': (0xa027c068, 0x1c,
         '0a5020f3710cd9845856fd225628c3528e1983a3117d08a19488833ab0232bfc'),
+    'eerom_binary_as_string': (0xa02753fc, 0x110,
+        '8997c22e6fabbf973ae002a4e1993b18fe9f034ca06e89f80626c392b76ff318'),
+    'eerom_byte_element': (0xa027550c, 0xb0,
+        '6bcb7da9e4321c7dd0c0a7d7f0f79059f6721cc3cd5062629ee8c582df9bc0af'),
+    'eerom_name_to_group': (0xa0274d8c, 0x130,
+        '3c782e9e67a6a915dcc1a2fec0c65cb74e23e3f6003f4513709c621a01e0f6b2'),
 }
 REVIEW = {
     'sysGetFwRevision': 'live_fixed_arguments',
@@ -36,7 +42,8 @@ REVIEW = {
     'fpReleaseFrontPanel': 'changes_panel_ownership_not_enabled',
     'sysODBSet': 'writes_device_state_not_enabled',
     'eeReadEeromMem': 'static_candidate_arguments_and_output_unverified',
-    'eeReadEeromByteArray': 'static_candidate_arguments_and_output_unverified',
+    'eeReadEeromByteArray': 'static_binary_as_string_can_truncate_not_enabled',
+    'eeReadEeromByteArrayElement': 'static_zero_ambiguous_with_read_failure_not_enabled',
     'eeResetEeromMem': 'changes_persistent_state_not_enabled',
     'sysLogClear': 'changes_logging_configuration_not_error_history_reader',
     'sysCleanResetInfo': 'clears_diagnostic_information_not_enabled',
@@ -104,6 +111,9 @@ def extract(data):
     tags = list(struct.unpack('>10I', read(0xa0296448, 40)))
     if tags != list(range(811, 821)):
         raise ValueError('ten error-record tags differ')
+    names = {cstring(0xa0276454): 8, cstring(0xa027645c): 9}
+    if names != {'MAIN': 8, 'BACKUP': 9} or cstring(0xa02765f4) != '%s':
+        raise ValueError('EEROM name/output evidence differs')
     return dict(schema=1, firmware='A.04.02', image_sha256=EXPECTED,
         evidence_kind='offline_static_analysis',
         catalogue_is_complete_firmware_API=False,
@@ -114,7 +124,11 @@ def extract(data):
         system_error_log_candidate=dict(group=8, record_tags=tags,
             record_bytes=20, ring_index_tag=810,
             read_function='0xa0295818',
-            live_read_implemented=False, layout_fully_validated=False),
+            live_read_implemented=False, layout_fully_validated=False,
+            memory_name_to_group=names,
+            binary_array_string_output_is_lossless=False,
+            byte_element_exposes_separate_read_status=False,
+            required_next_design='separate_read_return_code_and_exact_binary_length'),
         limits=['No arbitrary command runner is generated.',
                 'Static presence does not establish output route or safe arguments.',
                 'The exact-mask head code is derived, not a retrieved history entry.',
