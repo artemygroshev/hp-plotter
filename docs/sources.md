@@ -3,7 +3,8 @@
 В репозитории находятся собственные инструменты/тесты проекта и выделенные примеры LCD. Дистрибутивы ОС, firmware HP, чужие SSH-ключи, raw журналы установки, libusb/libmspack/Ghostscript/CUPS/Capstone и их vendored-копии не включены. У внешних компонентов сохраняются их собственные лицензии; получайте их у соответствующих проектов.
 
 - [USB Printer Class 1.1](https://www.usb.org/sites/default/files/usbprint11a021811.pdf): alternate, ID/status и reset.
-- [HP DesignJet 500/510/800 Service Manual](https://www.laserexpressinc.com/manuals/HP/hp-dsj-500-510-800-series-service-manual.pdf): стр. 3-14 — мигающие значки головок и порядок цветов; 3-23 — группа ошибок 30–33.
+- [HP DesignJet 500 User’s Reference Guide](https://h10032.www1.hp.com/ctg/Manual/c00748239.pdf): штатные сообщения, меню и журналы головок/ошибок.
+- [HP DesignJet 500/510/800 Service Manual](https://www.laserexpressinc.com/manuals/HP/hp-dsj-500-510-800-series-service-manual.pdf): стр. 2-5…2-6 — журнал десяти ошибок; 3-14 — мигающие значки головок и порядок цветов; 3-15…3-16 — история головок; 3-23 — группа ошибок 30–33.
 - [HP: HP 11 Printhead Errors](https://support.hp.com/za-en/document/c06098737): отдельный случай новых партий HP 11 на старой firmware. Для Black C4810A указан Warranty Ends 20200401 и позднее; HP рекомендует A.05.01. Применимость к исследованной головке не подтверждена.
 - [HP PJL Reference](https://h10032.www1.hp.com/ctg/Manual/bpl13208.pdf): ECHO, COMMENT и выбор языка; поддержка отдельных возможностей зависит от модели.
 - [Официальный пакет HP](https://ftp.hp.com/pub/softlib/software13/printers/HP_DesignJet_500_800_FU_3.8.zip): источник исследованного A.05.01; файлы пакета не включены.

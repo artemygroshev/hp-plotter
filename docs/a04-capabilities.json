@@ -1,0 +1,3721 @@
+{
+  "schema": 1,
+  "firmware": "A.04.02",
+  "image_sha256": "c882e68d2eb2462745f1ec984ce8f5ed745d2900587dce6b36acee5b89a1f4eb",
+  "evidence_kind": "offline_static_analysis",
+  "catalogue_is_complete_firmware_API": false,
+  "live_queries_performed_by_this_tool": 0,
+  "commands_matching_this_registration_pattern": [
+    {
+      "name": "alignBoundedFlightTimeRegression_set",
+      "handler": "0xa0258368",
+      "name_address": "0xa025a028",
+      "registration_address": "0xa0258c3e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignControlPointsInArray_get",
+      "handler": "0xa0258414",
+      "name_address": "0xa025a050",
+      "registration_address": "0xa0258c5a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignDoPHAlignment",
+      "handler": "0xa0258688",
+      "name_address": "0xa025a0c0",
+      "registration_address": "0xa0258cca",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignDumpAlignValues",
+      "handler": "0xa02586ec",
+      "name_address": "0xa025a0d4",
+      "registration_address": "0xa0258ce6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignFastFlightTimeRegression_set",
+      "handler": "0xa02582f8",
+      "name_address": "0xa025a004",
+      "registration_address": "0xa0258c22",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignFlightTimeRegression_set",
+      "handler": "0xa0258288",
+      "name_address": "0xa0259fe4",
+      "registration_address": "0xa0258c06",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignLedCalibration_set",
+      "handler": "0xa0258600",
+      "name_address": "0xa025a0a8",
+      "registration_address": "0xa0258cae",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignPPSAlfa_set",
+      "handler": "0xa0257b48",
+      "name_address": "0xa0259ea4",
+      "registration_address": "0xa0258ad2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignPPSCalibrated_set",
+      "handler": "0xa025859c",
+      "name_address": "0xa025a090",
+      "registration_address": "0xa0258c92",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignPPSHorzOffset_get",
+      "handler": "0xa0257be4",
+      "name_address": "0xa0259eb8",
+      "registration_address": "0xa0258aee",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignPPSLogging_get",
+      "handler": "0xa0257cb8",
+      "name_address": "0xa0259ed0",
+      "registration_address": "0xa0258b0a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignPointArrayCreated_set",
+      "handler": "0xa0257d28",
+      "name_address": "0xa0259ee4",
+      "registration_address": "0xa0258b26",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignPointArrayDecimated_set",
+      "handler": "0xa02584e8",
+      "name_address": "0xa025a070",
+      "registration_address": "0xa0258c76",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignPointArrayDestroyed_set",
+      "handler": "0xa0257db0",
+      "name_address": "0xa0259f00",
+      "registration_address": "0xa0258b42",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignPointArrayDumped_set",
+      "handler": "0xa0257e20",
+      "name_address": "0xa0259f20",
+      "registration_address": "0xa0258b5e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignPointArrayElement_set",
+      "handler": "0xa0257ebc",
+      "name_address": "0xa0259f3c",
+      "registration_address": "0xa0258b7a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignPointArrayFiltered_set",
+      "handler": "0xa0257fb8",
+      "name_address": "0xa0259f58",
+      "registration_address": "0xa0258b96",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignPointArrayLinearRegression_set",
+      "handler": "0xa02581a8",
+      "name_address": "0xa0259f98",
+      "registration_address": "0xa0258bce",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignPointArrayParaboloidRegression_set",
+      "handler": "0xa0258218",
+      "name_address": "0xa0259fbc",
+      "registration_address": "0xa0258bea",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignPointArraySortingFiltered_set",
+      "handler": "0xa02580b0",
+      "name_address": "0xa0259f74",
+      "registration_address": "0xa0258bb2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignSAD_get",
+      "handler": "0xa02575bc",
+      "name_address": "0xa0259d40",
+      "registration_address": "0xa02589ba",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignScanCurrentFilteredSamples_get",
+      "handler": "0xa0256f18",
+      "name_address": "0xa0259c1c",
+      "registration_address": "0xa02588a2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignScanCurrentHillSamples_get",
+      "handler": "0xa0256f88",
+      "name_address": "0xa0259c40",
+      "registration_address": "0xa02588be",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignScanCurrentSamples_get",
+      "handler": "0xa0256ea8",
+      "name_address": "0xa0259c00",
+      "registration_address": "0xa0258886",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignScanCurrentValleysFound_get",
+      "handler": "0xa02571fc",
+      "name_address": "0xa0259c7c",
+      "registration_address": "0xa02588f6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignScanLineSensorSettingsCreated_set",
+      "handler": "0xa0256d40",
+      "name_address": "0xa0259bac",
+      "registration_address": "0xa025884e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignScanLineSensorSettingsDestroyed_set",
+      "handler": "0xa0256e38",
+      "name_address": "0xa0259bd4",
+      "registration_address": "0xa025886a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignScanValleysFound_set",
+      "handler": "0xa0256ff8",
+      "name_address": "0xa0259c60",
+      "registration_address": "0xa02588da",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignStoragePPSFlyTimeControlPointAdded_set",
+      "handler": "0xa02578ac",
+      "name_address": "0xa0259df8",
+      "registration_address": "0xa0258a62",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignStoragePPSFlyTimeControlPoint_get",
+      "handler": "0xa0257810",
+      "name_address": "0xa0259dd0",
+      "registration_address": "0xa0258a46",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignStoragePPSFlyTimeNumControlPoints_get",
+      "handler": "0xa0257788",
+      "name_address": "0xa0259da4",
+      "registration_address": "0xa0258a2a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignStoragePPSLambdaControlPointAdded_set",
+      "handler": "0xa0257a8c",
+      "name_address": "0xa0259e78",
+      "registration_address": "0xa0258ab6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignStoragePPSLambdaControlPoint_get",
+      "handler": "0xa02579f0",
+      "name_address": "0xa0259e50",
+      "registration_address": "0xa0258a9a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignStoragePPSLambdaNumControlPoints_get",
+      "handler": "0xa0257968",
+      "name_address": "0xa0259e24",
+      "registration_address": "0xa0258a7e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignStoragePPSReset_set",
+      "handler": "0xa025774c",
+      "name_address": "0xa0259d88",
+      "registration_address": "0xa0258a0e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignStoragePPSValid_get",
+      "handler": "0xa0257678",
+      "name_address": "0xa0259d50",
+      "registration_address": "0xa02589d6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignStoragePPSValid_set",
+      "handler": "0xa02576dc",
+      "name_address": "0xa0259d6c",
+      "registration_address": "0xa02589f2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignStorageSADValid_get",
+      "handler": "0xa02572e4",
+      "name_address": "0xa0259ce0",
+      "registration_address": "0xa025894a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignStorageSADValid_set",
+      "handler": "0xa025736c",
+      "name_address": "0xa0259cfc",
+      "registration_address": "0xa0258966",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignStorageSAD_get",
+      "handler": "0xa0257408",
+      "name_address": "0xa0259d18",
+      "registration_address": "0xa0258982",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignStorageSAD_set",
+      "handler": "0xa02574dc",
+      "name_address": "0xa0259d2c",
+      "registration_address": "0xa025899e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignStorageUpdateCommitted_set",
+      "handler": "0xa02572a8",
+      "name_address": "0xa0259cc0",
+      "registration_address": "0xa025892e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "alignStorageUpdateStarted_set",
+      "handler": "0xa025726c",
+      "name_address": "0xa0259ca0",
+      "registration_address": "0xa0258912",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "beginCarriageChange",
+      "handler": "0xa02651dc",
+      "name_address": "0xa0265ec4",
+      "registration_address": "0xa026576a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "calibrateDTSR",
+      "handler": "0xa026e1d8",
+      "name_address": "0xa026ee98",
+      "registration_address": "0xa026e7fe",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "carGetTemp",
+      "handler": "0xa026e610",
+      "name_address": "0xa026ef18",
+      "registration_address": "0xa026e8c2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ccaAddMediaSampleMethod",
+      "handler": "0xa025b838",
+      "name_address": "0xa025c1cc",
+      "registration_address": "0xa025bb8e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ccaFirCoefsSet",
+      "handler": "0xa025b8dc",
+      "name_address": "0xa025c1e4",
+      "registration_address": "0xa025bbaa",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ccaLineSensorCalib",
+      "handler": "0xa025afa0",
+      "name_address": "0xa025c0d4",
+      "registration_address": "0xa025ba3e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ccaLineSensorDefaultParamsGet",
+      "handler": "0xa025ad7c",
+      "name_address": "0xa025c094",
+      "registration_address": "0xa025ba06",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ccaLineSensorDefaultParamsSet",
+      "handler": "0xa025ade8",
+      "name_address": "0xa025c0b4",
+      "registration_address": "0xa025ba22",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ccaLineSensorTimeGet",
+      "handler": "0xa025b7bc",
+      "name_address": "0xa025c1b4",
+      "registration_address": "0xa025bb72",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ccaLineSensorTimeSet",
+      "handler": "0xa025b724",
+      "name_address": "0xa025c19c",
+      "registration_address": "0xa025bb56",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ccaS2LTableGet",
+      "handler": "0xa025b4c0",
+      "name_address": "0xa025c164",
+      "registration_address": "0xa025bb02",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ccaS2LTableSet",
+      "handler": "0xa025b580",
+      "name_address": "0xa025c174",
+      "registration_address": "0xa025bb1e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ccaTargetDescription",
+      "handler": "0xa025b674",
+      "name_address": "0xa025c184",
+      "registration_address": "0xa025bb3a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ccaTargetPrint",
+      "handler": "0xa025b07c",
+      "name_address": "0xa025c0e8",
+      "registration_address": "0xa025ba5a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ccaTargetScan",
+      "handler": "0xa025b0e8",
+      "name_address": "0xa025c0f8",
+      "registration_address": "0xa025ba76",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ccaTransferEntryGet",
+      "handler": "0xa025b2d0",
+      "name_address": "0xa025c120",
+      "registration_address": "0xa025baae",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ccaTransferEntrySet",
+      "handler": "0xa025b3e8",
+      "name_address": "0xa025c150",
+      "registration_address": "0xa025bae6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ccaTransferFunctionGet",
+      "handler": "0xa025b190",
+      "name_address": "0xa025c108",
+      "registration_address": "0xa025ba92",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ccaTransferFunctionReset",
+      "handler": "0xa025b384",
+      "name_address": "0xa025c134",
+      "registration_address": "0xa025baca",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassAwaitCompletion",
+      "handler": "0xa02539f0",
+      "name_address": "0xa0256310",
+      "registration_address": "0xa0255432",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassConfigShingleMasks",
+      "handler": "0xa025408c",
+      "name_address": "0xa02563f8",
+      "registration_address": "0xa025552e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassCreate",
+      "handler": "0xa025379c",
+      "name_address": "0xa02562cc",
+      "registration_address": "0xa02553c2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassDestroy",
+      "handler": "0xa0253910",
+      "name_address": "0xa02562f0",
+      "registration_address": "0xa02553fa",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassExecute",
+      "handler": "0xa0253980",
+      "name_address": "0xa0256300",
+      "registration_address": "0xa0255416",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassExit",
+      "handler": "0xa0253760",
+      "name_address": "0xa02562c0",
+      "registration_address": "0xa02553a6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassGetBidirParameters",
+      "handler": "0xa0253cf4",
+      "name_address": "0xa0256388",
+      "registration_address": "0xa02554be",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassGetColumnOffsets",
+      "handler": "0xa0253bc8",
+      "name_address": "0xa0256358",
+      "registration_address": "0xa0255486",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassGetDropLogResults",
+      "handler": "0xa0254970",
+      "name_address": "0xa02564d4",
+      "registration_address": "0xa025562a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassGetNewSpitOnTheFlyStartPos",
+      "handler": "0xa0255030",
+      "name_address": "0xa02565ac",
+      "registration_address": "0xa025570a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassGetPADOffsets",
+      "handler": "0xa0253a60",
+      "name_address": "0xa0256328",
+      "registration_address": "0xa025544e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassGetSweepMoveLimits",
+      "handler": "0xa0254f08",
+      "name_address": "0xa0256590",
+      "registration_address": "0xa02556ee",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassInit",
+      "handler": "0xa0253724",
+      "name_address": "0xa02562b4",
+      "registration_address": "0xa025538a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetBidirParameters",
+      "handler": "0xa0253d64",
+      "name_address": "0xa02563a4",
+      "registration_address": "0xa02554da",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetColumnOffsets",
+      "handler": "0xa0253c38",
+      "name_address": "0xa0256370",
+      "registration_address": "0xa02554a2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetDotWidth",
+      "handler": "0xa02543a0",
+      "name_address": "0xa0256444",
+      "registration_address": "0xa0255582",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetHNozzleAlignment",
+      "handler": "0xa0253f64",
+      "name_address": "0xa02563dc",
+      "registration_address": "0xa0255512",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetLogConfig",
+      "handler": "0xa0254cf0",
+      "name_address": "0xa0256548",
+      "registration_address": "0xa025569a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetPADOffsets",
+      "handler": "0xa0253ae8",
+      "name_address": "0xa0256340",
+      "registration_address": "0xa025546a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetPosInterrupt",
+      "handler": "0xa0254dfc",
+      "name_address": "0xa025655c",
+      "registration_address": "0xa02556b6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetPrintOnTheRampParameters",
+      "handler": "0xa025486c",
+      "name_address": "0xa02564b0",
+      "registration_address": "0xa025560e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetPrintZone",
+      "handler": "0xa0254720",
+      "name_address": "0xa025649c",
+      "registration_address": "0xa02555f2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetSRAMConfig",
+      "handler": "0xa0254584",
+      "name_address": "0xa0256470",
+      "registration_address": "0xa02555ba",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetSRAMPattern",
+      "handler": "0xa02544a4",
+      "name_address": "0xa0256458",
+      "registration_address": "0xa025559e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetSpitConfig",
+      "handler": "0xa0254a2c",
+      "name_address": "0xa02564f0",
+      "registration_address": "0xa0255646",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetSpitOnTheFlyPenConfig",
+      "handler": "0xa0254bec",
+      "name_address": "0xa0256528",
+      "registration_address": "0xa025567e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetSpitOnTheFlySpitoon",
+      "handler": "0xa0254b30",
+      "name_address": "0xa0256508",
+      "registration_address": "0xa0255662",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetSweepHeight",
+      "handler": "0xa0254198",
+      "name_address": "0xa0256414",
+      "registration_address": "0xa025554a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetSweepOffset",
+      "handler": "0xa025429c",
+      "name_address": "0xa025642c",
+      "registration_address": "0xa0255566",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetUsedPen",
+      "handler": "0xa0254664",
+      "name_address": "0xa0256488",
+      "registration_address": "0xa02555d6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSetVerticalOffset",
+      "handler": "0xa0253e60",
+      "name_address": "0xa02563c0",
+      "registration_address": "0xa02554f6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassSpitCreate",
+      "handler": "0xa0253880",
+      "name_address": "0xa02562dc",
+      "registration_address": "0xa02553de",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgPassWaitForPosReached",
+      "handler": "0xa0254e98",
+      "name_address": "0xa0256574",
+      "registration_address": "0xa02556d2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "cfgSwitcherSockOpt",
+      "handler": "0xa02552bc",
+      "name_address": "0xa0256630",
+      "registration_address": "0xa025577a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "checkAcuI2C",
+      "handler": "0xa02652a4",
+      "name_address": "0xa0265eec",
+      "registration_address": "0xa02657a2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "chgVppVoltages",
+      "handler": "0xa0264564",
+      "name_address": "0xa0265d90",
+      "registration_address": "0xa0265556",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "clearPenPAD",
+      "handler": "0xa0264e7c",
+      "name_address": "0xa0265e70",
+      "registration_address": "0xa02656de",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "controlDPWA",
+      "handler": "0xa026dd94",
+      "name_address": "0xa026ee20",
+      "registration_address": "0xa026e73a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "controlPenShutdown",
+      "handler": "0xa026e494",
+      "name_address": "0xa026eed4",
+      "registration_address": "0xa026e86e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "controlThermalControl",
+      "handler": "0xa026d8b8",
+      "name_address": "0xa026eda8",
+      "registration_address": "0xa026e692",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "controlTrickleWarm",
+      "handler": "0xa026df5c",
+      "name_address": "0xa026ee4c",
+      "registration_address": "0xa026e78e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "dumpTTOVData",
+      "handler": "0xa0264c14",
+      "name_address": "0xa0265e34",
+      "registration_address": "0xa026566e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "dumpThermalLog",
+      "handler": "0xa026dc60",
+      "name_address": "0xa026ee00",
+      "registration_address": "0xa026e702",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeApplyDefaultsEeromMem",
+      "handler": "0xa025c8ac",
+      "name_address": "0xa025e0fc",
+      "registration_address": "0xa025d69a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeApplyPartialDefaultsEeromMem",
+      "handler": "0xa025c91c",
+      "name_address": "0xa025e114",
+      "registration_address": "0xa025d6b6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeDarwinRead",
+      "handler": "0xa025cc40",
+      "name_address": "0xa025e198",
+      "registration_address": "0xa025d75e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeDarwinWrite",
+      "handler": "0xa025ccdc",
+      "name_address": "0xa025e1a8",
+      "registration_address": "0xa025d77a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeFanPresence",
+      "handler": "0xa025d1ec",
+      "name_address": "0xa025e248",
+      "registration_address": "0xa025d85a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeGPIOClear",
+      "handler": "0xa025c4d0",
+      "name_address": "0xa025e084",
+      "registration_address": "0xa025d5d6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeGPIODisable",
+      "handler": "0xa025c558",
+      "name_address": "0xa025e090",
+      "registration_address": "0xa025d5f2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeGPIOEnable",
+      "handler": "0xa025c5e0",
+      "name_address": "0xa025e0a0",
+      "registration_address": "0xa025d60e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeGPIORead",
+      "handler": "0xa025c668",
+      "name_address": "0xa025e0b0",
+      "registration_address": "0xa025d62a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeGPIOSet",
+      "handler": "0xa025c448",
+      "name_address": "0xa025e078",
+      "registration_address": "0xa025d5ba",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeGetFlashManufacturer",
+      "handler": "0xa025d0fc",
+      "name_address": "0xa025e220",
+      "registration_address": "0xa025d822",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeGetSizeTagEeromMem",
+      "handler": "0xa025c6f0",
+      "name_address": "0xa025e0bc",
+      "registration_address": "0xa025d646",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeMediaSensorTimerInit",
+      "handler": "0xa025cea8",
+      "name_address": "0xa025e1c4",
+      "registration_address": "0xa025d7b2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeMediaSensorTimerReadData",
+      "handler": "0xa025cf94",
+      "name_address": "0xa025e1f4",
+      "registration_address": "0xa025d7ea",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeMediaSensorTimerStop",
+      "handler": "0xa025cf30",
+      "name_address": "0xa025e1dc",
+      "registration_address": "0xa025d7ce",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeReadEeromByteArray",
+      "handler": "0xa025cb14",
+      "name_address": "0xa025e168",
+      "registration_address": "0xa025d726",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "static_candidate_arguments_and_output_unverified"
+    },
+    {
+      "name": "eeReadEeromByteArrayElement",
+      "handler": "0xa025d25c",
+      "name_address": "0xa025e258",
+      "registration_address": "0xa025d876",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeReadEeromMem",
+      "handler": "0xa025c784",
+      "name_address": "0xa025e0d4",
+      "registration_address": "0xa025d662",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "static_candidate_arguments_and_output_unverified"
+    },
+    {
+      "name": "eeReadMemory",
+      "handler": "0xa025c298",
+      "name_address": "0xa025e058",
+      "registration_address": "0xa025d582",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeReadPCIReg",
+      "handler": "0xa025d01c",
+      "name_address": "0xa025e210",
+      "registration_address": "0xa025d806",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeResetEeromMem",
+      "handler": "0xa025c98c",
+      "name_address": "0xa025e134",
+      "registration_address": "0xa025d6d2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "changes_persistent_state_not_enabled"
+    },
+    {
+      "name": "eeSetDefaultEeromMem",
+      "handler": "0xa025c818",
+      "name_address": "0xa025e0e4",
+      "registration_address": "0xa025d67e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeTurnFan",
+      "handler": "0xa025c1f4",
+      "name_address": "0xa025e04c",
+      "registration_address": "0xa025d566",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeVacuumFanLog",
+      "handler": "0xa025d160",
+      "name_address": "0xa025e238",
+      "registration_address": "0xa025d83e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeWaitFlushEeromMem",
+      "handler": "0xa025c9fc",
+      "name_address": "0xa025e144",
+      "registration_address": "0xa025d6ee",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeWriteEeromByteArray",
+      "handler": "0xa025cba8",
+      "name_address": "0xa025e180",
+      "registration_address": "0xa025d742",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeWriteEeromByteArrayElement",
+      "handler": "0xa025d318",
+      "name_address": "0xa025e274",
+      "registration_address": "0xa025d892",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeWriteEeromMem",
+      "handler": "0xa025ca60",
+      "name_address": "0xa025e158",
+      "registration_address": "0xa025d70a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "eeWriteMemory",
+      "handler": "0xa025c360",
+      "name_address": "0xa025e068",
+      "registration_address": "0xa025d59e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "enableServicing",
+      "handler": "0xa0265124",
+      "name_address": "0xa0265eb4",
+      "registration_address": "0xa026574e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "endCarriageChange",
+      "handler": "0xa0265240",
+      "name_address": "0xa0265ed8",
+      "registration_address": "0xa0265786",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "formFormatHD",
+      "handler": "0xa025e370",
+      "name_address": "0xa025eba4",
+      "registration_address": "0xa025e7ea",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "formGetHDModel",
+      "handler": "0xa025e744",
+      "name_address": "0xa025ec40",
+      "registration_address": "0xa025e8ca",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "formGetHDSize",
+      "handler": "0xa025e3e0",
+      "name_address": "0xa025ebb4",
+      "registration_address": "0xa025e806",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "formGetMemorySize",
+      "handler": "0xa025e590",
+      "name_address": "0xa025ebe4",
+      "registration_address": "0xa025e85a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "formGetPSFontsPresenceFlag",
+      "handler": "0xa025e658",
+      "name_address": "0xa025ec14",
+      "registration_address": "0xa025e892",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "formGetRevision",
+      "handler": "0xa025e2c8",
+      "name_address": "0xa025eb94",
+      "registration_address": "0xa025e7ce",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "formRunSelfTest",
+      "handler": "0xa025e4a8",
+      "name_address": "0xa025ebd4",
+      "registration_address": "0xa025e83e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "formSetPSFontsPresenceFlag",
+      "handler": "0xa025e5f4",
+      "name_address": "0xa025ebf8",
+      "registration_address": "0xa025e876",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "formStandbyTime",
+      "handler": "0xa025e6bc",
+      "name_address": "0xa025ec30",
+      "registration_address": "0xa025e8ae",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "formSysHDSize",
+      "handler": "0xa025e444",
+      "name_address": "0xa025ebc4",
+      "registration_address": "0xa025e822",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "fpDisplayTest",
+      "handler": "0xa025f0fc",
+      "name_address": "0xa025f7f4",
+      "registration_address": "0xa025f3e2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "fpDumpDisplay",
+      "handler": "0xa025ef84",
+      "name_address": "0xa025f7c8",
+      "registration_address": "0xa025f38e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "native_BMP_transport_rejected"
+    },
+    {
+      "name": "fpGame",
+      "handler": "0xa025f184",
+      "name_address": "0xa025f804",
+      "registration_address": "0xa025f3fe",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "fpGetFrontPanel",
+      "handler": "0xa025ec50",
+      "name_address": "0xa025f75c",
+      "registration_address": "0xa025f2ca",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "claims_panel_not_enabled"
+    },
+    {
+      "name": "fpGetPressedKey",
+      "handler": "0xa025ee80",
+      "name_address": "0xa025f7a8",
+      "registration_address": "0xa025f356",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "unverified_can_wait_or_consume_key"
+    },
+    {
+      "name": "fpGetStatus",
+      "handler": "0xa025ee1c",
+      "name_address": "0xa025f79c",
+      "registration_address": "0xa025f33a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "static_two_result_status_not_error_text"
+    },
+    {
+      "name": "fpMakeBeep",
+      "handler": "0xa025ed18",
+      "name_address": "0xa025f780",
+      "registration_address": "0xa025f302",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "fpMenuFocus",
+      "handler": "0xa025f0a8",
+      "name_address": "0xa025f7e8",
+      "registration_address": "0xa025f3c6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "changes_menu_not_enabled"
+    },
+    {
+      "name": "fpPrint",
+      "handler": "0xa025f200",
+      "name_address": "0xa025f80c",
+      "registration_address": "0xa025f41a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "fpReleaseFrontPanel",
+      "handler": "0xa025ecb4",
+      "name_address": "0xa025f76c",
+      "registration_address": "0xa025f2e6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "changes_panel_ownership_not_enabled"
+    },
+    {
+      "name": "fpShowMessage",
+      "handler": "0xa025edac",
+      "name_address": "0xa025f78c",
+      "registration_address": "0xa025f31e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "fpSimulateKey",
+      "handler": "0xa025ef14",
+      "name_address": "0xa025f7b8",
+      "registration_address": "0xa025f372",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "static_event_injection_not_enabled"
+    },
+    {
+      "name": "gasGaugeGetNominalDropWeight",
+      "handler": "0xa025f8cc",
+      "name_address": "0xa025fb54",
+      "registration_address": "0xa025f98c",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "gasGaugeGetUsedInk",
+      "handler": "0xa025f814",
+      "name_address": "0xa025fb40",
+      "registration_address": "0xa025f970",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "getADCValue",
+      "handler": "0xa025cd98",
+      "name_address": "0xa025e1b8",
+      "registration_address": "0xa025d796",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "getAmbientTSensorStatus",
+      "handler": "0xa026e51c",
+      "name_address": "0xa026eee8",
+      "registration_address": "0xa026e88a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "getCSDataEcho",
+      "handler": "0xa026494c",
+      "name_address": "0xa0265df0",
+      "registration_address": "0xa02655fe",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "getControlDPWA",
+      "handler": "0xa026de24",
+      "name_address": "0xa026ee2c",
+      "registration_address": "0xa026e756",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "getControlTrickleWarm",
+      "handler": "0xa026dfec",
+      "name_address": "0xa026ee60",
+      "registration_address": "0xa026e7aa",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "getDPWAParam",
+      "handler": "0xa026e124",
+      "name_address": "0xa026ee88",
+      "registration_address": "0xa026e7e2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "getDTSRParams",
+      "handler": "0xa0264d58",
+      "name_address": "0xa0265e54",
+      "registration_address": "0xa02656a6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "getMechState",
+      "handler": "0xa0261120",
+      "name_address": "0xa0261968",
+      "registration_address": "0xa026137e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "getPenRegister",
+      "handler": "0xa02647c0",
+      "name_address": "0xa0265dd0",
+      "registration_address": "0xa02655c6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "getPenVoltageParam",
+      "handler": "0xa0264fe4",
+      "name_address": "0xa0265e90",
+      "registration_address": "0xa0265716",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "getSBCheckingData",
+      "handler": "0xa025d4c0",
+      "name_address": "0xa025e2b4",
+      "registration_address": "0xa025d8e6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "getSimulPenTemp",
+      "handler": "0xa026e40c",
+      "name_address": "0xa026eec4",
+      "registration_address": "0xa026e852",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "getTTOVParam",
+      "handler": "0xa0264ad8",
+      "name_address": "0xa0265e10",
+      "registration_address": "0xa0265636",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "getThermalFilterData",
+      "handler": "0xa026da3c",
+      "name_address": "0xa026edd4",
+      "registration_address": "0xa026e6ca",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "getThermalParam",
+      "handler": "0xa026e050",
+      "name_address": "0xa026ee78",
+      "registration_address": "0xa026e7c6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "getVppVoltage",
+      "handler": "0xa0264624",
+      "name_address": "0xa0265da0",
+      "registration_address": "0xa0265572",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "idsChangeIcon",
+      "handler": "0xa025eff4",
+      "name_address": "0xa025f7d8",
+      "registration_address": "0xa025f3aa",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "idsPurgeStatus",
+      "handler": "0xa02663cc",
+      "name_address": "0xa0266bac",
+      "registration_address": "0xa0266772",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "idsSetDepressTime",
+      "handler": "0xa0266430",
+      "name_address": "0xa0266bbc",
+      "registration_address": "0xa026678e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "issCheckOOI",
+      "handler": "0xa0266248",
+      "name_address": "0xa0266b94",
+      "registration_address": "0xa026673a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "issControlAutomaticPumping",
+      "handler": "0xa0265f50",
+      "name_address": "0xa0266b30",
+      "registration_address": "0xa02666ae",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "issDepressurize",
+      "handler": "0xa0266100",
+      "name_address": "0xa0266b74",
+      "registration_address": "0xa0266702",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "issGetMotorParam",
+      "handler": "0xa02664c4",
+      "name_address": "0xa0266bd0",
+      "registration_address": "0xa02667aa",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "issGetMotorTime",
+      "handler": "0xa0266600",
+      "name_address": "0xa0266bf8",
+      "registration_address": "0xa02667e2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "issLeavePensPressurized",
+      "handler": "0xa0265fe0",
+      "name_address": "0xa0266b4c",
+      "registration_address": "0xa02666ca",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "issPressurize",
+      "handler": "0xa0266070",
+      "name_address": "0xa0266b64",
+      "registration_address": "0xa02666e6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "issSetMotorParam",
+      "handler": "0xa026654c",
+      "name_address": "0xa0266be4",
+      "registration_address": "0xa02667c6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "issSetParam",
+      "handler": "0xa0266338",
+      "name_address": "0xa0266ba0",
+      "registration_address": "0xa0266756",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "issTimedPump",
+      "handler": "0xa0266190",
+      "name_address": "0xa0266b84",
+      "registration_address": "0xa026671e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "layGetDist",
+      "handler": "0xa0268854",
+      "name_address": "0xa026ba24",
+      "registration_address": "0xa026a94a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "layGetPenOffsetInSpitoon",
+      "handler": "0xa0268bc8",
+      "name_address": "0xa026ba84",
+      "registration_address": "0xa026a9f2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "layGetPos",
+      "handler": "0xa0268730",
+      "name_address": "0xa026ba0c",
+      "registration_address": "0xa026a912",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "layGetSpitoonLocation",
+      "handler": "0xa0268a9c",
+      "name_address": "0xa026ba54",
+      "registration_address": "0xa026a9ba",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "layGetVel",
+      "handler": "0xa0268978",
+      "name_address": "0xa026ba3c",
+      "registration_address": "0xa026a982",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "laySetDist",
+      "handler": "0xa02688dc",
+      "name_address": "0xa026ba30",
+      "registration_address": "0xa026a966",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "laySetPenOffsetInSpitoon",
+      "handler": "0xa0268c64",
+      "name_address": "0xa026baa0",
+      "registration_address": "0xa026aa0e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "laySetPos",
+      "handler": "0xa02687b8",
+      "name_address": "0xa026ba18",
+      "registration_address": "0xa026a92e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "laySetSpitoonLocation",
+      "handler": "0xa0268b0c",
+      "name_address": "0xa026ba6c",
+      "registration_address": "0xa026a9d6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "laySetVel",
+      "handler": "0xa0268a00",
+      "name_address": "0xa026ba48",
+      "registration_address": "0xa026a99e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "lsControlLeds",
+      "handler": "0xa025fb74",
+      "name_address": "0xa02604a8",
+      "registration_address": "0xa026017a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "lsScanDataGet",
+      "handler": "0xa0260064",
+      "name_address": "0xa02604d8",
+      "registration_address": "0xa02601ce",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "lsScanFree",
+      "handler": "0xa02600f8",
+      "name_address": "0xa02604e8",
+      "registration_address": "0xa02601ea",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "lsScanMove",
+      "handler": "0xa025fde0",
+      "name_address": "0xa02604cc",
+      "registration_address": "0xa02601b2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "lsScanStationary",
+      "handler": "0xa025fc28",
+      "name_address": "0xa02604b8",
+      "registration_address": "0xa0260196",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "mdRollLoadDataGet",
+      "handler": "0xa02619e4",
+      "name_address": "0xa0261c28",
+      "registration_address": "0xa0261a88",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "mdSheetLoadDataGet",
+      "handler": "0xa0261978",
+      "name_address": "0xa0261c14",
+      "registration_address": "0xa0261a6c",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "osCheckStack",
+      "handler": "0xa0261c3c",
+      "name_address": "0xa0262974",
+      "registration_address": "0xa0262496",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "osFuncCall",
+      "handler": "0xa0261f2c",
+      "name_address": "0xa02629c0",
+      "registration_address": "0xa026253e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "live_one_verified_LCD_getter_only"
+    },
+    {
+      "name": "osMemAlloc",
+      "handler": "0xa0262258",
+      "name_address": "0xa02629f4",
+      "registration_address": "0xa02625ae",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "osMemCheck",
+      "handler": "0xa02621f4",
+      "name_address": "0xa02629e8",
+      "registration_address": "0xa0262592",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "osMemDump",
+      "handler": "0xa0261cf4",
+      "name_address": "0xa0262990",
+      "registration_address": "0xa02624ce",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "live_bounded_addressed_RAM_only"
+    },
+    {
+      "name": "osMemFree",
+      "handler": "0xa02622e0",
+      "name_address": "0xa0262a00",
+      "registration_address": "0xa02625ca",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "osMemShow",
+      "handler": "0xa0261c78",
+      "name_address": "0xa0262984",
+      "registration_address": "0xa02624b2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "osMemUsage",
+      "handler": "0xa0262190",
+      "name_address": "0xa02629dc",
+      "registration_address": "0xa0262576",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "osMsgQShow",
+      "handler": "0xa02623f0",
+      "name_address": "0xa0262a18",
+      "registration_address": "0xa0262602",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "osNfsMount",
+      "handler": "0xa0261eb0",
+      "name_address": "0xa02629b4",
+      "registration_address": "0xa0262522",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "osRandomValue",
+      "handler": "0xa02620f8",
+      "name_address": "0xa02629cc",
+      "registration_address": "0xa026255a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "osSemShow",
+      "handler": "0xa0262368",
+      "name_address": "0xa0262a0c",
+      "registration_address": "0xa02625e6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "osTaskShow",
+      "handler": "0xa0261d9c",
+      "name_address": "0xa026299c",
+      "registration_address": "0xa02624ea",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "osTaskTrace",
+      "handler": "0xa0261e30",
+      "name_address": "0xa02629a8",
+      "registration_address": "0xa0262506",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "painboxBox_set",
+      "handler": "0xa0256c18",
+      "name_address": "0xa0259b9c",
+      "registration_address": "0xa0258832",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "painboxContextAllocated_set",
+      "handler": "0xa0256ad8",
+      "name_address": "0xa0259b80",
+      "registration_address": "0xa0258816",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "painboxMaskAllocated_set",
+      "handler": "0xa0256994",
+      "name_address": "0xa0259b50",
+      "registration_address": "0xa02587de",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "painboxMaskRow_set",
+      "handler": "0xa0256a1c",
+      "name_address": "0xa0259b6c",
+      "registration_address": "0xa02587fa",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "painboxPlotCreated_set",
+      "handler": "0xa0256644",
+      "name_address": "0xa0259ae8",
+      "registration_address": "0xa025876e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "painboxPlotDestroyed_set",
+      "handler": "0xa02566f8",
+      "name_address": "0xa0259b00",
+      "registration_address": "0xa025878a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "painboxPlotPrintedExt_set",
+      "handler": "0xa025686c",
+      "name_address": "0xa0259b34",
+      "registration_address": "0xa02587c2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "painboxPlotPrinted_set",
+      "handler": "0xa0256768",
+      "name_address": "0xa0259b1c",
+      "registration_address": "0xa02587a6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxCalibApplyAdvanceComp",
+      "handler": "0xa0262efc",
+      "name_address": "0xa0263904",
+      "registration_address": "0xa026338a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxCalibApplyDualEncCalib",
+      "handler": "0xa0262e74",
+      "name_address": "0xa02638e8",
+      "registration_address": "0xa026336e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxCalibDualEncCalib",
+      "handler": "0xa0262c0c",
+      "name_address": "0xa0263864",
+      "registration_address": "0xa02632e2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxCalibDumpDualEncBuffer",
+      "handler": "0xa0262d48",
+      "name_address": "0xa0263898",
+      "registration_address": "0xa026331a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxCalibDumpDualEncTable",
+      "handler": "0xa0262dac",
+      "name_address": "0xa02638b4",
+      "registration_address": "0xa0263336",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxCalibDumpSWEBuffer",
+      "handler": "0xa0262e10",
+      "name_address": "0xa02638d0",
+      "registration_address": "0xa0263352",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxCalibFindPaperZero",
+      "handler": "0xa0262a24",
+      "name_address": "0xa026381c",
+      "registration_address": "0xa026328e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxCalibLaunchPrintPattProcess",
+      "handler": "0xa02631d4",
+      "name_address": "0xa0263950",
+      "registration_address": "0xa02633de",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxCalibPrintPatt",
+      "handler": "0xa0263138",
+      "name_address": "0xa026393c",
+      "registration_address": "0xa02633c2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxCalibSWERollerEncCalib",
+      "handler": "0xa0262c94",
+      "name_address": "0xa026387c",
+      "registration_address": "0xa02632fe",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxCalibScanAndAnalyzePatt",
+      "handler": "0xa0262f84",
+      "name_address": "0xa0263920",
+      "registration_address": "0xa02633a6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxGetAdvCalibConstants",
+      "handler": "0xa0262b78",
+      "name_address": "0xa026384c",
+      "registration_address": "0xa02632c6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxGetMotorPhPos",
+      "handler": "0xa0263c94",
+      "name_address": "0xa02644ec",
+      "registration_address": "0xa02640aa",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxGetMotorPos",
+      "handler": "0xa0263c30",
+      "name_address": "0xa02644dc",
+      "registration_address": "0xa026408e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxGetRollerPhPos",
+      "handler": "0xa0263cf8",
+      "name_address": "0xa0264500",
+      "registration_address": "0xa02640c6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxGetServoParam",
+      "handler": "0xa0263e24",
+      "name_address": "0xa0264528",
+      "registration_address": "0xa02640fe",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxMove",
+      "handler": "0xa0263ac8",
+      "name_address": "0xa02644c4",
+      "registration_address": "0xa0264056",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxServoDataCollect",
+      "handler": "0xa0263970",
+      "name_address": "0xa02644a0",
+      "registration_address": "0xa026401e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxServoDataGet",
+      "handler": "0xa0263a24",
+      "name_address": "0xa02644b4",
+      "registration_address": "0xa026403a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxSetAdvCalibConstants",
+      "handler": "0xa0262aac",
+      "name_address": "0xa0263834",
+      "registration_address": "0xa02632aa",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxSetMotorPos",
+      "handler": "0xa0263ba8",
+      "name_address": "0xa02644cc",
+      "registration_address": "0xa0264072",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxSetServoParam",
+      "handler": "0xa0263d5c",
+      "name_address": "0xa0264514",
+      "registration_address": "0xa02640e2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxSetServoShutdownThreshold",
+      "handler": "0xa0263f30",
+      "name_address": "0xa0264544",
+      "registration_address": "0xa0264136",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "paxTest",
+      "handler": "0xa0263eb8",
+      "name_address": "0xa026453c",
+      "registration_address": "0xa026411a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "penCalibrateTTOV",
+      "handler": "0xa0264b8c",
+      "name_address": "0xa0265e20",
+      "registration_address": "0xa0265652",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "penGetTemp",
+      "handler": "0xa026e28c",
+      "name_address": "0xa026eea8",
+      "registration_address": "0xa026e81a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "refreshEnergySettings",
+      "handler": "0xa0265460",
+      "name_address": "0xa0265f24",
+      "registration_address": "0xa02657f6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "rp_EDB_set",
+      "handler": "0xa0266cf0",
+      "name_address": "0xa02674a8",
+      "registration_address": "0xa0267106",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "rp_RAS_set",
+      "handler": "0xa0266c08",
+      "name_address": "0xa026748c",
+      "registration_address": "0xa02670ce",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "rp_RGB_set",
+      "handler": "0xa0266d64",
+      "name_address": "0xa02674b4",
+      "registration_address": "0xa0267122",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "rp_breakpoints_set",
+      "handler": "0xa0267014",
+      "name_address": "0xa0267500",
+      "registration_address": "0xa0267192",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "rp_colorMap_set",
+      "handler": "0xa0266e68",
+      "name_address": "0xa02674c0",
+      "registration_address": "0xa026713e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "rp_fedThresholds_set",
+      "handler": "0xa0266f78",
+      "name_address": "0xa02674e8",
+      "registration_address": "0xa0267176",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "rp_matrixThresholds_set",
+      "handler": "0xa0266edc",
+      "name_address": "0xa02674d0",
+      "registration_address": "0xa026715a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "rpht_RAS_set",
+      "handler": "0xa0266c7c",
+      "name_address": "0xa0267498",
+      "registration_address": "0xa02670ea",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "rxUT_CMB_new",
+      "handler": "0xa0267b3c",
+      "name_address": "0xa0268704",
+      "registration_address": "0xa026808a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "rxUT_ndropsEstimation_get",
+      "handler": "0xa0267d2c",
+      "name_address": "0xa0268714",
+      "registration_address": "0xa02680a6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "rxUT_pixelsCount_get",
+      "handler": "0xa0267a5c",
+      "name_address": "0xa02686ec",
+      "registration_address": "0xa026806e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "rxUT_vadvAdvance_get",
+      "handler": "0xa0267940",
+      "name_address": "0xa02686bc",
+      "registration_address": "0xa0268036",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "rxUT_vadvAdvance_set",
+      "handler": "0xa0267884",
+      "name_address": "0xa02686a4",
+      "registration_address": "0xa026801a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "rxUT_vadvConfiguration_set",
+      "handler": "0xa026769c",
+      "name_address": "0xa0268688",
+      "registration_address": "0xa0267ffe",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "rxUT_vadvRequest_new",
+      "handler": "0xa026797c",
+      "name_address": "0xa02686d4",
+      "registration_address": "0xa0268052",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "saxBump",
+      "handler": "0xa025a6b0",
+      "name_address": "0xa025ad54",
+      "registration_address": "0xa025a926",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "saxGetPhPos",
+      "handler": "0xa025a388",
+      "name_address": "0xa025ace8",
+      "registration_address": "0xa025a87e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "saxGetPos",
+      "handler": "0xa025a324",
+      "name_address": "0xa025acdc",
+      "registration_address": "0xa025a862",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "saxGetRealVel",
+      "handler": "0xa025a610",
+      "name_address": "0xa025ad44",
+      "registration_address": "0xa025a90a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "saxGetServoParam",
+      "handler": "0xa025a4b4",
+      "name_address": "0xa025ad08",
+      "registration_address": "0xa025a8b6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "saxGetServoPerfm",
+      "handler": "0xa025a548",
+      "name_address": "0xa025ad1c",
+      "registration_address": "0xa025a8d2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "saxMove",
+      "handler": "0xa025a244",
+      "name_address": "0xa025acd4",
+      "registration_address": "0xa025a846",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "saxResetServoPerfm",
+      "handler": "0xa025a5ac",
+      "name_address": "0xa025ad30",
+      "registration_address": "0xa025a8ee",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "saxServoDataCollect",
+      "handler": "0xa025a0ec",
+      "name_address": "0xa025acb0",
+      "registration_address": "0xa025a80e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "saxServoDataGet",
+      "handler": "0xa025a1a0",
+      "name_address": "0xa025acc4",
+      "registration_address": "0xa025a82a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "saxSetServoParam",
+      "handler": "0xa025a3ec",
+      "name_address": "0xa025acf4",
+      "registration_address": "0xa025a89a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "saxSetServoShutdownThreshold",
+      "handler": "0xa025a738",
+      "name_address": "0xa025ad5c",
+      "registration_address": "0xa025a942",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setAmbientTSensorStatus",
+      "handler": "0xa026e580",
+      "name_address": "0xa026ef00",
+      "registration_address": "0xa026e8a6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setDPWAParam",
+      "handler": "0xa026de88",
+      "name_address": "0xa026ee3c",
+      "registration_address": "0xa026e772",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setDTSRParams",
+      "handler": "0xa0264c84",
+      "name_address": "0xa0265e44",
+      "registration_address": "0xa026568a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setDelayEndCarMove",
+      "handler": "0xa0260fa0",
+      "name_address": "0xa0261930",
+      "registration_address": "0xa026132a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setDelayEndPapMove",
+      "handler": "0xa0261028",
+      "name_address": "0xa0261944",
+      "registration_address": "0xa0261346",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setMechState",
+      "handler": "0xa02610b0",
+      "name_address": "0xa0261958",
+      "registration_address": "0xa0261362",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setPenPAD",
+      "handler": "0xa0264dc8",
+      "name_address": "0xa0265e64",
+      "registration_address": "0xa02656c2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setPenRegister",
+      "handler": "0xa0264874",
+      "name_address": "0xa0265de0",
+      "registration_address": "0xa02655e2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setPenVoltageParam",
+      "handler": "0xa0264f30",
+      "name_address": "0xa0265e7c",
+      "registration_address": "0xa02656fa",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setPulseWidth",
+      "handler": "0xa0265308",
+      "name_address": "0xa0265ef8",
+      "registration_address": "0xa02657be",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setPulseWidthCompensation",
+      "handler": "0xa02653a4",
+      "name_address": "0xa0265f08",
+      "registration_address": "0xa02657da",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setSimulPenTemp",
+      "handler": "0xa026e314",
+      "name_address": "0xa026eeb4",
+      "registration_address": "0xa026e836",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setStrobeFrequency",
+      "handler": "0xa026549c",
+      "name_address": "0xa0265f3c",
+      "registration_address": "0xa0265812",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setTTOVParam",
+      "handler": "0xa0264a04",
+      "name_address": "0xa0265e00",
+      "registration_address": "0xa026561a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setThermalFilter",
+      "handler": "0xa026d948",
+      "name_address": "0xa026edc0",
+      "registration_address": "0xa026e6ae",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setThermalLogParam",
+      "handler": "0xa026daa0",
+      "name_address": "0xa026edec",
+      "registration_address": "0xa026e6e6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "setThermalParam",
+      "handler": "0xa026dc9c",
+      "name_address": "0xa026ee10",
+      "registration_address": "0xa026e71e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "simulPenShort",
+      "handler": "0xa026506c",
+      "name_address": "0xa0265ea4",
+      "registration_address": "0xa0265732",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ssCapPens",
+      "handler": "0xa02605bc",
+      "name_address": "0xa0261894",
+      "registration_address": "0xa02611da",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ssMotorIsPresent",
+      "handler": "0xa0260558",
+      "name_address": "0xa0261880",
+      "registration_address": "0xa02611be",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ssMove",
+      "handler": "0xa02607c0",
+      "name_address": "0xa02618d0",
+      "registration_address": "0xa026124a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ssPegPick",
+      "handler": "0xa0260a90",
+      "name_address": "0xa0261904",
+      "registration_address": "0xa02612ba",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ssReadyToPrint",
+      "handler": "0xa02608a8",
+      "name_address": "0xa02618d8",
+      "registration_address": "0xa0261266",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ssScrapeWipers",
+      "handler": "0xa02609f4",
+      "name_address": "0xa02618f4",
+      "registration_address": "0xa026129e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ssScrubPens",
+      "handler": "0xa0260bbc",
+      "name_address": "0xa026191c",
+      "registration_address": "0xa02612f2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ssServoDataCollect",
+      "handler": "0xa0260684",
+      "name_address": "0xa02618ac",
+      "registration_address": "0xa0261212",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ssServoDataGet",
+      "handler": "0xa026072c",
+      "name_address": "0xa02618c0",
+      "registration_address": "0xa026122e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ssSpit",
+      "handler": "0xa0260c9c",
+      "name_address": "0xa0261928",
+      "registration_address": "0xa026130e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ssTurnWheel",
+      "handler": "0xa0260b4c",
+      "name_address": "0xa0261910",
+      "registration_address": "0xa02612d6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ssUncapPens",
+      "handler": "0xa0260620",
+      "name_address": "0xa02618a0",
+      "registration_address": "0xa02611f6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "ssWipePens",
+      "handler": "0xa0260938",
+      "name_address": "0xa02618e8",
+      "registration_address": "0xa0261282",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "startSBChecking",
+      "handler": "0xa025d3f8",
+      "name_address": "0xa025e294",
+      "registration_address": "0xa025d8ae",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "stopDTC",
+      "handler": "0xa02604f4",
+      "name_address": "0xa0261878",
+      "registration_address": "0xa02611a2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "stopSBChecking",
+      "handler": "0xa025d45c",
+      "name_address": "0xa025e2a4",
+      "registration_address": "0xa025d8ca",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsOnIntervention_set",
+      "handler": "0xa026a884",
+      "name_address": "0xa026bdb4",
+      "registration_address": "0xa026ad56",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsOnPenReplacement_set",
+      "handler": "0xa026a7ac",
+      "name_address": "0xa026bd88",
+      "registration_address": "0xa026ad1e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsOnPostTTOV_set",
+      "handler": "0xa026a848",
+      "name_address": "0xa026bda0",
+      "registration_address": "0xa026ad3a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableColConstantEntry_get",
+      "handler": "0xa0269454",
+      "name_address": "0xa026bba0",
+      "registration_address": "0xa026ab26",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableColConstantEntry_set",
+      "handler": "0xa026954c",
+      "name_address": "0xa026bbc0",
+      "registration_address": "0xa026ab42",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableGlbConstantEntry_get",
+      "handler": "0xa02692a0",
+      "name_address": "0xa026bb60",
+      "registration_address": "0xa026aaee",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableGlbConstantEntry_set",
+      "handler": "0xa0269374",
+      "name_address": "0xa026bb80",
+      "registration_address": "0xa026ab0a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTablePEGEntry_get",
+      "handler": "0xa0269f38",
+      "name_address": "0xa026bc80",
+      "registration_address": "0xa026ac06",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTablePEGEntry_set",
+      "handler": "0xa0269ff4",
+      "name_address": "0xa026bc98",
+      "registration_address": "0xa026ac22",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTablePenSelection_get",
+      "handler": "0xa02691c8",
+      "name_address": "0xa026bb28",
+      "registration_address": "0xa026aab6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTablePenSelection_set",
+      "handler": "0xa0269204",
+      "name_address": "0xa026bb44",
+      "registration_address": "0xa026aad2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableScrapeEntry_get",
+      "handler": "0xa026a11c",
+      "name_address": "0xa026bcb0",
+      "registration_address": "0xa026ac3e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableScrapeEntry_set",
+      "handler": "0xa026a1d8",
+      "name_address": "0xa026bcc8",
+      "registration_address": "0xa026ac5a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableScrubEntry_get",
+      "handler": "0xa026a478",
+      "name_address": "0xa026bd10",
+      "registration_address": "0xa026acae",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableScrubEntry_set",
+      "handler": "0xa026a534",
+      "name_address": "0xa026bd28",
+      "registration_address": "0xa026acca",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableSelection_get",
+      "handler": "0xa0268f20",
+      "name_address": "0xa026baf8",
+      "registration_address": "0xa026aa7e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableSelection_set",
+      "handler": "0xa0268f90",
+      "name_address": "0xa026bb10",
+      "registration_address": "0xa026aa9a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableSpitEntry_get",
+      "handler": "0xa0269650",
+      "name_address": "0xa026bbe0",
+      "registration_address": "0xa026ab5e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableSpitEntry_set",
+      "handler": "0xa026970c",
+      "name_address": "0xa026bbf8",
+      "registration_address": "0xa026ab7a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableSpitOnTheFlyEntry_get",
+      "handler": "0xa0269a88",
+      "name_address": "0xa026bc10",
+      "registration_address": "0xa026ab96",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableSpitOnTheFlyEntry_set",
+      "handler": "0xa0269b44",
+      "name_address": "0xa026bc30",
+      "registration_address": "0xa026abb2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableWheelEntry_get",
+      "handler": "0xa026a2dc",
+      "name_address": "0xa026bce0",
+      "registration_address": "0xa026ac76",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableWheelEntry_set",
+      "handler": "0xa026a398",
+      "name_address": "0xa026bcf8",
+      "registration_address": "0xa026ac92",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableWipeEntry_get",
+      "handler": "0xa0269d54",
+      "name_address": "0xa026bc50",
+      "registration_address": "0xa026abce",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsTableWipeEntry_set",
+      "handler": "0xa0269e10",
+      "name_address": "0xa026bc68",
+      "registration_address": "0xa026abea",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsValueCacheFlushed_set",
+      "handler": "0xa0268ebc",
+      "name_address": "0xa026badc",
+      "registration_address": "0xa026aa62",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsValue_get",
+      "handler": "0xa0268d44",
+      "name_address": "0xa026babc",
+      "registration_address": "0xa026aa2a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "svsValue_set",
+      "handler": "0xa0268df8",
+      "name_address": "0xa026bacc",
+      "registration_address": "0xa026aa46",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sweepMgr_printToFileFile_set",
+      "handler": "0xa0267620",
+      "name_address": "0xa0268668",
+      "registration_address": "0xa0267fe2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sweepMgr_printToFile_get",
+      "handler": "0xa02675b8",
+      "name_address": "0xa026864c",
+      "registration_address": "0xa0267fc6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sweepMgr_printToFile_set",
+      "handler": "0xa0267514",
+      "name_address": "0xa0268630",
+      "registration_address": "0xa0267faa",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sweepMgr_spitOnTheFlyEnabled_set",
+      "handler": "0xa026a680",
+      "name_address": "0xa026bd40",
+      "registration_address": "0xa026ace6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sweepMgr_spitOnTheFlyParameters_set",
+      "handler": "0xa026a6f0",
+      "name_address": "0xa026bd64",
+      "registration_address": "0xa026ad02",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sweepUT_CMB_set",
+      "handler": "0xa026bdcc",
+      "name_address": "0xa026c40c",
+      "registration_address": "0xa026c13a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sweepUT_MSK_set",
+      "handler": "0xa026bf3c",
+      "name_address": "0xa026c42c",
+      "registration_address": "0xa026c172",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sweepUT_PIX_set",
+      "handler": "0xa026c004",
+      "name_address": "0xa026c43c",
+      "registration_address": "0xa026c18e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sweepUT_SHN_set",
+      "handler": "0xa026be74",
+      "name_address": "0xa026c41c",
+      "registration_address": "0xa026c156",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sweepUT_keyrows_get",
+      "handler": "0xa026c0ac",
+      "name_address": "0xa026c44c",
+      "registration_address": "0xa026c1aa",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysCleanResetInfo",
+      "handler": "0xa026cf20",
+      "name_address": "0xa026d890",
+      "registration_address": "0xa026d21e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "clears_diagnostic_information_not_enabled"
+    },
+    {
+      "name": "sysDumpSignatures",
+      "handler": "0xa026c568",
+      "name_address": "0xa026d734",
+      "registration_address": "0xa026cfee",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysGetBoardInfo",
+      "handler": "0xa026c460",
+      "name_address": "0xa026d710",
+      "registration_address": "0xa026cfb6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysGetBootupMode",
+      "handler": "0xa026ce58",
+      "name_address": "0xa026d864",
+      "registration_address": "0xa026d1e6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysGetFwRevision",
+      "handler": "0xa026c4d0",
+      "name_address": "0xa026d720",
+      "registration_address": "0xa026cfd2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "live_fixed_arguments"
+    },
+    {
+      "name": "sysGetPCIDevsInfo",
+      "handler": "0xa026c858",
+      "name_address": "0xa026d79c",
+      "registration_address": "0xa026d096",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysLogChannelReset",
+      "handler": "0xa026c73c",
+      "name_address": "0xa026d774",
+      "registration_address": "0xa026d05e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysLogChannelSet",
+      "handler": "0xa026c6b4",
+      "name_address": "0xa026d760",
+      "registration_address": "0xa026d042",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysLogClear",
+      "handler": "0xa026c62c",
+      "name_address": "0xa026d754",
+      "registration_address": "0xa026d026",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "changes_logging_configuration_not_error_history_reader"
+    },
+    {
+      "name": "sysLogSet",
+      "handler": "0xa026c5a4",
+      "name_address": "0xa026d748",
+      "registration_address": "0xa026d00a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysODBDump",
+      "handler": "0xa026c8b8",
+      "name_address": "0xa026d7b0",
+      "registration_address": "0xa026d0b2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysODBGet",
+      "handler": "0xa026c938",
+      "name_address": "0xa026d7bc",
+      "registration_address": "0xa026d0ce",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "live_30_fixed_objects_only"
+    },
+    {
+      "name": "sysODBSet",
+      "handler": "0xa026c9c0",
+      "name_address": "0xa026d7c8",
+      "registration_address": "0xa026d0ea",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "writes_device_state_not_enabled"
+    },
+    {
+      "name": "sysPrintFile",
+      "handler": "0xa026ccf0",
+      "name_address": "0xa026d834",
+      "registration_address": "0xa026d192",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysRunRomTclScript",
+      "handler": "0xa026cdc4",
+      "name_address": "0xa026d850",
+      "registration_address": "0xa026d1ca",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysShowResetInfo",
+      "handler": "0xa026cf5c",
+      "name_address": "0xa026d8a4",
+      "registration_address": "0xa026d23a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "candidate_reset_information_not_system_error_history"
+    },
+    {
+      "name": "sysSubsystemInit",
+      "handler": "0xa026c7c4",
+      "name_address": "0xa026d788",
+      "registration_address": "0xa026d07a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysTDCAppendChannel",
+      "handler": "0xa026cabc",
+      "name_address": "0xa026d7e8",
+      "registration_address": "0xa026d122",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysTDCCreateChannel",
+      "handler": "0xa026ca4c",
+      "name_address": "0xa026d7d4",
+      "registration_address": "0xa026d106",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysTDCDestroyChannel",
+      "handler": "0xa026cb2c",
+      "name_address": "0xa026d7fc",
+      "registration_address": "0xa026d13e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysTDCLogClear",
+      "handler": "0xa026cbb4",
+      "name_address": "0xa026d814",
+      "registration_address": "0xa026d15a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysTDCLogSet",
+      "handler": "0xa026cc3c",
+      "name_address": "0xa026d824",
+      "registration_address": "0xa026d176",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysTickGet",
+      "handler": "0xa026cd60",
+      "name_address": "0xa026d844",
+      "registration_address": "0xa026d1ae",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "sysWaitUntilInitDone",
+      "handler": "0xa026cebc",
+      "name_address": "0xa026d878",
+      "registration_address": "0xa026d202",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "tcleventClientRegistered_set",
+      "handler": "0xa02550cc",
+      "name_address": "0xa02565d0",
+      "registration_address": "0xa0255726",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "tcleventClientUnregistered_set",
+      "handler": "0xa0255184",
+      "name_address": "0xa02565f0",
+      "registration_address": "0xa0255742",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "tcleventConsumptionSignaled_set",
+      "handler": "0xa0255220",
+      "name_address": "0xa0256610",
+      "registration_address": "0xa025575e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "turnLogicPenVoltages",
+      "handler": "0xa02646b0",
+      "name_address": "0xa0265db0",
+      "registration_address": "0xa026558e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "turnVpp",
+      "handler": "0xa0264738",
+      "name_address": "0xa0265dc8",
+      "registration_address": "0xa02655aa",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsAtpsLogGet",
+      "handler": "0xa026f700",
+      "name_address": "0xa02705b4",
+      "registration_address": "0xa026fe9a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsBubbleOffDistanceGet",
+      "handler": "0xa026fae8",
+      "name_address": "0xa0270608",
+      "registration_address": "0xa026ff0a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsBubbleOffDistanceSet",
+      "handler": "0xa026fa60",
+      "name_address": "0xa02705f0",
+      "registration_address": "0xa026feee",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsBubbleOffParams",
+      "handler": "0xa026f908",
+      "name_address": "0xa02705dc",
+      "registration_address": "0xa026fed2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsBubbleOffTimeoutGet",
+      "handler": "0xa026fbd4",
+      "name_address": "0xa0270638",
+      "registration_address": "0xa026ff42",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsBubbleOffTimeoutSet",
+      "handler": "0xa026fb4c",
+      "name_address": "0xa0270620",
+      "registration_address": "0xa026ff26",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsCut",
+      "handler": "0xa026f588",
+      "name_address": "0xa02705ac",
+      "registration_address": "0xa026fe7e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsCutBubbleOffParams",
+      "handler": "0xa026f7b0",
+      "name_address": "0xa02705c4",
+      "registration_address": "0xa026feb6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsDropWeight",
+      "handler": "0xa026fcc0",
+      "name_address": "0xa027065c",
+      "registration_address": "0xa026ff7a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsFindMediaEdges",
+      "handler": "0xa026f1fc",
+      "name_address": "0xa0270554",
+      "registration_address": "0xa026fe0e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsFindMediaLeftEdge",
+      "handler": "0xa026f354",
+      "name_address": "0xa0270580",
+      "registration_address": "0xa026fe46",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsFindMediaRightEdge",
+      "handler": "0xa026f2c0",
+      "name_address": "0xa0270568",
+      "registration_address": "0xa026fe2a",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsFindMediaSetParams",
+      "handler": "0xa026f3e8",
+      "name_address": "0xa0270594",
+      "registration_address": "0xa026fe62",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsGetPrintMode",
+      "handler": "0xa026f0fc",
+      "name_address": "0xa0270534",
+      "registration_address": "0xa026fdd6",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsGetPrintModeList",
+      "handler": "0xa026ef24",
+      "name_address": "0xa02704e8",
+      "registration_address": "0xa026fd66",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsGetPrintModeSpeed",
+      "handler": "0xa026f028",
+      "name_address": "0xa0270510",
+      "registration_address": "0xa026fd9e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsRandomize",
+      "handler": "0xa026fc38",
+      "name_address": "0xa0270650",
+      "registration_address": "0xa026ff5e",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsSetPrintMode",
+      "handler": "0xa026f08c",
+      "name_address": "0xa0270524",
+      "registration_address": "0xa026fdba",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsSetPrintModeSpeed",
+      "handler": "0xa026ef94",
+      "name_address": "0xa02704fc",
+      "registration_address": "0xa026fd82",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    },
+    {
+      "name": "wsVacuumEnable",
+      "handler": "0xa026f16c",
+      "name_address": "0xa0270544",
+      "registration_address": "0xa026fdf2",
+      "registration_call_target": "0xa0320330",
+      "handler_link_prologue": true,
+      "review": "not_assessed_not_enabled"
+    }
+  ],
+  "command_count": 403,
+  "function_proofs": {
+    "head_subcode": {
+      "address": "0xa00ef4ac",
+      "bytes": 214,
+      "sha256": "8c4b06fd8766d39336a5c4aa489f3cd306a58178281d7b89eb67d38f491b718b"
+    },
+    "head_full_code": {
+      "address": "0xa00ef628",
+      "bytes": 190,
+      "sha256": "3d82b60e487932ec7988ed10e062df37d2eab012c4fa65b7ffb8766890bc6565"
+    },
+    "error_record_reader": {
+      "address": "0xa0295818",
+      "bytes": 194,
+      "sha256": "673fd161b07278c75a7ea009384f39713384b0686a70a0e3d4ed6599f7ae0d42"
+    },
+    "panel_status": {
+      "address": "0xa027c068",
+      "bytes": 28,
+      "sha256": "0a5020f3710cd9845856fd225628c3528e1983a3117d08a19488833ab0232bfc"
+    }
+  },
+  "head_index_mapping": [
+    {
+      "address": "0xa039d324",
+      "odb_name": "PH-STATUS-3",
+      "native_device_index": 0,
+      "error_color_prefix": 0
+    },
+    {
+      "address": "0xa039d33a",
+      "odb_name": "PH-STATUS-0",
+      "native_device_index": 1,
+      "error_color_prefix": 2
+    },
+    {
+      "address": "0xa039d350",
+      "odb_name": "PH-STATUS-1",
+      "native_device_index": 2,
+      "error_color_prefix": 1
+    },
+    {
+      "address": "0xa039d366",
+      "odb_name": "PH-STATUS-2",
+      "native_device_index": 3,
+      "error_color_prefix": 3
+    }
+  ],
+  "known_head_case": {
+    "odb_name": "PH-STATUS-3",
+    "raw_mask": 524288,
+    "native_device_index": 0,
+    "subcode": 33,
+    "derived_code": "0033",
+    "provenance": "offline_derived_from_exact_mask_not_read_from_error_log",
+    "physical_cause_proven": false
+  },
+  "system_error_log_candidate": {
+    "group": 8,
+    "record_tags": [
+      811,
+      812,
+      813,
+      814,
+      815,
+      816,
+      817,
+      818,
+      819,
+      820
+    ],
+    "record_bytes": 20,
+    "ring_index_tag": 810,
+    "read_function": "0xa0295818",
+    "live_read_implemented": false,
+    "layout_fully_validated": false
+  },
+  "limits": [
+    "No arbitrary command runner is generated.",
+    "Static presence does not establish output route or safe arguments.",
+    "The exact-mask head code is derived, not a retrieved history entry.",
+    "A diagnostic code does not identify a uniquely faulty physical part."
+  ]
+}
