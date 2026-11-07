@@ -1,0 +1,28 @@
+[
+  {
+    "version": "A.04.02",
+    "path": "DJ500_A.04.02.fmw",
+    "bytes": 1992702,
+    "sha256": "fc9bff020872dfb84d569b1b4712f61baebb17918a72490af37195b3a6e3e9cb",
+    "declared_checksum": 61237,
+    "computed_checksum": 61237,
+    "checksum_valid": true,
+    "main_path": "engine-A0402-main.bin",
+    "main_bytes": 4504048,
+    "main_sha256": "c882e68d2eb2462745f1ec984ce8f5ed745d2900587dce6b36acee5b89a1f4eb",
+    "source": "official_HP_HTTPS"
+  },
+  {
+    "version": "A.05.01",
+    "path": "DJ500_A.05.01.fmw",
+    "bytes": 1992702,
+    "sha256": "3fc17d78d8050ffdaa7e17952c654918059b7c31f1569fe55d9d78e8ecc34be3",
+    "declared_checksum": 37578,
+    "computed_checksum": 37578,
+    "checksum_valid": true,
+    "main_path": "engine-A0501-main.bin",
+    "main_bytes": 4504104,
+    "main_sha256": "37260629d3d09c997863576c99e5a59867930f13936c9d7fd1f5b11978eb436c",
+    "source": "official_HP_HTTPS"
+  }
+]

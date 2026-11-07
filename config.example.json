@@ -1,0 +1,9 @@
+{
+  "ssh_target": "btt-plotter",
+  "known_hosts": "~/.ssh/known_hosts",
+  "machine_id": "00000000000000000000000000000000",
+  "printer_serial": "UNCONFIGURED",
+  "adapter_descriptor_sha256": "d5e1ee6bc5732b93ec44b7830dd57ff82b7a044cd6064809e1d642c6aae3cf1e",
+  "queue": "HP-DesignJet-500",
+  "password_file": null
+}
