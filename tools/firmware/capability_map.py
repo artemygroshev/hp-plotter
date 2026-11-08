@@ -67,7 +67,7 @@ REVIEW = {
     'eeResetEeromMem': 'changes_persistent_state_not_enabled',
     'sysLogClear': 'changes_logging_configuration_not_error_history_reader',
     'sysCleanResetInfo': 'clears_diagnostic_information_not_enabled',
-    'sysShowResetInfo': 'prepared_fixed_previous_reset_report_live_not_yet_verified',
+    'sysShowResetInfo': 'live_fixed_previous_reset_report_not_system_error_history',
 }
 
 
@@ -146,7 +146,8 @@ def extract(data):
             provenance='offline_head_status_OR_and_bit_set_paths',
             physical_cause_proven=False),
         previous_reset_report=dict(command='sysShowResetInfo',arguments=[],
-            implementation='tools/service/reset_info.py',live_verified=False,
+            implementation='tools/service/reset_info.py',live_verified=True,
+            live_observed_valid_reset_signature=False,
             system_error_ring=False,calling_code_meaning_confirmed=False,
             reset_or_clear_enabled=False),
         system_error_log_candidate=dict(group=8, record_tags=tags,

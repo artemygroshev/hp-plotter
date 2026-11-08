@@ -3334,7 +3334,7 @@
       "registration_address": "0xa026d23a",
       "registration_call_target": "0xa0320330",
       "handler_link_prologue": true,
-      "review": "prepared_fixed_previous_reset_report_live_not_yet_verified"
+      "review": "live_fixed_previous_reset_report_not_system_error_history"
     },
     {
       "name": "sysSubsystemInit",
@@ -3775,7 +3775,8 @@
     "command": "sysShowResetInfo",
     "arguments": [],
     "implementation": "tools/service/reset_info.py",
-    "live_verified": false,
+    "live_verified": true,
+    "live_observed_valid_reset_signature": false,
     "system_error_ring": false,
     "calling_code_meaning_confirmed": false,
     "reset_or_clear_enabled": false
