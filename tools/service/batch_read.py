@@ -147,6 +147,9 @@ def read_content(client,mode,include_diagnostics=False):
     if mode=='head-journal':
         from head_journal import read_history
         read_history(client)
+    if mode=='reset-info':
+        from reset_info import read_reset_info
+        read_reset_info(client)
     if mode=='all':
         descriptor,header,pointer=client.locate()
         frames=[client.capture(i+1,descriptor,header,pointer) for i in range(2)]
@@ -162,7 +165,7 @@ def read_content(client,mode,include_diagnostics=False):
 
 
 def collect(cutoff,mode='all',include_diagnostics=False,refresh_id_each_query=False,comment_bytes=64):
-    if mode not in ('all','diagnostics','journal','head-journal'):raise ValueError('only fixed read plans exist')
+    if mode not in ('all','diagnostics','journal','head-journal','reset-info'):raise ValueError('only fixed read plans exist')
     if type(comment_bytes) is not int or comment_bytes not in (63,64):raise ValueError('comment length must be 63 or 64')
     if cutoff.tzinfo is None or (cutoff-dt.datetime.now(dt.timezone.utc)).total_seconds()<90:
         raise ValueError('allow 90 seconds for query and cleanup')
@@ -245,7 +248,7 @@ def collect(cutoff,mode='all',include_diagnostics=False,refresh_id_each_query=Fa
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('mode',choices=('diagnostics','all','journal','head-journal'))
+    parser.add_argument('mode',choices=('diagnostics','all','journal','head-journal','reset-info'))
     parser.add_argument('--include-diagnostics',action='store_true')
     parser.add_argument('--refresh-id',action='store_true',help='refresh class device ID before every query')
     parser.add_argument('--short-comment',action='store_true',help='separate experimental 63-byte COMMENT profile')

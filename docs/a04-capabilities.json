@@ -3334,7 +3334,7 @@
       "registration_address": "0xa026d23a",
       "registration_call_target": "0xa0320330",
       "handler_link_prologue": true,
-      "review": "candidate_reset_information_not_system_error_history"
+      "review": "prepared_fixed_previous_reset_report_live_not_yet_verified"
     },
     {
       "name": "sysSubsystemInit",
@@ -3690,6 +3690,36 @@
       "address": "0xa00f6158",
       "bytes": 252,
       "sha256": "473490f344ac5f0c23bc755395463a0d06b3d1178948015d7f5725a7488e203e"
+    },
+    "previous_reset_Tcl_wrapper": {
+      "address": "0xa026cf5c",
+      "bytes": 60,
+      "sha256": "08d43af2eb56ccebaf51d4136ad0af5957937b62dc3673083620dd4dce9481e1"
+    },
+    "previous_reset_native_report": {
+      "address": "0xa010c0e8",
+      "bytes": 290,
+      "sha256": "288145d01f4dad93bf0fd13becd554d431393931131bc30e0e8fae98e2330596"
+    },
+    "writing_system_ODB_handles": {
+      "address": "0xa007a388",
+      "bytes": 520,
+      "sha256": "c8b90532fd30cf638b31147305649d607e3cd4b4db3978b4bdef8bb4ee304f7e"
+    },
+    "writing_system_set_bit": {
+      "address": "0xa007b430",
+      "bytes": 212,
+      "sha256": "194542c7ffaa26dd30e5584cc0c6a51d9eab16462e943d4970b3f00a629e20cf"
+    },
+    "head_status_aggregate_callback": {
+      "address": "0xa00fb3d0",
+      "bytes": 208,
+      "sha256": "d3848bacc97407e5a9b24d142966ccc45e7eb7375e6c610d03a9b3067ef17b94"
+    },
+    "head_status_aggregate_initialization": {
+      "address": "0xa00fb4f4",
+      "bytes": 770,
+      "sha256": "4f8f4253e04a8afbf2c8f3e7f6b49ebaac1082264923eb2bf595a3e92bc212e0"
     }
   },
   "head_index_mapping": [
@@ -3726,6 +3756,29 @@
     "derived_code": "0033",
     "provenance": "offline_derived_from_exact_mask_not_read_from_error_log",
     "physical_cause_proven": false
+  },
+  "writing_system_head_error_bit": {
+    "ODB_name": "WS-B-ERROR",
+    "bit": 4,
+    "value": 16,
+    "head_error_mask": 83820513,
+    "head_ODB_suffixes": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "provenance": "offline_head_status_OR_and_bit_set_paths",
+    "physical_cause_proven": false
+  },
+  "previous_reset_report": {
+    "command": "sysShowResetInfo",
+    "arguments": [],
+    "implementation": "tools/service/reset_info.py",
+    "live_verified": false,
+    "system_error_ring": false,
+    "calling_code_meaning_confirmed": false,
+    "reset_or_clear_enabled": false
   },
   "system_error_log_candidate": {
     "group": 8,

@@ -3,7 +3,7 @@ from pathlib import Path
 from http.server import ThreadingHTTPServer
 from urllib.request import urlopen
 from urllib.error import HTTPError
-import error_journal,head_journal,journal_view
+import error_journal,head_journal,journal_view,reset_info
 from status_server import current_history,handler
 
 
@@ -77,6 +77,40 @@ class JournalViewChecks(unittest.TestCase):
                 self.assertEqual(error.exception.code,503)
                 with self.assertRaises(HTTPError) as error:urlopen(base+'/api/status')
                 self.assertEqual(error.exception.code,503)
+            finally:server.shutdown();server.server_close();thread.join()
+
+    def test_reset_report_is_reparsed_and_has_a_separate_source_and_time(self):
+        state,batch=self.session('journal');state['mode']='reset-info'
+        body=b'Calling code: 0x79\nKernel state: 0x0\nTID: 0x1234  PRIO: 0x12\nName: <xx>\n'
+        raw=reset_info.parse_reply(body+b'E012abc\n','012abc')
+        raw['code_proofs']=[{'address':hex(a),'bytes':n,'sha256':h} for a,n,h in reset_info.CODE_PROOFS]
+        state['previous_reset_info']=raw
+        public=journal_view.public_history(state,batch)
+        self.assertEqual(public['kind'],'reset')
+        self.assertEqual(public['literal_report'],body.decode())
+        self.assertEqual(public['source'],'argument-free native sysShowResetInfo getter')
+        self.assertEqual(public['observed_utc'],batch['postflight']['observed_utc'])
+        self.assertFalse(public['current_fault_proven'])
+        self.assertFalse(public['calling_code_meaning_confirmed'])
+        for private in ('PRIVATE_','code_proofs','native_report_hex'):self.assertNotIn(private,json.dumps(public))
+        raw['calling_code_raw']=0
+        with self.assertRaises(ValueError):journal_view.public_history(state,batch)
+
+    def test_no_reset_record_is_still_a_verified_report_with_its_own_endpoint(self):
+        state,batch=self.session('journal');state['mode']='reset-info'
+        raw=reset_info.parse_reply(reset_info.NO_INFO+b'E012abc\n','012abc')
+        raw['code_proofs']=[{'address':hex(a),'bytes':n,'sha256':h} for a,n,h in reset_info.CODE_PROOFS]
+        state['previous_reset_info']=raw
+        public=journal_view.public_history(state,batch)
+        self.assertFalse(public['valid_reset_signature'])
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder);(root/'reset-info.json').write_text(json.dumps(public))
+            self.assertTrue(current_history(root,'reset')['stale'])
+            server=ThreadingHTTPServer(('127.0.0.1',0),handler(root))
+            thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
+            try:
+                with urlopen('http://127.0.0.1:'+str(server.server_port)+'/api/reset-info') as response:
+                    self.assertEqual(json.load(response)['literal_report'],'Not sysReset valid info\n')
             finally:server.shutdown();server.server_close();thread.join()
 
 

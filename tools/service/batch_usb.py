@@ -22,7 +22,7 @@ from run_service_read import safe_memory_command
 
 def payload_for(kind,nonce,memory=None):
     if memory is None:
-        allowed=(kind in ('fw_info_tagged','telemetry_serial','lcd_pointer_tagged')
+        allowed=(kind in ('fw_info_tagged','telemetry_serial','lcd_pointer_tagged','reset_info_native')
                  or kind.startswith('telemetry_'))
         if not allowed or kind not in probe.SMALL_READ_COMMANDS:
             raise ValueError('only fixed scalar/LCD-pointer reads are allowed')
@@ -178,6 +178,9 @@ class ReadSession:
                     if memory is not None:
                         _,proof=extract_addressed_reply(raw,nonce,*memory)
                         report['address_proof']=proof
+                    elif kind=='reset_info_native':
+                        from reset_info import parse_reply
+                        report['reset_info_proof']=parse_reply(raw,nonce)
                     else:
                         tag,separator=(('F','_') if kind=='fw_info_tagged' else
                                        (('P',' ') if kind=='lcd_pointer_tagged' else ('R','_')))

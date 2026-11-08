@@ -93,7 +93,22 @@ def public_history(state,batch):
                 'index_valid':item['index_valid'],'current_ODB_status_raw':odb,
                 'current_mask_matches_history':item['current_mask_matches_history'],'records':records})
         output.update(kind='heads',colors=colors,code_provenance='derived from stored masks with pinned native algorithm')
-    else:raise ValueError('only verified journal/head-journal sessions can be published')
+    elif state['mode']=='reset-info':
+        from reset_info import parse_reply,CODE_PROOFS
+        raw=state['previous_reset_info']
+        expected=[{'address':hex(address),'bytes':length,'sha256':digest} for address,length,digest in CODE_PROOFS]
+        if raw.get('code_proofs')!=expected:raise ValueError('reset report code proofs differ')
+        body=bytes.fromhex(raw['native_report_hex'])
+        parsed=parse_reply(body+b'E012abc\n','012abc')
+        keys=('valid_reset_signature','raier_not_in_reset_reported','calling_code_raw',
+              'kernel_state_raw','task_state','task_id_raw','priority_raw','task_name_text','task_name_hex')
+        for key in keys:
+            if raw.get(key)!=parsed.get(key):raise ValueError('parsed reset report differs')
+        literal=''.join(chr(c) if 32<=c<127 or c==10 else '\\x%02x'%c for c in body)
+        output.update(kind='reset',source='argument-free native sysShowResetInfo getter',
+            literal_report=literal,calling_code_meaning_confirmed=False,event_time_known=False,
+            **{key:parsed[key] for key in keys if key in parsed})
+    else:raise ValueError('only verified history/reset-info sessions can be published')
     return output
 
 
@@ -106,7 +121,7 @@ def main():
     batch=json.loads(Path(state['batch_report']).read_text())
     public=public_history(state,batch)
     view=Path(args.view_root);view.mkdir(mode=0o755,parents=True,exist_ok=True)
-    path=view/('system-journal.json' if public['kind']=='system' else 'head-history.json')
+    path=view/{'system':'system-journal.json','heads':'head-history.json','reset':'reset-info.json'}[public['kind']]
     atomic_json(path,public);path.chmod(0o644)
     print(json.dumps({'published':path.name,'observed_utc':public['observed_utc'],'usb_queries':0}))
 

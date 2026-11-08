@@ -35,6 +35,18 @@ FUNCTIONS = {
         '91f30cda8cecf7a2eae23cbf47ec7a11be79a080f80197a30056b7f3ff0a3085'),
     'head_history_index_getter': (0xa00f6158, 0xfc,
         '473490f344ac5f0c23bc755395463a0d06b3d1178948015d7f5725a7488e203e'),
+    'previous_reset_Tcl_wrapper': (0xa026cf5c,60,
+        '08d43af2eb56ccebaf51d4136ad0af5957937b62dc3673083620dd4dce9481e1'),
+    'previous_reset_native_report': (0xa010c0e8,290,
+        '288145d01f4dad93bf0fd13becd554d431393931131bc30e0e8fae98e2330596'),
+    'writing_system_ODB_handles': (0xa007a388,520,
+        'c8b90532fd30cf638b31147305649d607e3cd4b4db3978b4bdef8bb4ee304f7e'),
+    'writing_system_set_bit': (0xa007b430,212,
+        '194542c7ffaa26dd30e5584cc0c6a51d9eab16462e943d4970b3f00a629e20cf'),
+    'head_status_aggregate_callback': (0xa00fb3d0,208,
+        'd3848bacc97407e5a9b24d142966ccc45e7eb7375e6c610d03a9b3067ef17b94'),
+    'head_status_aggregate_initialization': (0xa00fb4f4,770,
+        '4f8f4253e04a8afbf2c8f3e7f6b49ebaac1082264923eb2bf595a3e92bc212e0'),
 }
 REVIEW = {
     'sysGetFwRevision': 'live_fixed_arguments',
@@ -55,7 +67,7 @@ REVIEW = {
     'eeResetEeromMem': 'changes_persistent_state_not_enabled',
     'sysLogClear': 'changes_logging_configuration_not_error_history_reader',
     'sysCleanResetInfo': 'clears_diagnostic_information_not_enabled',
-    'sysShowResetInfo': 'candidate_reset_information_not_system_error_history',
+    'sysShowResetInfo': 'prepared_fixed_previous_reset_report_live_not_yet_verified',
 }
 
 
@@ -129,6 +141,14 @@ def extract(data):
         commands_matching_this_registration_pattern=commands,
         command_count=len(commands), function_proofs=proofs,
         head_index_mapping=descriptors, known_head_case=known_case,
+        writing_system_head_error_bit=dict(ODB_name='WS-B-ERROR',bit=4,value=16,
+            head_error_mask=0x04feffe1,head_ODB_suffixes=[0,1,2,3],
+            provenance='offline_head_status_OR_and_bit_set_paths',
+            physical_cause_proven=False),
+        previous_reset_report=dict(command='sysShowResetInfo',arguments=[],
+            implementation='tools/service/reset_info.py',live_verified=False,
+            system_error_ring=False,calling_code_meaning_confirmed=False,
+            reset_or_clear_enabled=False),
         system_error_log_candidate=dict(group=8, record_tags=tags,
             record_bytes=20, ring_index_tag=810,
             read_function='0xa0295818',

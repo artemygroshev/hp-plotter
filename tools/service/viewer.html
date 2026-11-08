@@ -14,6 +14,7 @@
 <section aria-live="polite"><h2>Что сообщает сохранённый снимок</h2><p id="literal">Дословное сообщение ещё не подтверждено.</p><p id="diagnosis"></p><small id="diagnosis-limit">Расшифровка экрана ограничена проверенными состояниями.</small></section>
 <details open><summary>Системный журнал HP</summary><p id="journal-stamp">Проверенный журнал пока не загружен.</p><p>Это последние сохранённые события, а не установленная причина нынешней остановки. Дата события не подтверждена.</p><div style="overflow-x:auto"><table><thead><tr><th>Код</th><th>Модуль</th><th>Строка</th><th>По руководству HP</th></tr></thead><tbody id="journal-rows"></tbody></table></div></details>
 <details><summary>История печатающих головок</summary><p id="heads-stamp">Проверенная история пока не загружена.</p><p>Коды вычислены по штатному алгоритму A.04.02 из сохранённых масок. Текущий слот истории и последний прочитанный ODB-статус показываются отдельно.</p><div id="head-history"></div></details>
+<details><summary>Отчёт предыдущего программного перезапуска</summary><p id="reset-stamp">Проверенный отчёт пока не загружен.</p><p id="reset-note">Этот отчёт хранится отдельно от системного журнала. Связь с нынешней ошибкой не установлена.</p><pre id="reset-report" style="white-space:pre-wrap;overflow-wrap:anywhere"></pre></details>
 <details><summary>Служебные значения</summary><p id="coverage"></p><p>Числа передаются как есть. Уровень картриджа не подтверждён как процент заполнения внешних банок.</p><table><tbody id="fields"></tbody></table></details>
 <script>
 let lastHash='',snapshot=null;
@@ -53,10 +54,17 @@ function showHeads(s){
   }
   $('head-history').replaceChildren(...sections);
 }
+function showReset(s){
+  if(s.kind!=='reset'||typeof s.valid_reset_signature!=='boolean'||typeof s.literal_report!=='string'||s.literal_report.length>2048)throw Error('Invalid reset report');
+  $('reset-stamp').textContent=historyStamp(s);
+  $('reset-report').textContent=s.literal_report;
+  $('reset-note').textContent=s.valid_reset_signature?'Сохранены данные предыдущего программного перезапуска. Значение Calling code и связь с нынешней ошибкой не расшифрованы.':'Плоттер не сообщил действительную запись программного перезапуска. Это не означает отсутствия других ошибок.';
+}
 async function refreshHistories(){
   await Promise.all([
     ['/api/system-journal',showJournal,'journal-stamp','journal-rows'],
-    ['/api/head-history',showHeads,'heads-stamp','head-history']
+    ['/api/head-history',showHeads,'heads-stamp','head-history'],
+    ['/api/reset-info',showReset,'reset-stamp','reset-report']
   ].map(async([url,render,stamp,body])=>{try{const response=await fetch(url,{cache:'no-store'});if(!response.ok)throw Error();render(await response.json());}catch(error){$(stamp).textContent='Проверенный кэш истории недоступен.';$(body).replaceChildren();}}));
 }
 function age(){if(!snapshot)return;const time=snapshot.last_success_utc;if(!time){$('stamp').textContent='Успешного полного снимка пока нет.';return;}const mins=Math.max(0,Math.floor((Date.now()-Date.parse(time))/60000));$('stamp').textContent='Последний полный снимок: '+new Date(time).toLocaleString('ru-RU')+' · '+mins+' мин назад';$('stale').textContent=mins>60?'Данные устарели. Текущее состояние плоттера может отличаться.':'';}

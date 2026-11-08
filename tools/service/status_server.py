@@ -19,7 +19,7 @@ def current_status(root):
 
 
 def current_history(root,kind):
-    name='system-journal.json' if kind=='system' else 'head-history.json'
+    name={'system':'system-journal.json','heads':'head-history.json','reset':'reset-info.json'}[kind]
     state=json.loads((root/name).read_text())
     if state.get('version')!=1 or state.get('kind')!=kind or state.get('current_fault_proven') is not False:
         raise ValueError('unverified history cache')
@@ -43,8 +43,9 @@ def handler(root):
                     data=json.dumps(state if path=='/api/status' else {
                         'server':'ok','collector_state':state['state'],'stale':state['stale'],
                         'age_seconds':state['age_seconds']}).encode();mime='application/json'
-                elif path in ('/api/system-journal','/api/head-history'):
-                    state=current_history(root,'system' if path=='/api/system-journal' else 'heads')
+                elif path in ('/api/system-journal','/api/head-history','/api/reset-info'):
+                    state=current_history(root,{'/api/system-journal':'system',
+                        '/api/head-history':'heads','/api/reset-info':'reset'}[path])
                     data=json.dumps(state).encode();mime='application/json'
                 elif path in ('/screen/0.png','/screen/1.png'):
                     state=current_status(root);phase=int(path.split('/')[2].split('.')[0])

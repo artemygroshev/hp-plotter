@@ -97,6 +97,9 @@ SMALL_READ_COMMANDS = {
     'telemetry_serial': b'puts R@NONCE@_[sysODBGet DEV-SERIAL-NUMBER s]',
     'telemetry_error': b'puts R@NONCE@_[sysODBGet ERROR-STATE u]',
     'fw_info_tagged': b'puts F@NONCE@_[sysGetFwRevision]',
+    # Complete A.04.02 wrapper/native getter must be checked before this call.
+    # sysCleanResetInfo and sysReset are deliberately absent.
+    'reset_info_native': b'flush stdout\nsysShowResetInfo',
     'telemetry_part': b'puts R@NONCE@_[sysODBGet DEV-PART-NUMBER s]',
     'telemetry_model': b'puts R@NONCE@_[sysODBGet DEV-PRODUCT-NAME s]',
     'telemetry_ram': b'puts R@NONCE@_[sysODBGet DRAM-INSTALLED u]',
