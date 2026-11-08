@@ -1,0 +1,18 @@
+[Unit]
+Description=Bounded HP DesignJet collection with one USB session per collection
+After=cups.service network.target
+Requires=cups.service
+
+[Service]
+Type=simple
+User=root
+Environment=HP_PLOTTER_CONFIG=/etc/hp-plotter/config.json
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/usr/bin/python3 -u /opt/hp-plotter/current/tools/service/batch_monitor.py --settings /etc/hp-plotter/batch-monitor.json
+UMask=0077
+KillSignal=SIGINT
+TimeoutStopSec=90
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

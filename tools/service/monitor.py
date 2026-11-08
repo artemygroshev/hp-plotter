@@ -22,6 +22,13 @@ def utc():
     return dt.datetime.now(dt.timezone.utc)
 
 
+def cycle_window(settings):
+    value=settings.get('minimum_cycle_window_seconds',90)
+    if type(value) is not int or not 90<=value<=7200:
+        raise ValueError('minimum cycle window must be 90..7200 seconds')
+    return value
+
+
 def publish(view,state):
     """Publish sanitized cache atomically, readable by the unprivileged server."""
     target=view/'status.json'
@@ -29,7 +36,7 @@ def publish(view,state):
     target.chmod(0o644)
 
 
-def public_snapshot(client,view):
+def public_snapshot(client,view,include_diagnostics=False):
     """Copy complete immutable PNGs before publishing their manifest."""
     state=client.state
     screens=[]
@@ -52,13 +59,14 @@ def public_snapshot(client,view):
             raise ValueError('public cached PNG differs from the verified native LCD')
         screens.append({key:item[key] for key in ('phase_index','began_utc','ended_utc','sha256')}
                        | {'file':name})
-    from designjet_readonly import STATUS_KINDS,HEAD_KINDS
-    allowed={name.removeprefix('telemetry_') for name in STATUS_KINDS+HEAD_KINDS}
+    from designjet_readonly import STATUS_KINDS,HEAD_KINDS,DIAGNOSTIC_KINDS
+    kinds=STATUS_KINDS+HEAD_KINDS+(DIAGNOSTIC_KINDS if include_diagnostics else ())
+    allowed={name.removeprefix('telemetry_') for name in kinds}
     return {'firmware':state['identity']['engine_firmware'],
             'model':state['identity']['model'],
             'fields':{key:value for key,value in state['status'].items() if key in allowed},
             'screens':screens,'atomic_snapshot':False,
-            'complete':state['complete'],'fields_expected':30,
+            'complete':state['complete'],'fields_expected':len(allowed),
             'screen_passes_identical':state.get('screen_passes_identical'),
             'elapsed_seconds':state.get('elapsed_seconds')}
 
@@ -110,6 +118,7 @@ def main():
     interval=settings.get('interval_seconds',1800)
     if type(interval) is not int or not 900<=interval<=7200:
         raise ValueError('collection interval must be 900..7200 seconds')
+    window=cycle_window(settings)
     config=configuration()
     from designjet_readonly import PrintPriority
     if config['executor']!='local' or os.geteuid()!=0:
@@ -123,6 +132,7 @@ def main():
            'until_utc':cutoff.isoformat(),'last_success_utc':None,'latest':None,
            'last_screen_utc':None,
            'attempts':0,'successes':0,'failures':0,'fault_latched':False}
+    state['minimum_cycle_window_seconds']=window
     state['consecutive_failures']=0
     state['printing_yields']=0
     previous=view/'status.json'
@@ -138,9 +148,9 @@ def main():
         item={'utc':utc().isoformat(),'event':kind,'release_id':state['release_id'],**fields}
         with os.fdopen(os.open(journal,os.O_WRONLY|os.O_CREAT|os.O_APPEND,0o600),'a') as out:
             out.write(json.dumps(item)+'\n')
-    publish(view,state);event('started',until_utc=cutoff.isoformat())
+    publish(view,state);event('started',until_utc=cutoff.isoformat(),minimum_cycle_window_seconds=window)
     try:
-        while (cutoff-utc()).total_seconds()>90:
+        while (cutoff-utc()).total_seconds()>window:
             if state['fault_latched'] or guard_path(config).exists():
                 state['fault_latched']=True;state['state']='stopped_unsafe_transport';break
             began=time.time();start=time.monotonic()
@@ -182,7 +192,7 @@ def main():
             wait=60 if state['state']=='waiting_for_print' else (interval if not state['consecutive_failures'] else min(interval,120*2**min(4,state['consecutive_failures']-1)))
             due=(time.monotonic()+wait if state['consecutive_failures'] or state['state']=='waiting_for_print'
                  else max(start+interval,time.monotonic()+15))
-            while time.monotonic()<due and (cutoff-utc()).total_seconds()>90:
+            while time.monotonic()<due and (cutoff-utc()).total_seconds()>window:
                 time.sleep(min(15,max(0,due-time.monotonic())))
         if state['state'] not in ('storage_limit','stopped_unsafe_transport'):
             state['state']='stopped_deadline'

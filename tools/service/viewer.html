@@ -11,7 +11,9 @@
 <div class="screens"><figure id="phase0" hidden><img id="img0" alt="Основная фаза экрана плоттера"><figcaption id="cap0">Основной экран</figcaption></figure><figure id="phase1" hidden><img id="img1" alt="Альтернативная фаза мигающих значков"><figcaption id="cap1">Вторая фаза мигающих значков</figcaption></figure></div>
 <div class="facts"><div>Бумага<strong id="paper">—</strong></div><div>Прошивка<strong id="firmware">—</strong></div><div>Проверки<strong id="counts">—</strong></div></div>
 <small>Снимок собирается последовательными чтениями и обновляется с задержкой. Две фазы показаны отдельно. Состояние очереди CUPS не означает, что сам плоттер готов печатать.</small>
-<section aria-live="polite"><h2>Что сообщает сохранённый снимок</h2><p id="literal">Дословное сообщение ещё не подтверждено.</p><p id="diagnosis"></p><small id="diagnosis-limit">Полный журнал ошибок ещё не получен.</small></section>
+<section aria-live="polite"><h2>Что сообщает сохранённый снимок</h2><p id="literal">Дословное сообщение ещё не подтверждено.</p><p id="diagnosis"></p><small id="diagnosis-limit">Расшифровка экрана ограничена проверенными состояниями.</small></section>
+<details open><summary>Системный журнал HP</summary><p id="journal-stamp">Проверенный журнал пока не загружен.</p><p>Это последние сохранённые события, а не установленная причина нынешней остановки. Дата события не подтверждена.</p><div style="overflow-x:auto"><table><thead><tr><th>Код</th><th>Модуль</th><th>Строка</th><th>По руководству HP</th></tr></thead><tbody id="journal-rows"></tbody></table></div></details>
+<details><summary>История печатающих головок</summary><p id="heads-stamp">Проверенная история пока не загружена.</p><p>Коды вычислены по штатному алгоритму A.04.02 из сохранённых масок. Текущий слот истории и последний прочитанный ODB-статус показываются отдельно.</p><div id="head-history"></div></details>
 <details><summary>Служебные значения</summary><p id="coverage"></p><p>Числа передаются как есть. Уровень картриджа не подтверждён как процент заполнения внешних банок.</p><table><tbody id="fields"></tbody></table></details>
 <script>
 let lastHash='',snapshot=null;
@@ -27,10 +29,37 @@ function diagnose(v){
   const field=v.fields.head_native_3;
   const decoded=v.firmware==='A.04.02'&&field?.available===true&&field.raw==='524288';
   $('diagnosis').textContent=decoded?'Black: PH-STATUS = 524288 (0x80000). Вычисленный код 0033: электрическая ошибка головки.':'';
-  $('diagnosis-limit').textContent=decoded?'Код вычислен по A.04.02, а не прочитан из журнала. Головка, контакты и каретка пока не различены как причина.':'Полный журнал ошибок ещё не получен; отсутствие расшифровки не означает Ready.';
+  $('diagnosis-limit').textContent=decoded?'Код вычислен из ODB-статуса по A.04.02. Головка, контакты и каретка пока не различены как причина.':'Отсутствие расшифровки этого экрана не означает Ready.';
 }
-function clearSnapshot(){lastHash='';for(const phase of [0,1])$('phase'+phase).hidden=true;$('paper').textContent='—';$('firmware').textContent='—';$('fields').replaceChildren();$('coverage').textContent='Полного снимка нет.';$('literal').textContent='Дословное сообщение ещё не подтверждено.';$('diagnosis').textContent='';$('diagnosis-limit').textContent='Полный журнал ошибок ещё не получен.';}
+function clearSnapshot(){lastHash='';for(const phase of [0,1])$('phase'+phase).hidden=true;$('paper').textContent='—';$('firmware').textContent='—';$('fields').replaceChildren();$('coverage').textContent='Полного снимка нет.';$('literal').textContent='Дословное сообщение ещё не подтверждено.';$('diagnosis').textContent='';$('diagnosis-limit').textContent='Расшифровка экрана ограничена проверенными состояниями.';}
+function historyStamp(s){return 'Чтение завершено '+new Date(s.observed_utc).toLocaleString('ru-RU')+' · '+Math.floor(s.age_seconds/60)+' мин назад'+(s.stale?' · данные устарели':'');}
+function textRow(values,heading=false){const row=document.createElement('tr');for(const value of values){const cell=document.createElement(heading?'th':'td');cell.textContent=value;row.append(cell);}return row;}
+function showJournal(s){
+  if(s.kind!=='system'||!Array.isArray(s.records)||s.records.length>10)throw Error('Invalid history');
+  $('journal-stamp').textContent=historyStamp(s)+(s.records.length?'':' · сохранённых записей нет');
+  $('journal-rows').replaceChildren(...s.records.map(r=>textRow([r.code,r.source_file||'Имя не расшифровано',r.source_line,r.description_ru+(r.manual_page?' (стр. '+r.manual_page+')':'')])));
+}
+function showHeads(s){
+  if(s.kind!=='heads'||!Array.isArray(s.colors)||s.colors.length!==4)throw Error('Invalid head history');
+  $('heads-stamp').textContent=historyStamp(s);const sections=[];
+  for(const color of s.colors){
+    const box=document.createElement('section'),title=document.createElement('h3'),note=document.createElement('p');
+    title.textContent=color.color;
+    note.textContent='ODB при чтении: '+(color.current_ODB_status_raw??'не получен')+'. '+(color.index_valid?(color.current_mask_matches_history?'Маска совпала с текущим слотом истории.':'Совпадение с текущим слотом истории не подтверждено.'):'Индекс истории вне диапазона; он не исправлялся.');
+    const scroll=document.createElement('div');scroll.style.overflowX='auto';const table=document.createElement('table');
+    const head=document.createElement('thead');head.append(textRow(['Слот','Код по маске','Сырая маска','Чернила, см³','Работа, дни','Очистка'],true));
+    const body=document.createElement('tbody');body.append(...color.records.map(r=>textRow([String(r.slot+1)+(r.current_slot?' · текущий':''),r.derived_code||'—',r.status_mask_raw+' (0x'+r.status_mask_raw.toString(16)+')',r.used_ink_cc,r.usage_days,r.cleaning_level])));
+    table.append(head,body);scroll.append(table);box.append(title,note,scroll);sections.push(box);
+  }
+  $('head-history').replaceChildren(...sections);
+}
+async function refreshHistories(){
+  await Promise.all([
+    ['/api/system-journal',showJournal,'journal-stamp','journal-rows'],
+    ['/api/head-history',showHeads,'heads-stamp','head-history']
+  ].map(async([url,render,stamp,body])=>{try{const response=await fetch(url,{cache:'no-store'});if(!response.ok)throw Error();render(await response.json());}catch(error){$(stamp).textContent='Проверенный кэш истории недоступен.';$(body).replaceChildren();}}));
+}
 function age(){if(!snapshot)return;const time=snapshot.last_success_utc;if(!time){$('stamp').textContent='Успешного полного снимка пока нет.';return;}const mins=Math.max(0,Math.floor((Date.now()-Date.parse(time))/60000));$('stamp').textContent='Последний полный снимок: '+new Date(time).toLocaleString('ru-RU')+' · '+mins+' мин назад';$('stale').textContent=mins>60?'Данные устарели. Текущее состояние плоттера может отличаться.':'';}
 async function refresh(){try{const r=await fetch('/api/status',{cache:'no-store'});if(!r.ok)throw Error();const s=await r.json();snapshot=s;$('alert').textContent=names[s.state]||'Состояние службы неизвестно.';$('counts').textContent=s.successes+' успешно / '+s.failures+' сбоев';const v=s.latest;if(v){$('coverage').textContent=(v.complete?'Полный сбор: ':'Неполный сбор: ')+Object.keys(v.fields).length+' из '+(v.fields_expected||30)+' полей.';$('firmware').textContent=v.firmware;$('paper').textContent=v.fields.media?.raw||'—';for(const phase of [0,1]){const item=v.screens.filter(x=>x.phase_index===phase).slice(-1)[0];if(item)$('cap'+phase).textContent=(phase?'Вторая фаза':'Основной экран')+' · чтение завершено '+new Date(item.ended_utc).toLocaleTimeString('ru-RU');}const hash=v.screens.map(x=>x.sha256).join(':');if(hash!==lastHash){for(const phase of [0,1]){const item=v.screens.find(x=>x.phase_index===phase);$('phase'+phase).hidden=!item;if(item)$('img'+phase).src='/screen/'+phase+'.png?v='+item.sha256;}lastHash=hash;}const rows=[];for(const [key,value] of Object.entries(v.fields)){const tr=document.createElement('tr');for(const text of [key,value.available?value.raw:'Нет подтверждённого значения']){const td=document.createElement('td');td.textContent=text;tr.append(td);}rows.push(tr);}$('fields').replaceChildren(...rows);diagnose(v);}else{clearSnapshot();}age();}catch(e){$('alert').textContent='Нет связи с веб-службой. Текущий экран не подтверждён.';}}
-refresh();setInterval(refresh,15000);setInterval(age,1000);
+refresh();refreshHistories();setInterval(refresh,15000);setInterval(refreshHistories,15000);setInterval(age,1000);
 </script></html>

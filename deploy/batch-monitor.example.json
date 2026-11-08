@@ -1,0 +1,11 @@
+{
+  "run_id": "UNIQUE_NEW_RUN",
+  "release_id": "SELECTED_IMMUTABLE_RELEASE",
+  "until_utc": "AUTHORIZED_ISO8601_DEADLINE",
+  "interval_seconds": 900,
+  "minimum_cycle_window_seconds": 900,
+  "view_root": "/var/lib/hp-plotter/view",
+  "include_diagnostics": true,
+  "refresh_id_each_query": true,
+  "comment_bytes": 64
+}

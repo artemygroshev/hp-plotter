@@ -3670,6 +3670,26 @@
       "address": "0xa0274d8c",
       "bytes": 304,
       "sha256": "3c782e9e67a6a915dcc1a2fec0c65cb74e23e3f6003f4513709c621a01e0f6b2"
+    },
+    "main_descriptor_lookup": {
+      "address": "0xa01161b0",
+      "bytes": 164,
+      "sha256": "88b831012ec4aeaad6f7c19bd5bd96fa6ddf2e374701a64b8311b7973bd09663"
+    },
+    "main_RAM_copy_reader": {
+      "address": "0xa0113ad0",
+      "bytes": 204,
+      "sha256": "29098132a24500b823c609b79aa82d485636dd954324469e7aceb6e4a1cedf74"
+    },
+    "head_history_reader": {
+      "address": "0xa00f6354",
+      "bytes": 424,
+      "sha256": "91f30cda8cecf7a2eae23cbf47ec7a11be79a080f80197a30056b7f3ff0a3085"
+    },
+    "head_history_index_getter": {
+      "address": "0xa00f6158",
+      "bytes": 252,
+      "sha256": "473490f344ac5f0c23bc755395463a0d06b3d1178948015d7f5725a7488e203e"
     }
   },
   "head_index_mapping": [
@@ -3724,15 +3744,40 @@
     "record_bytes": 20,
     "ring_index_tag": 810,
     "read_function": "0xa0295818",
-    "live_read_implemented": false,
+    "native_record_function_invocation_implemented": false,
+    "ram_reader": "tools/service/error_journal.py",
     "layout_fully_validated": false,
+    "ram_mirror_group_header": "0xa03a0f10",
+    "ram_mirror_config": "0xa03a0fa8",
+    "reviewed_table_version": 6,
+    "ring_offset_bytes": 1426,
+    "ring_bytes": 201,
+    "date_units_confirmed": false,
     "memory_name_to_group": {
       "MAIN": 8,
       "BACKUP": 9
     },
     "binary_array_string_output_is_lossless": false,
     "byte_element_exposes_separate_read_status": false,
-    "required_next_design": "separate_read_return_code_and_exact_binary_length"
+    "current_design": "bounded_RAM_copy_twice_without_EEPROM_function_calls"
+  },
+  "head_history_ram_reader": {
+    "implementation": "tools/service/head_journal.py",
+    "reviewed_table_version": 6,
+    "offset_bytes": 1627,
+    "bytes": 302,
+    "record_bytes": 15,
+    "records_per_color": 5,
+    "native_color_order": [
+      "Black",
+      "Cyan",
+      "Magenta",
+      "Yellow"
+    ],
+    "native_index_getter": "0xa00f6158",
+    "native_index_getter_may_write_on_invalid_index": true,
+    "native_functions_called_by_reader": false,
+    "code_is_derived_from_stored_mask_not_a_stored_four_digit_string": true
   },
   "limits": [
     "No arbitrary command runner is generated.",

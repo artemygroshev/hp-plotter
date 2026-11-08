@@ -18,6 +18,18 @@ def current_status(root):
     return state
 
 
+def current_history(root,kind):
+    name='system-journal.json' if kind=='system' else 'head-history.json'
+    state=json.loads((root/name).read_text())
+    if state.get('version')!=1 or state.get('kind')!=kind or state.get('current_fault_proven') is not False:
+        raise ValueError('unverified history cache')
+    stamp=dt.datetime.fromisoformat(state['observed_utc'])
+    if stamp.tzinfo is None:raise ValueError('history time needs timezone')
+    state['age_seconds']=max(0,(dt.datetime.now(dt.timezone.utc)-stamp).total_seconds())
+    state['stale']=state['age_seconds']>3600
+    return state
+
+
 def handler(root):
     root=Path(root)
     class Handler(BaseHTTPRequestHandler):
@@ -31,6 +43,9 @@ def handler(root):
                     data=json.dumps(state if path=='/api/status' else {
                         'server':'ok','collector_state':state['state'],'stale':state['stale'],
                         'age_seconds':state['age_seconds']}).encode();mime='application/json'
+                elif path in ('/api/system-journal','/api/head-history'):
+                    state=current_history(root,'system' if path=='/api/system-journal' else 'heads')
+                    data=json.dumps(state).encode();mime='application/json'
                 elif path in ('/screen/0.png','/screen/1.png'):
                     state=current_status(root);phase=int(path.split('/')[2].split('.')[0])
                     screens=[s for s in (state.get('latest') or {}).get('screens',[]) if s['phase_index']==phase]

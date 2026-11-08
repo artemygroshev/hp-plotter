@@ -21,7 +21,7 @@ from http.server import ThreadingHTTPServer
 from PIL import Image
 from access_lock import usb_lock
 from framebuffer_memory import native_png,decode_native_bitmap
-from monitor import unsafe_new_capture,public_snapshot
+from monitor import unsafe_new_capture,public_snapshot,cycle_window
 from status_server import current_status,handler
 from transaction_outcome import safely_closed
 from trace_sequential_echo import idle_adapter,PreflightError
@@ -30,6 +30,12 @@ SERVICE=Path(__file__).resolve().parent
 
 
 class RuntimeChecks(unittest.TestCase):
+    def test_complete_cycle_start_window_is_explicit_and_bounded(self):
+        self.assertEqual(cycle_window({}),90)
+        self.assertEqual(cycle_window({'minimum_cycle_window_seconds':900}),900)
+        for value in (True,89,7201,'900'):
+            with self.assertRaises(ValueError):cycle_window({'minimum_cycle_window_seconds':value})
+
     def test_idle_binding_must_match_the_explicit_policy_and_descriptor(self):
         row={'descriptor_sha256':'expected','driver':None,'alternate':0}
         support={'ADAPTER_DESCRIPTOR_SHA256':'expected'}
@@ -54,6 +60,11 @@ class RuntimeChecks(unittest.TestCase):
             self.assertFalse(public['complete'])
             self.assertNotIn('PRIVATE-SERIAL',json.dumps(public))
             self.assertEqual((view/public['screens'][0]['file']).read_bytes(),png.read_bytes())
+            state['status']['diag_intervention']={'raw':'1','available':True}
+            extended=public_snapshot(SimpleNamespace(state=state),view,include_diagnostics=True)
+            self.assertEqual(extended['fields_expected'],44)
+            self.assertEqual(extended['fields']['diag_intervention']['raw'],'1')
+            self.assertNotIn('PRIVATE-SERIAL',json.dumps(extended))
             png.write_bytes(native_png(bytes([255])*1024))
             with self.assertRaises(ValueError):public_snapshot(SimpleNamespace(state=state),view)
 
