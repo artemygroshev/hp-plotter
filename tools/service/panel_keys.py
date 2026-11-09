@@ -122,12 +122,19 @@ def verified_key(client, key, expected_lcd_sha256, checkpoint):
     if not 0xa0001000 <= callback < 0xa0380000 or callback % 2:
         raise RuntimeError('panel callback is absent or outside reviewed engine code')
     descriptor, header, pointer = client.locate()
+    def require_primary():
+        metadata = client.phases()
+        if (metadata['flashing_enabled'] or metadata['sampled_active_index'] != 0
+                or metadata['pointers'][0] != descriptor):
+            raise RuntimeError('single-frame control requires a stable primary LCD; inspect both phases')
+    require_primary()
     before = client.capture('before', descriptor, header, pointer)
     actual = hashlib.sha256(before).hexdigest()
     if actual != expected_lcd_sha256:
         raise RuntimeError('LCD changed; inspect the new capture before choosing a key')
     if client.value('telemetry_diag_busy') != '0':
         raise RuntimeError('HP busy; no panel key sent')
+    require_primary()
     checkpoint('key_attempt_started')
     rc = client.value('panel_key')
     if rc != '0':

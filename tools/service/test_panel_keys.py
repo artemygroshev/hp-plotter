@@ -118,13 +118,15 @@ class PanelKeyTests(unittest.TestCase):
             self.assertFalse(session.stream_closed)
             self.assertTrue(session.cleanup_verified)
 
-    def client(self, *, before=b'screen', busy='0', key_error=False, after_error=False, code=b'code'):
+    def client(self, *, before=b'screen', busy='0', key_error=False, after_error=False, code=b'code', flashing=False, active=0):
         class Client:
             keys = 0
             def identify(self): pass
             def memory(self, address, length):
                 return code if address == 0xa0002000 else struct.pack('>I', 0xa0004000)
             def locate(self): return 1, b'header', 2
+            def phases(self):
+                return {'pointers':[1,2], 'flashing_enabled':flashing, 'sampled_active_index':active}
             def capture(self, number, *args):
                 if number == 'after' and after_error:
                     raise RuntimeError('post-action screen lost')
@@ -142,7 +144,8 @@ class PanelKeyTests(unittest.TestCase):
             return verified_key(client, 'ENTER', hashlib.sha256(b'screen').hexdigest(), checkpoints.append)
 
     def test_stale_screen_busy_and_changed_code_block_key(self):
-        for settings in ({'before': b'another menu'}, {'busy': '1'}, {'code': b'xxxx'}):
+        for settings in ({'before': b'another menu'}, {'busy': '1'}, {'code': b'xxxx'},
+                         {'flashing':True}, {'active':1}):
             client = self.client(**settings); checkpoints = []
             with self.subTest(settings=settings), self.assertRaises(RuntimeError):
                 self.attempt(client, checkpoints)
