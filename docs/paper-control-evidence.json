@@ -1,0 +1,129 @@
+{
+  "firmware": "A.04.02",
+  "image_sha256": "c882e68d2eb2462745f1ec984ce8f5ed745d2900587dce6b36acee5b89a1f4eb",
+  "evidence_kind": "offline_static_analysis",
+  "operation": "sysODBSet FP-MEDIA-NAME {fixed-profile} s",
+  "function_proofs": {
+    "Tcl_sysODBSet_wrapper": {
+      "address": "0xa026c9c0",
+      "bytes": 140,
+      "sha256": "dd86707dc6b2c5cc17d8f94d25a7831650575afb8df7908b77b9fddac86dd38a"
+    },
+    "native_sysODBSet": {
+      "address": "0xa010d6ec",
+      "bytes": 1170,
+      "sha256": "162b2dd373d2c7ce25d9a0cb9464d26f9360f535accb96d2a343074d65f9258f"
+    },
+    "FP_media_name_change_callback": {
+      "address": "0xa00e1258",
+      "bytes": 454,
+      "sha256": "7b6616ecf0d638971a090ad50c2bbbfa19df03289c07ff172a3669a16fc37071"
+    },
+    "media_callback_registration": {
+      "address": "0xa00e62f4",
+      "bytes": 30,
+      "sha256": "54f327d91fd009081e1d70f3f5904461778ab0e33e0eaad846fb2c20493271cf"
+    }
+  },
+  "HP_catalogue": [
+    {
+      "name": "Bright White Inkjet",
+      "name_address": "0xa0088a8b"
+    },
+    {
+      "name": "Bright White Inkjet 2",
+      "name_address": "0xa0088b71"
+    },
+    {
+      "name": "Plain Paper",
+      "name_address": "0xa0088c57"
+    },
+    {
+      "name": "Plain Paper 2",
+      "name_address": "0xa0088d3d"
+    },
+    {
+      "name": "Vellum",
+      "name_address": "0xa0088e23"
+    },
+    {
+      "name": "Vellum 2",
+      "name_address": "0xa0088f09"
+    },
+    {
+      "name": "Natural Tracing",
+      "name_address": "0xa0088fef"
+    },
+    {
+      "name": "Natural Tracing 2",
+      "name_address": "0xa00890d5"
+    },
+    {
+      "name": "Translucent",
+      "name_address": "0xa00891bb"
+    },
+    {
+      "name": "Translucent 2",
+      "name_address": "0xa00892a1"
+    },
+    {
+      "name": "Matte Film",
+      "name_address": "0xa0089387"
+    },
+    {
+      "name": "Matte Film 2",
+      "name_address": "0xa008946d"
+    },
+    {
+      "name": "Clear Film",
+      "name_address": "0xa0089553"
+    },
+    {
+      "name": "Clear Film 2",
+      "name_address": "0xa0089639"
+    },
+    {
+      "name": "Coated",
+      "name_address": "0xa008971f"
+    },
+    {
+      "name": "Coated 2",
+      "name_address": "0xa0089805"
+    },
+    {
+      "name": "Heavy Coated",
+      "name_address": "0xa00898eb"
+    },
+    {
+      "name": "Heavy Coated 2",
+      "name_address": "0xa00899d1"
+    },
+    {
+      "name": "Glossy Photo",
+      "name_address": "0xa0089ab7"
+    },
+    {
+      "name": "Glossy Photo 2",
+      "name_address": "0xa0089b9d"
+    },
+    {
+      "name": "Satin Poster Paper",
+      "name_address": "0xa0089c83"
+    },
+    {
+      "name": "Studio Canvas",
+      "name_address": "0xa0089d69"
+    },
+    {
+      "name": "Studio Canvas 2",
+      "name_address": "0xa0089e4f"
+    }
+  ],
+  "native_type_s": 9,
+  "runtime_validation": "not_yet_completed",
+  "limitations": [
+    "Writing the scalar and receiving transport completion alone do not prove the effective paper profile.",
+    "Actual paper must match the selected profile.",
+    "Current hardware read attempt timed out before any setting command."
+  ]
+}

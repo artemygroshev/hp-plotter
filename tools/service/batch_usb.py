@@ -120,6 +120,9 @@ class ReadSession:
         if rc<=0 or not probe.parse_device_id(raw)['hp_c7769b_identified']:
             raise RuntimeError('fresh HP C7769B identity not confirmed')
 
+    def command_payload(self,kind,nonce,memory=None):
+        return payload_for(kind,nonce,memory)
+
     def query(self,kind,memory=None):
         if self.closed or not self.handle or self.poisoned or not self.stream_closed:
             raise RuntimeError('session is closed or has an uncertain prior query')
@@ -131,7 +134,7 @@ class ReadSession:
             if not re.fullmatch(r'[a-f0-9]{6}',nonce):raise ValueError('invalid nonce')
             if nonce not in self.used:break
         else:raise RuntimeError('could not allocate a unique session nonce')
-        payload=payload_for(kind,nonce,memory);self.used.add(nonce)
+        payload=self.command_payload(kind,nonce,memory);self.used.add(nonce)
         if self.refresh_id_each_query and self.queries:self.read_identity()
         report={'kind':kind,'memory':memory,'nonce':nonce,
                 'observed_utc':dt.datetime.now(dt.timezone.utc).isoformat(),
