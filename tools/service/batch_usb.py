@@ -1,8 +1,9 @@
 """Bounded read queries over one claimed USB interface.
 
 The caller owns the device guard and lock for the entire session. Per-query
-closure means a fresh, strictly parsed reply and two quiet phases, not an idle
-USB interface. Only close() restores/releases USB. No print or reset operation.
+closure normally means a fresh, strictly parsed reply and two quiet phases,
+not an idle USB interface. Specialized action transports may record a separate
+explicit closure after a verified return. Only close() restores/releases USB.
 """
 import base64
 import ctypes as C
@@ -123,6 +124,15 @@ class ReadSession:
     def command_payload(self,kind,nonce,memory=None):
         return payload_for(kind,nonce,memory)
 
+    def phase_limit(self,kind):
+        return 9
+
+    def drain_payload(self,kind,response=b''):
+        return probe.make_drain_comment(self.comment_bytes)
+
+    def reply_end_seen(self,kind,nonce,response,report):
+        return bool(re.search(rb'(?:\A|\n)E'+nonce.encode()+rb'\n',response))
+
     def validate_reply(self,kind,nonce,raw,memory,report):
         if memory is not None:
             _,proof=extract_addressed_reply(raw,nonce,*memory)
@@ -147,27 +157,38 @@ class ReadSession:
             if nonce not in self.used:break
         else:raise RuntimeError('could not allocate a unique session nonce')
         payload=self.command_payload(kind,nonce,memory);self.used.add(nonce)
+        phase_limit=self.phase_limit(kind)
+        tick=self.drain_payload(kind)
+        if type(phase_limit) is not int or not 3<=phase_limit<=240:
+            raise ValueError('query requires a bounded 3..240 phase limit')
+        if tick is not None and (not isinstance(tick,bytes) or len(tick)!=self.comment_bytes):
+            raise ValueError('drain frame must match the explicit comment profile')
         if self.refresh_id_each_query and self.queries:self.read_identity()
         report={'kind':kind,'memory':memory,'nonce':nonce,
                 'observed_utc':dt.datetime.now(dt.timezone.utc).isoformat(),
                 'payload_hex':payload.hex(),'transport_scope':'same_open_session',
                 'identity_refreshed':not self.queries or self.refresh_id_each_query,
                 'comment_bytes':self.comment_bytes,
+                'phase_limit':phase_limit,
                 'phases':[],'out_attempts':0,'out_bytes':0,'stream_closed':False}
         self.queries.append(report);response=bytearray();quiet=0
         try:
-            for index in range(9):
-                block=payload if index==0 else probe.make_drain_comment(self.comment_bytes)
+            for index in range(phase_limit):
+                block=payload if index==0 else tick
                 phase={'name':kind if index==0 else 'comment_tick_'+str(index),
-                       'payload_hex':block.hex(),'response_offset':len(response)}
+                       'payload_hex':block.hex() if block is not None else '',
+                       'response_offset':len(response)}
                 report['phases'].append(phase)
-                buf=C.create_string_buffer(block);count=C.c_int()
-                report['out_attempts']+=1;self.stream_closed=False
-                rc=self.bulk(self.handle,1,buf,len(block),C.byref(count),1500)
-                phase.update(write_rc=rc,written_bytes=count.value)
-                report['out_bytes']+=count.value
-                if rc or count.value!=len(block):
-                    raise RuntimeError('incomplete OUT; no query replay')
+                if block is None:
+                    phase.update(write_rc=None,written_bytes=0,waiting_without_OUT=True)
+                else:
+                    buf=C.create_string_buffer(block);count=C.c_int()
+                    report['out_attempts']+=1;self.stream_closed=False
+                    rc=self.bulk(self.handle,1,buf,len(block),C.byref(count),1500)
+                    phase.update(write_rc=rc,written_bytes=count.value)
+                    report['out_bytes']+=count.value
+                    if rc or count.value!=len(block):
+                        raise RuntimeError('incomplete OUT; no query replay')
                 self.sleep(.25);offset=len(response);until=self.now()+1
                 rx=C.create_string_buffer(64);phase['reads']=[]
                 try:
@@ -186,13 +207,16 @@ class ReadSession:
                     phase['received_bytes']=len(response)-offset
                 if not phase['reads']:
                     raise RuntimeError('phase did not perform a bounded IN')
-                end=bool(re.search(rb'(?:\A|\n)E'+nonce.encode()+rb'\n',response))
+                end=self.reply_end_seen(kind,nonce,bytes(response),report)
                 quiet=quiet+1 if end and phase['received_bytes']==0 else 0
                 if quiet==2:
                     raw=bytes(response)
                     self.validate_reply(kind,nonce,raw,memory,report)
                     report['stream_closed']=True;self.stream_closed=True
                     break
+                tick=self.drain_payload(kind,bytes(response))
+                if tick is not None and (not isinstance(tick,bytes) or len(tick)!=self.comment_bytes):
+                    raise ValueError('drain frame must match the explicit comment profile')
             if not self.stream_closed:raise RuntimeError('fresh end and two quiet phases not proven')
             return report
         except BaseException as error:

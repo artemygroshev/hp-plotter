@@ -23,7 +23,9 @@ class CapabilityEvidence(unittest.TestCase):
         commands = {row['name']: row for row in
                     report['commands_matching_this_registration_pattern']}
         self.assertEqual(commands['fpSimulateKey']['review'],
-                         'static_event_injection_not_enabled')
+                         'operator_key_and_same_job_fragment_verified')
+        self.assertFalse(report['operator_control']['native_recovery_automatic_end_to_end_accepted'])
+        self.assertTrue(report['operator_control']['native_level0_return_marker_observed'])
         self.assertEqual(commands['fpGetStatus']['review'],
                          'static_two_result_status_not_error_text')
         self.assertEqual(report['known_head_case']['native_device_index'], 0)

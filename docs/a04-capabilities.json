@@ -1390,7 +1390,7 @@
       "registration_address": "0xa025f3c6",
       "registration_call_target": "0xa0320330",
       "handler_link_prologue": true,
-      "review": "changes_menu_not_enabled"
+      "review": "operator_root_request_acknowledged_effect_unaccepted"
     },
     {
       "name": "fpPrint",
@@ -1426,7 +1426,7 @@
       "registration_address": "0xa025f372",
       "registration_call_target": "0xa0320330",
       "handler_link_prologue": true,
-      "review": "static_event_injection_not_enabled"
+      "review": "operator_key_and_same_job_fragment_verified"
     },
     {
       "name": "gasGaugeGetNominalDropWeight",
@@ -1903,7 +1903,7 @@
       "registration_address": "0xa02624ce",
       "registration_call_target": "0xa0320330",
       "handler_link_prologue": true,
-      "review": "live_bounded_addressed_RAM_only"
+      "review": "live_bounded_addressed_engine_memory_only"
     },
     {
       "name": "osMemFree",
@@ -2857,7 +2857,7 @@
       "registration_address": "0xa026ad56",
       "registration_call_target": "0xa0320330",
       "handler_link_prologue": true,
-      "review": "not_assessed_not_enabled"
+      "review": "operator_level0_return_marker_verified_all_four_heads"
     },
     {
       "name": "svsOnPenReplacement_set",
@@ -3298,7 +3298,7 @@
       "registration_address": "0xa026d0ce",
       "registration_call_target": "0xa0320330",
       "handler_link_prologue": true,
-      "review": "live_30_fixed_objects_only"
+      "review": "live_fixed_status_objects_only"
     },
     {
       "name": "sysODBSet",
@@ -3720,6 +3720,26 @@
       "address": "0xa00fb4f4",
       "bytes": 770,
       "sha256": "4f8f4253e04a8afbf2c8f3e7f6b49ebaac1082264923eb2bf595a3e92bc212e0"
+    },
+    "recovery_Tcl_wrapper": {
+      "address": "0xa026a884",
+      "bytes": 108,
+      "sha256": "42a40222a3e921e2e4684485b5ee29087cd0f02c149dbf36d72526c15d8b3da3"
+    },
+    "recovery_bridge": {
+      "address": "0xa0279a78",
+      "bytes": 20,
+      "sha256": "1c0758984d80e759541f1af1d0fd234b86b5ba22105ed67791af0b4e89afd955"
+    },
+    "recovery_dispatch": {
+      "address": "0xa023e9e0",
+      "bytes": 304,
+      "sha256": "0ef789ecd6e263afdfd6fefe0b98651f241332242a7890dfc20d99c543599373"
+    },
+    "recovery_level0_preset": {
+      "address": "0xa023e81c",
+      "bytes": 124,
+      "sha256": "e35e916a240bac8492644bebe0da3e6adc28d800a9bcfd64c9ba2ed266b4f25c"
     }
   },
   "head_index_mapping": [
@@ -3832,6 +3852,14 @@
     "native_index_getter_may_write_on_invalid_index": true,
     "native_functions_called_by_reader": false,
     "code_is_derived_from_stored_mask_not_a_stored_four_digit_string": true
+  },
+  "operator_control": {
+    "evidence_document": "docs/cleaning-control.md",
+    "single_key_same_job_fragment_verified": true,
+    "native_level0_return_marker_observed": true,
+    "native_recovery_automatic_end_to_end_accepted": false,
+    "K_only_recovery_verified": false,
+    "gui_cleaning_button_deployed": false
   },
   "limits": [
     "No arbitrary command runner is generated.",

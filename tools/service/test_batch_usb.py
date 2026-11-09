@@ -153,5 +153,18 @@ class SessionChecks(unittest.TestCase):
         for kind,memory in (('lcd_direct',None),('runtime_mem',(0,128)),('runtime_mem',(0xa0001000,129))):
             with self.assertRaises(ValueError):payload_for(kind,'012abc',memory)
 
+    def test_invalid_wait_policy_stops_before_any_bulk_write(self):
+        for limit,tick in ((2,None),(241,None),(True,None),('9',None),
+                           (9,b'short'),(9,'x'*64)):
+            with self.subTest(limit=limit,tick=tick):
+                fake=Fake();session=self.session(fake)
+                session.phase_limit=lambda kind:limit
+                if tick is not None:session.drain_payload=lambda kind,response=b'':tick
+                with session:
+                    with self.assertRaises(ValueError):session.query('fw_info_tagged')
+                self.assertFalse(any(isinstance(e,tuple) and e[0]=='out'
+                                     for e in fake.events))
+                self.assertTrue(session.cleanup_verified)
+
 
 if __name__=='__main__':unittest.main()
