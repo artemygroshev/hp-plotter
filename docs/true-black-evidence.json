@@ -1,0 +1,46 @@
+{
+  "firmware": "HP C7769B A.04.02",
+  "image_sha256": "c882e68d2eb2462745f1ec984ce8f5ed745d2900587dce6b36acee5b89a1f4eb",
+  "parameter_descriptor_address": "0xa0289d60",
+  "descriptor_words": [
+    "0xa028a4b0",
+    "0x0",
+    "0x3",
+    "0xa0289c06",
+    "0x3",
+    "0xa0288400"
+  ],
+  "enum_table": {
+    "address": "0xa0289c06",
+    "bytes_sha256": "cd7a39ce0248981af6fae8305ca7e67099a232f94c14b3318cb45418a9d30eba",
+    "values": [
+      {
+        "name": "COLOR",
+        "value": 0,
+        "string_address": "0xa028a368"
+      },
+      {
+        "name": "GRAYSCALE",
+        "value": 1,
+        "string_address": "0xa028a370"
+      },
+      {
+        "name": "TRUEBLACK",
+        "value": 2,
+        "string_address": "0xa028a37c"
+      }
+    ]
+  },
+  "handler": {
+    "address": "0xa0288400",
+    "length": 132,
+    "sha256": "4189e6b5f367e82aca71422126434724f57c8486bb1b57dcc65dbae06541cc42",
+    "target_object": "PJL-RENDER-MODE"
+  },
+  "native_code_bytes_published": false,
+  "firmware_changes": false,
+  "live_job": 11,
+  "live_mode": "TRUEBLACK",
+  "physical_black_output_confirmed": false,
+  "physical_observation": "user reported no visible printing in job11"
+}

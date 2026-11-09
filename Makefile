@@ -8,6 +8,7 @@ LDLIBS ?= -lmspack
 test:
 	$(PYTHON) -B -m unittest discover -s tools/service -p 'test_*.py' -v
 	$(PYTHON) -B -m unittest discover -s tools/firmware -p 'test_*.py' -v
+	$(PYTHON) -B -m unittest discover -s tools/raster -p 'test_*.py' -v
 
 extractor: build/extract-engine
 
