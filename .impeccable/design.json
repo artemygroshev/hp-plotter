@@ -1,0 +1,761 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-09T15:51:45.672693Z",
+  "title": "Design System: HP DesignJet Working Panel",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Workbench Ground",
+        "tonalRamp": [
+          "oklch(15.00% 0.02001 248.83)",
+          "oklch(26.43% 0.02001 248.83)",
+          "oklch(37.86% 0.02001 248.83)",
+          "oklch(49.29% 0.02001 248.83)",
+          "oklch(60.71% 0.02001 248.83)",
+          "oklch(72.14% 0.02001 248.83)",
+          "oklch(83.57% 0.02001 248.83)",
+          "oklch(95.00% 0.02001 248.83)"
+        ]
+      },
+      "rail": {
+        "role": "neutral",
+        "displayName": "Navigation Rail",
+        "tonalRamp": [
+          "oklch(15.00% 0.03117 249.28)",
+          "oklch(26.43% 0.03117 249.28)",
+          "oklch(37.86% 0.03117 249.28)",
+          "oklch(49.29% 0.03117 249.28)",
+          "oklch(60.71% 0.03117 249.28)",
+          "oklch(72.14% 0.03117 249.28)",
+          "oklch(83.57% 0.03117 249.28)",
+          "oklch(95.00% 0.03117 249.28)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Panel Blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.02960 245.10)",
+          "oklch(26.43% 0.02960 245.10)",
+          "oklch(37.86% 0.02960 245.10)",
+          "oklch(49.29% 0.02960 245.10)",
+          "oklch(60.71% 0.02960 245.10)",
+          "oklch(72.14% 0.02960 245.10)",
+          "oklch(83.57% 0.02960 245.10)",
+          "oklch(95.00% 0.02960 245.10)"
+        ]
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "Raised Blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.03395 239.14)",
+          "oklch(26.43% 0.03395 239.14)",
+          "oklch(37.86% 0.03395 239.14)",
+          "oklch(49.29% 0.03395 239.14)",
+          "oklch(60.71% 0.03395 239.14)",
+          "oklch(72.14% 0.03395 239.14)",
+          "oklch(83.57% 0.03395 239.14)",
+          "oklch(95.00% 0.03395 239.14)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Primary Text",
+        "tonalRamp": [
+          "oklch(15.00% 0.01102 243.65)",
+          "oklch(26.43% 0.01102 243.65)",
+          "oklch(37.86% 0.01102 243.65)",
+          "oklch(49.29% 0.01102 243.65)",
+          "oklch(60.71% 0.01102 243.65)",
+          "oklch(72.14% 0.01102 243.65)",
+          "oklch(83.57% 0.01102 243.65)",
+          "oklch(95.00% 0.01102 243.65)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Supporting Text",
+        "tonalRamp": [
+          "oklch(15.00% 0.02782 234.08)",
+          "oklch(26.43% 0.02782 234.08)",
+          "oklch(37.86% 0.02782 234.08)",
+          "oklch(49.29% 0.02782 234.08)",
+          "oklch(60.71% 0.02782 234.08)",
+          "oklch(72.14% 0.02782 234.08)",
+          "oklch(83.57% 0.02782 234.08)",
+          "oklch(95.00% 0.02782 234.08)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Structural Line",
+        "tonalRamp": [
+          "oklch(15.00% 0.03872 239.16)",
+          "oklch(26.43% 0.03872 239.16)",
+          "oklch(37.86% 0.03872 239.16)",
+          "oklch(49.29% 0.03872 239.16)",
+          "oklch(60.71% 0.03872 239.16)",
+          "oklch(72.14% 0.03872 239.16)",
+          "oklch(83.57% 0.03872 239.16)",
+          "oklch(95.00% 0.03872 239.16)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Instrument Blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.08186 234.18)",
+          "oklch(26.43% 0.08186 234.18)",
+          "oklch(37.86% 0.08186 234.18)",
+          "oklch(49.29% 0.08186 234.18)",
+          "oklch(60.71% 0.08186 234.18)",
+          "oklch(72.14% 0.08186 234.18)",
+          "oklch(83.57% 0.08186 234.18)",
+          "oklch(95.00% 0.08186 234.18)"
+        ]
+      },
+      "accent-text": {
+        "role": "primary",
+        "displayName": "Primary Action Text",
+        "tonalRamp": [
+          "oklch(15.00% 0.05192 243.00)",
+          "oklch(26.43% 0.05192 243.00)",
+          "oklch(37.86% 0.05192 243.00)",
+          "oklch(49.29% 0.05192 243.00)",
+          "oklch(60.71% 0.05192 243.00)",
+          "oklch(72.14% 0.05192 243.00)",
+          "oklch(83.57% 0.05192 243.00)",
+          "oklch(95.00% 0.05192 243.00)"
+        ]
+      },
+      "focus": {
+        "role": "primary",
+        "displayName": "Focus Blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.05547 232.62)",
+          "oklch(26.43% 0.05547 232.62)",
+          "oklch(37.86% 0.05547 232.62)",
+          "oklch(49.29% 0.05547 232.62)",
+          "oklch(60.71% 0.05547 232.62)",
+          "oklch(72.14% 0.05547 232.62)",
+          "oklch(83.57% 0.05547 232.62)",
+          "oklch(95.00% 0.05547 232.62)"
+        ]
+      },
+      "danger": {
+        "role": "secondary",
+        "displayName": "Fault Red",
+        "tonalRamp": [
+          "oklch(15.00% 0.08653 19.03)",
+          "oklch(26.43% 0.08653 19.03)",
+          "oklch(37.86% 0.08653 19.03)",
+          "oklch(49.29% 0.08653 19.03)",
+          "oklch(60.71% 0.08653 19.03)",
+          "oklch(72.14% 0.08653 19.03)",
+          "oklch(83.57% 0.08653 19.03)",
+          "oklch(95.00% 0.08653 19.03)"
+        ]
+      },
+      "danger-bg": {
+        "role": "secondary",
+        "displayName": "Fault Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.03381 1.27)",
+          "oklch(26.43% 0.03381 1.27)",
+          "oklch(37.86% 0.03381 1.27)",
+          "oklch(49.29% 0.03381 1.27)",
+          "oklch(60.71% 0.03381 1.27)",
+          "oklch(72.14% 0.03381 1.27)",
+          "oklch(83.57% 0.03381 1.27)",
+          "oklch(95.00% 0.03381 1.27)"
+        ]
+      },
+      "warning": {
+        "role": "secondary",
+        "displayName": "Warning Amber",
+        "tonalRamp": [
+          "oklch(15.00% 0.08101 82.40)",
+          "oklch(26.43% 0.08101 82.40)",
+          "oklch(37.86% 0.08101 82.40)",
+          "oklch(49.29% 0.08101 82.40)",
+          "oklch(60.71% 0.08101 82.40)",
+          "oklch(72.14% 0.08101 82.40)",
+          "oklch(83.57% 0.08101 82.40)",
+          "oklch(95.00% 0.08101 82.40)"
+        ]
+      },
+      "warning-bg": {
+        "role": "secondary",
+        "displayName": "Warning Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.01843 84.54)",
+          "oklch(26.43% 0.01843 84.54)",
+          "oklch(37.86% 0.01843 84.54)",
+          "oklch(49.29% 0.01843 84.54)",
+          "oklch(60.71% 0.01843 84.54)",
+          "oklch(72.14% 0.01843 84.54)",
+          "oklch(83.57% 0.01843 84.54)",
+          "oklch(95.00% 0.01843 84.54)"
+        ]
+      },
+      "success": {
+        "role": "secondary",
+        "displayName": "Queue Green",
+        "tonalRamp": [
+          "oklch(15.00% 0.06882 169.90)",
+          "oklch(26.43% 0.06882 169.90)",
+          "oklch(37.86% 0.06882 169.90)",
+          "oklch(49.29% 0.06882 169.90)",
+          "oklch(60.71% 0.06882 169.90)",
+          "oklch(72.14% 0.06882 169.90)",
+          "oklch(83.57% 0.06882 169.90)",
+          "oklch(95.00% 0.06882 169.90)"
+        ]
+      },
+      "success-bg": {
+        "role": "secondary",
+        "displayName": "Success Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.03835 177.11)",
+          "oklch(26.43% 0.03835 177.11)",
+          "oklch(37.86% 0.03835 177.11)",
+          "oklch(49.29% 0.03835 177.11)",
+          "oklch(60.71% 0.03835 177.11)",
+          "oklch(72.14% 0.03835 177.11)",
+          "oklch(83.57% 0.03835 177.11)",
+          "oklch(95.00% 0.03835 177.11)"
+        ]
+      },
+      "lcd": {
+        "role": "tertiary",
+        "displayName": "LCD Sage",
+        "tonalRamp": [
+          "oklch(15.00% 0.03671 131.20)",
+          "oklch(26.43% 0.03671 131.20)",
+          "oklch(37.86% 0.03671 131.20)",
+          "oklch(49.29% 0.03671 131.20)",
+          "oklch(60.71% 0.03671 131.20)",
+          "oklch(72.14% 0.03671 131.20)",
+          "oklch(83.57% 0.03671 131.20)",
+          "oklch(95.00% 0.03671 131.20)"
+        ]
+      },
+      "lcd-text": {
+        "role": "tertiary",
+        "displayName": "LCD Text",
+        "tonalRamp": [
+          "oklch(15.00% 0.03504 159.92)",
+          "oklch(26.43% 0.03504 159.92)",
+          "oklch(37.86% 0.03504 159.92)",
+          "oklch(49.29% 0.03504 159.92)",
+          "oklch(60.71% 0.03504 159.92)",
+          "oklch(72.14% 0.03504 159.92)",
+          "oklch(83.57% 0.03504 159.92)",
+          "oklch(95.00% 0.03504 159.92)"
+        ]
+      },
+      "lcd-muted": {
+        "role": "tertiary",
+        "displayName": "LCD Caption",
+        "tonalRamp": [
+          "oklch(15.00% 0.03935 155.24)",
+          "oklch(26.43% 0.03935 155.24)",
+          "oklch(37.86% 0.03935 155.24)",
+          "oklch(49.29% 0.03935 155.24)",
+          "oklch(60.71% 0.03935 155.24)",
+          "oklch(72.14% 0.03935 155.24)",
+          "oklch(83.57% 0.03935 155.24)",
+          "oklch(95.00% 0.03935 155.24)"
+        ]
+      },
+      "light-ground": {
+        "role": "neutral",
+        "displayName": "Light Workbench Ground",
+        "tonalRamp": [
+          "oklch(15.00% 0.00588 239.82)",
+          "oklch(26.43% 0.00588 239.82)",
+          "oklch(37.86% 0.00588 239.82)",
+          "oklch(49.29% 0.00588 239.82)",
+          "oklch(60.71% 0.00588 239.82)",
+          "oklch(72.14% 0.00588 239.82)",
+          "oklch(83.57% 0.00588 239.82)",
+          "oklch(95.00% 0.00588 239.82)"
+        ]
+      },
+      "light-rail": {
+        "role": "neutral",
+        "displayName": "Light Navigation Rail",
+        "tonalRamp": [
+          "oklch(15.00% 0.01605 239.12)",
+          "oklch(26.43% 0.01605 239.12)",
+          "oklch(37.86% 0.01605 239.12)",
+          "oklch(49.29% 0.01605 239.12)",
+          "oklch(60.71% 0.01605 239.12)",
+          "oklch(72.14% 0.01605 239.12)",
+          "oklch(83.57% 0.01605 239.12)",
+          "oklch(95.00% 0.01605 239.12)"
+        ]
+      },
+      "light-surface": {
+        "role": "neutral",
+        "displayName": "Light Panel Blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 0.00)",
+          "oklch(26.43% 0.00000 0.00)",
+          "oklch(37.86% 0.00000 0.00)",
+          "oklch(49.29% 0.00000 0.00)",
+          "oklch(60.71% 0.00000 0.00)",
+          "oklch(72.14% 0.00000 0.00)",
+          "oklch(83.57% 0.00000 0.00)",
+          "oklch(95.00% 0.00000 0.00)"
+        ]
+      },
+      "light-raised": {
+        "role": "neutral",
+        "displayName": "Light Raised Blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.01180 239.91)",
+          "oklch(26.43% 0.01180 239.91)",
+          "oklch(37.86% 0.01180 239.91)",
+          "oklch(49.29% 0.01180 239.91)",
+          "oklch(60.71% 0.01180 239.91)",
+          "oklch(72.14% 0.01180 239.91)",
+          "oklch(83.57% 0.01180 239.91)",
+          "oklch(95.00% 0.01180 239.91)"
+        ]
+      },
+      "light-text": {
+        "role": "neutral",
+        "displayName": "Light Primary Text",
+        "tonalRamp": [
+          "oklch(15.00% 0.04215 243.36)",
+          "oklch(26.43% 0.04215 243.36)",
+          "oklch(37.86% 0.04215 243.36)",
+          "oklch(49.29% 0.04215 243.36)",
+          "oklch(60.71% 0.04215 243.36)",
+          "oklch(72.14% 0.04215 243.36)",
+          "oklch(83.57% 0.04215 243.36)",
+          "oklch(95.00% 0.04215 243.36)"
+        ]
+      },
+      "light-muted": {
+        "role": "neutral",
+        "displayName": "Light Supporting Text",
+        "tonalRamp": [
+          "oklch(15.00% 0.04084 241.06)",
+          "oklch(26.43% 0.04084 241.06)",
+          "oklch(37.86% 0.04084 241.06)",
+          "oklch(49.29% 0.04084 241.06)",
+          "oklch(60.71% 0.04084 241.06)",
+          "oklch(72.14% 0.04084 241.06)",
+          "oklch(83.57% 0.04084 241.06)",
+          "oklch(95.00% 0.04084 241.06)"
+        ]
+      },
+      "light-line": {
+        "role": "neutral",
+        "displayName": "Light Structural Line",
+        "tonalRamp": [
+          "oklch(15.00% 0.02504 238.47)",
+          "oklch(26.43% 0.02504 238.47)",
+          "oklch(37.86% 0.02504 238.47)",
+          "oklch(49.29% 0.02504 238.47)",
+          "oklch(60.71% 0.02504 238.47)",
+          "oklch(72.14% 0.02504 238.47)",
+          "oklch(83.57% 0.02504 238.47)",
+          "oklch(95.00% 0.02504 238.47)"
+        ]
+      },
+      "light-accent": {
+        "role": "primary",
+        "displayName": "Light Instrument Blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.10035 242.80)",
+          "oklch(26.43% 0.10035 242.80)",
+          "oklch(37.86% 0.10035 242.80)",
+          "oklch(49.29% 0.10035 242.80)",
+          "oklch(60.71% 0.10035 242.80)",
+          "oklch(72.14% 0.10035 242.80)",
+          "oklch(83.57% 0.10035 242.80)",
+          "oklch(95.00% 0.10035 242.80)"
+        ]
+      },
+      "light-accent-text": {
+        "role": "primary",
+        "displayName": "Light Primary Action Text",
+        "tonalRamp": [
+          "oklch(15.00% 0.00000 0.00)",
+          "oklch(26.43% 0.00000 0.00)",
+          "oklch(37.86% 0.00000 0.00)",
+          "oklch(49.29% 0.00000 0.00)",
+          "oklch(60.71% 0.00000 0.00)",
+          "oklch(72.14% 0.00000 0.00)",
+          "oklch(83.57% 0.00000 0.00)",
+          "oklch(95.00% 0.00000 0.00)"
+        ]
+      },
+      "light-focus": {
+        "role": "primary",
+        "displayName": "Light Focus Blue",
+        "tonalRamp": [
+          "oklch(15.00% 0.11826 246.71)",
+          "oklch(26.43% 0.11826 246.71)",
+          "oklch(37.86% 0.11826 246.71)",
+          "oklch(49.29% 0.11826 246.71)",
+          "oklch(60.71% 0.11826 246.71)",
+          "oklch(72.14% 0.11826 246.71)",
+          "oklch(83.57% 0.11826 246.71)",
+          "oklch(95.00% 0.11826 246.71)"
+        ]
+      },
+      "light-danger": {
+        "role": "secondary",
+        "displayName": "Light Fault Red",
+        "tonalRamp": [
+          "oklch(15.00% 0.15308 17.87)",
+          "oklch(26.43% 0.15308 17.87)",
+          "oklch(37.86% 0.15308 17.87)",
+          "oklch(49.29% 0.15308 17.87)",
+          "oklch(60.71% 0.15308 17.87)",
+          "oklch(72.14% 0.15308 17.87)",
+          "oklch(83.57% 0.15308 17.87)",
+          "oklch(95.00% 0.15308 17.87)"
+        ]
+      },
+      "light-danger-bg": {
+        "role": "secondary",
+        "displayName": "Light Fault Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.01989 5.98)",
+          "oklch(26.43% 0.01989 5.98)",
+          "oklch(37.86% 0.01989 5.98)",
+          "oklch(49.29% 0.01989 5.98)",
+          "oklch(60.71% 0.01989 5.98)",
+          "oklch(72.14% 0.01989 5.98)",
+          "oklch(83.57% 0.01989 5.98)",
+          "oklch(95.00% 0.01989 5.98)"
+        ]
+      },
+      "light-warning": {
+        "role": "secondary",
+        "displayName": "Light Warning Amber",
+        "tonalRamp": [
+          "oklch(15.00% 0.09530 68.22)",
+          "oklch(26.43% 0.09530 68.22)",
+          "oklch(37.86% 0.09530 68.22)",
+          "oklch(49.29% 0.09530 68.22)",
+          "oklch(60.71% 0.09530 68.22)",
+          "oklch(72.14% 0.09530 68.22)",
+          "oklch(83.57% 0.09530 68.22)",
+          "oklch(95.00% 0.09530 68.22)"
+        ]
+      },
+      "light-warning-bg": {
+        "role": "secondary",
+        "displayName": "Light Warning Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.03401 84.59)",
+          "oklch(26.43% 0.03401 84.59)",
+          "oklch(37.86% 0.03401 84.59)",
+          "oklch(49.29% 0.03401 84.59)",
+          "oklch(60.71% 0.03401 84.59)",
+          "oklch(72.14% 0.03401 84.59)",
+          "oklch(83.57% 0.03401 84.59)",
+          "oklch(95.00% 0.03401 84.59)"
+        ]
+      },
+      "light-success": {
+        "role": "secondary",
+        "displayName": "Light Queue Green",
+        "tonalRamp": [
+          "oklch(15.00% 0.07984 168.89)",
+          "oklch(26.43% 0.07984 168.89)",
+          "oklch(37.86% 0.07984 168.89)",
+          "oklch(49.29% 0.07984 168.89)",
+          "oklch(60.71% 0.07984 168.89)",
+          "oklch(72.14% 0.07984 168.89)",
+          "oklch(83.57% 0.07984 168.89)",
+          "oklch(95.00% 0.07984 168.89)"
+        ]
+      },
+      "light-success-bg": {
+        "role": "secondary",
+        "displayName": "Light Success Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.02174 167.47)",
+          "oklch(26.43% 0.02174 167.47)",
+          "oklch(37.86% 0.02174 167.47)",
+          "oklch(49.29% 0.02174 167.47)",
+          "oklch(60.71% 0.02174 167.47)",
+          "oklch(72.14% 0.02174 167.47)",
+          "oklch(83.57% 0.02174 167.47)",
+          "oklch(95.00% 0.02174 167.47)"
+        ]
+      },
+      "ink-black": {
+        "role": "tertiary",
+        "displayName": "Black Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.01096 247.71)",
+          "oklch(26.43% 0.01096 247.71)",
+          "oklch(37.86% 0.01096 247.71)",
+          "oklch(49.29% 0.01096 247.71)",
+          "oklch(60.71% 0.01096 247.71)",
+          "oklch(72.14% 0.01096 247.71)",
+          "oklch(83.57% 0.01096 247.71)",
+          "oklch(95.00% 0.01096 247.71)"
+        ]
+      },
+      "ink-cyan": {
+        "role": "tertiary",
+        "displayName": "Cyan Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.12052 216.80)",
+          "oklch(26.43% 0.12052 216.80)",
+          "oklch(37.86% 0.12052 216.80)",
+          "oklch(49.29% 0.12052 216.80)",
+          "oklch(60.71% 0.12052 216.80)",
+          "oklch(72.14% 0.12052 216.80)",
+          "oklch(83.57% 0.12052 216.80)",
+          "oklch(95.00% 0.12052 216.80)"
+        ]
+      },
+      "ink-magenta": {
+        "role": "tertiary",
+        "displayName": "Magenta Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.13495 348.74)",
+          "oklch(26.43% 0.13495 348.74)",
+          "oklch(37.86% 0.13495 348.74)",
+          "oklch(49.29% 0.13495 348.74)",
+          "oklch(60.71% 0.13495 348.74)",
+          "oklch(72.14% 0.13495 348.74)",
+          "oklch(83.57% 0.13495 348.74)",
+          "oklch(95.00% 0.13495 348.74)"
+        ]
+      },
+      "ink-yellow": {
+        "role": "tertiary",
+        "displayName": "Yellow Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.12136 93.02)",
+          "oklch(26.43% 0.12136 93.02)",
+          "oklch(37.86% 0.12136 93.02)",
+          "oklch(49.29% 0.12136 93.02)",
+          "oklch(60.71% 0.12136 93.02)",
+          "oklch(72.14% 0.12136 93.02)",
+          "oklch(83.57% 0.12136 93.02)",
+          "oklch(95.00% 0.12136 93.02)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Page Headline",
+        "purpose": "The page title on larger screens."
+      },
+      "headline-mobile": {
+        "displayName": "Phone Headline",
+        "purpose": "The page title at and below 680px."
+      },
+      "title": {
+        "displayName": "Section Title",
+        "purpose": "Panel and dialog headings."
+      },
+      "title-small": {
+        "displayName": "Subsection Title",
+        "purpose": "Form headings, subsections, and printhead names."
+      },
+      "body": {
+        "displayName": "Interface Body",
+        "purpose": "Default text and field values."
+      },
+      "label": {
+        "displayName": "Supporting Label",
+        "purpose": "Timestamps, tables, badges, notices, and helper copy."
+      },
+      "action": {
+        "displayName": "Action Label",
+        "purpose": "Standard controls; primary actions use weight 500."
+      },
+      "report": {
+        "displayName": "Literal Report",
+        "purpose": "Preserved reset report; raw parameter names use the same family with the normal body line-height."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "control-background",
+        "value": "background-color 140ms ease-out",
+        "purpose": "Background-color transitions on buttons."
+      },
+      {
+        "name": "button-active",
+        "value": "translateY(1px)",
+        "purpose": "Pressed button offset; no additional transform transition."
+      },
+      {
+        "name": "primary-hover",
+        "value": "brightness(1.08)",
+        "purpose": "Enabled primary-button hover."
+      },
+      {
+        "name": "document-scroll",
+        "value": "smooth",
+        "purpose": "Section-link scrolling; auto under reduced motion."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "transition:none!important;animation:none!important;scroll-behavior:auto",
+        "purpose": "The reduced-motion media query disables animation and transition and removes smooth scrolling."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-main-min",
+        "value": "1700px"
+      },
+      {
+        "name": "single-workspace-max",
+        "value": "1150px"
+      },
+      {
+        "name": "phone-max",
+        "value": "680px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The Medium-weight file submission or confirmation action.",
+      "html": "<button class=\"ds-button-primary\" type=\"button\">Проверить и отправить</button>",
+      "css": ".ds-button-primary{font-family:Plex,system-ui,sans-serif;font-size:1rem;line-height:1.4;min-height:44px;border:1px solid var(--line,#3c5363);border-radius:7px;padding:9px 15px;color:var(--text,#e9f0f6);cursor:pointer;display:inline-flex;gap:9px;align-items:center;justify-content:center;font-variant-numeric:tabular-nums;transition:background-color 140ms ease-out;background:var(--accent,#8ecdf1);border-color:var(--accent,#8ecdf1);color:var(--accent-text,#102d42);font-weight:500;}.ds-button-primary:hover:not(:disabled){filter:brightness(1.08);}.ds-button-primary:focus-visible{outline:3px solid var(--focus,#bce7ff);outline-offset:4px;}.ds-button-primary:active{transform:translateY(1px)}.ds-button-primary:disabled{cursor:not-allowed;opacity:.5}@media(prefers-reduced-motion:reduce){.ds-button-primary{transition:none}}@media(forced-colors:active){.ds-button-primary{border:2px solid ButtonText}}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A raised utility action such as refreshing the panel.",
+      "html": "<button class=\"ds-button-secondary\" type=\"button\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M20 8a8 8 0 1 0 0 8M20 3v5h-5\"/></svg>Обновить панель</button>",
+      "css": ".ds-button-secondary{font-family:Plex,system-ui,sans-serif;font-size:1rem;line-height:1.4;min-height:44px;border:1px solid var(--line,#3c5363);border-radius:7px;padding:9px 15px;color:var(--text,#e9f0f6);cursor:pointer;display:inline-flex;gap:9px;align-items:center;justify-content:center;font-variant-numeric:tabular-nums;transition:background-color 140ms ease-out;background:var(--raised,#213441);}.ds-button-secondary:hover{background:var(--line,#3c5363);}.ds-button-secondary:focus-visible{outline:3px solid var(--focus,#bce7ff);outline-offset:4px;}.ds-button-secondary:active{transform:translateY(1px)}.ds-button-secondary:disabled{cursor:not-allowed;opacity:.5}@media(prefers-reduced-motion:reduce){.ds-button-secondary{transition:none}}.ds-button-secondary svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}"
+    },
+    {
+      "name": "Quiet Button",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "A transparent utility action that retains a visible border and hover state.",
+      "html": "<button class=\"ds-button-quiet\" type=\"button\">Светлая тема</button>",
+      "css": ".ds-button-quiet{font-family:Plex,system-ui,sans-serif;font-size:1rem;line-height:1.4;min-height:44px;border:1px solid var(--line,#3c5363);border-radius:7px;padding:9px 15px;color:var(--text,#e9f0f6);cursor:pointer;display:inline-flex;gap:9px;align-items:center;justify-content:center;font-variant-numeric:tabular-nums;transition:background-color 140ms ease-out;background:transparent;}.ds-button-quiet:hover{background:var(--line,#3c5363);}.ds-button-quiet:focus-visible{outline:3px solid var(--focus,#bce7ff);outline-offset:4px;}.ds-button-quiet:active{transform:translateY(1px)}.ds-button-quiet:disabled{cursor:not-allowed;opacity:.5}@media(prefers-reduced-motion:reduce){.ds-button-quiet{transition:none}}"
+    },
+    {
+      "name": "Labeled Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "A grounded field with a visible label, helper text, and keyboard focus.",
+      "html": "<label class=\"ds-field\">Длина листа, мм<input class=\"ds-input\" type=\"number\" min=\"80\" max=\"2000\" step=\"1\" value=\"430\"><span class=\"ds-help\">Ширина фиксирована: 610 мм</span></label>",
+      "css": ".ds-field{font-family:Plex,system-ui,sans-serif;display:grid;gap:7px;font-size:.875rem;line-height:1.5;color:var(--text,#e9f0f6)}.ds-input{font-family:Plex,system-ui,sans-serif;background:var(--ground,#101820);color:var(--text,#e9f0f6);border:1px solid var(--line,#3c5363);border-radius:6px;min-width:0;width:100%;min-height:44px;padding:9px 11px;font-size:1rem;line-height:1.5}.ds-input:focus-visible{outline:3px solid var(--focus,#bce7ff);outline-offset:4px;}.ds-help{color:var(--muted,#aabeca)}"
+    },
+    {
+      "name": "Current Navigation Link",
+      "kind": "nav",
+      "refersTo": "navigation-active",
+      "description": "Labeled section navigation with an explicit current state.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Разделы плоттера\"><a class=\"ds-nav-link\" href=\"#overview\" aria-current=\"page\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 3h7v7H3zm11 0h7v7h-7zM3 14h7v7H3zm11 0h7v7h-7z\"/></svg>Обзор</a></nav>",
+      "css": ".ds-nav{display:grid;gap:7px}.ds-nav-link{font-family:Plex,system-ui,sans-serif;display:flex;gap:12px;align-items:center;min-height:48px;padding:10px;border-radius:7px;text-decoration:none;color:var(--muted,#aabeca);font-size:1rem;line-height:1.5;font-weight:500}.ds-nav-link:hover{color:var(--text,#e9f0f6);background:var(--raised,#213441)}.ds-nav-link[aria-current]{color:var(--accent,#8ecdf1);background:var(--raised,#213441)}.ds-nav-link:focus-visible{outline:3px solid var(--focus,#bce7ff);outline-offset:4px;}.ds-nav-link svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}@media(max-width:680px){.ds-nav{display:flex;overflow:auto;gap:5px;padding:3px 0}.ds-nav-link{white-space:nowrap;min-height:42px;padding:8px 10px;font-size:.875rem}.ds-nav-link svg{width:18px;height:18px}}"
+    },
+    {
+      "name": "Snapshot Warning Badge",
+      "kind": "chip",
+      "refersTo": "badge-warning",
+      "description": "A noninteractive caution label that can wrap inside a heading row.",
+      "html": "<span class=\"ds-badge-warning\">Сохранённый снимок</span>",
+      "css": ".ds-badge-warning{font-family:Plex,system-ui,sans-serif;display:inline-flex;gap:7px;align-items:center;padding:4px 9px;min-height:28px;border-radius:5px;background:var(--warning-bg,#383329);color:var(--warning,#f2d39a);font-size:.875rem;line-height:1.5;white-space:normal;flex-shrink:0;max-width:50%;font-variant-numeric:tabular-nums}@media(forced-colors:active){.ds-badge-warning{border:1px solid CanvasText}}"
+    },
+    {
+      "name": "Error Notice",
+      "kind": "custom",
+      "refersTo": "notice-danger",
+      "description": "An explicit textual explanation for a failed queue or request.",
+      "html": "<p class=\"ds-notice-danger\" role=\"status\">Текущее состояние очереди не подтверждено. Обновите панель.</p>",
+      "css": ".ds-notice-danger{font-family:Plex,system-ui,sans-serif;margin:0;font-size:.875rem;padding:12px 14px;border-radius:6px;line-height:1.5;max-width:none;overflow-wrap:anywhere;background:var(--danger-bg,#422c32);color:var(--danger,#ffb5b5)}@media(forced-colors:active){.ds-notice-danger{border:1px solid CanvasText}}"
+    },
+    {
+      "name": "Data Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "The flat, bordered container shared by queue, snapshot, and diagnostic sections.",
+      "html": "<section class=\"ds-panel\"><h2 class=\"ds-panel-title\">Журнал ошибок HP</h2><p class=\"ds-panel-note\">Сохранённые события плоттера. Их даты неизвестны.</p></section>",
+      "css": ".ds-panel{font-family:Plex,system-ui,sans-serif;background:var(--surface,#192733);color:var(--text,#e9f0f6);border:1px solid var(--line,#3c5363);border-radius:12px;padding:24px;min-width:0;line-height:1.5}.ds-panel-title{margin:0;font-size:1.3rem;font-weight:500;line-height:1.35}.ds-panel-note{margin:6px 0 0;font-size:.875rem;color:var(--muted,#aabeca);max-width:72ch;overflow-wrap:anywhere}@media(max-width:680px){.ds-panel{padding:19px 17px}}"
+    },
+    {
+      "name": "Saved LCD Empty State",
+      "kind": "custom",
+      "refersTo": "lcd-frame",
+      "description": "The sage screen inset, shown honestly when no verified raster is available.",
+      "html": "<div class=\"ds-lcd-frame\"><p class=\"ds-lcd-empty\">Проверенный экран ещё не получен.</p></div>",
+      "css": ".ds-lcd-frame{font-family:Plex,system-ui,sans-serif;margin:18px 0 12px;padding:18px;border-radius:8px;background:var(--lcd,#d5e3ca);color:var(--lcd-text,#273d31);line-height:1.5}.ds-lcd-empty{margin:0;color:var(--lcd-muted,#3f5747);padding:30px 0;font-size:.875rem;max-width:72ch;overflow-wrap:anywhere}"
+    },
+    {
+      "name": "File Drop Target",
+      "kind": "custom",
+      "description": "A dashed upload region that keeps the native file selector available.",
+      "html": "<label class=\"ds-file-drop\">Выберите или перетащите файл<span class=\"ds-file-hint\">PDF, PNG, JPEG · до 25 МиБ</span><input class=\"ds-file-input\" type=\"file\" accept=\".pdf,.png,.jpg,.jpeg\"></label>",
+      "css": ".ds-file-drop{font-family:Plex,system-ui,sans-serif;border:1px dashed var(--line,#3c5363);border-radius:8px;padding:18px 18px 15px;display:flex;flex-direction:column;gap:5px;align-items:start;cursor:pointer;color:var(--text,#e9f0f6);font-size:1rem;line-height:1.5}.ds-file-drop.ds-dragging{border-color:var(--accent,#8ecdf1);background:var(--raised,#213441)}.ds-file-hint{font-size:.875rem;color:var(--muted,#aabeca)}.ds-file-input{font-family:Plex,system-ui,sans-serif;max-width:100%;font-size:.875rem;line-height:1.5;color:var(--muted,#aabeca);margin-top:8px;min-height:34px}.ds-file-input::file-selector-button{border:1px solid var(--line,#3c5363);border-radius:5px;background:var(--raised,#213441);color:var(--text,#e9f0f6);font:inherit;padding:6px 10px;margin-right:10px;cursor:pointer}.ds-file-input:focus-visible{outline:3px solid var(--focus,#bce7ff);outline-offset:4px;}@media(max-width:680px){.ds-file-drop{padding:16px 13px}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Engineering Workbench",
+    "overview": "The panel retains its engineering identity: deep blue surfaces, a calm blue action accent, IBM Plex Sans, and familiar forms and tables. It is a browser interface for checking a plotter from a computer or phone. The visual language favors readable status, explicit actions, and compact technical detail.\n\nSource and freshness are part of the interface. The CUPS queue and saved HP readings occupy distinct containers with their own timestamps and status text. Diagnostic detail remains available through disclosures; an unknown reading stays unknown. The light theme uses the same hierarchy and component geometry.",
+    "keyCharacteristics": [
+      "Tonal blue surfaces with thin structural borders.",
+      "IBM Plex Sans for Russian interface text and tabular numbers for operational data.",
+      "Independent queue and snapshot status, expressed with words and semantic color.",
+      "Intrinsic columns, text-aware navigation widths, and stacked phone layouts.",
+      "Restrained state transitions and native browser controls."
+    ],
+    "rules": [
+      {
+        "name": "The Independent Status Rule",
+        "body": "Queue success must never imply that the physical plotter is Ready. Keep each status beside its own source and timestamp.",
+        "section": "colors"
+      },
+      {
+        "name": "The Operational Numbers Rule",
+        "body": "Buttons, badges, table cells, and definition-list values use tabular numerals so changing readings do not disturb alignment.",
+        "section": "typography"
+      },
+      {
+        "name": "The Text-Aware Layout Rule",
+        "body": "Preserve rem-based navigation widths, shrinkable content tracks, wrapping text, and stacked mobile job actions when extending the panel.",
+        "section": "layout"
+      },
+      {
+        "name": "The Tonal Depth Rule",
+        "body": "Use the existing surface layers and borders for structural separation; do not add shadows to ordinary panels or controls.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** keep queue and saved HP status independently dated and explicitly labeled.",
+      "**Do** use the semantic variable pairs for both themes and retain text labels beside status colors.",
+      "**Do** preserve IBM Plex Sans, tabular operational numbers, and monospace literal reports.",
+      "**Do** keep long file names and diagnostic values wrappable, with local overflow for technical tables.",
+      "**Do** retain visible focus, native controls, reduced-motion behavior, and stacked phone job actions.",
+      "**Do** state unavailable, stale, and uncertain results in the container that owns them."
+    ],
+    "donts": [
+      "**Don't** equate an empty or completed CUPS queue with physical printer readiness or print quality.",
+      "**Don't** present cached HP readings as a live physical poll or silently remove their age.",
+      "**Don't** invent a hardware cause when the evidence identifies only a code or an electrical error category.",
+      "**Don't** turn raw service values into ink percentages without a confirmed interpretation.",
+      "**Don't** add ornamental shadows or replace labeled interface icons with font glyphs.",
+      "**Don't** widen the page to fit a table, long value, or job action group."
+    ]
+  }
+}

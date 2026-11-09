@@ -138,7 +138,7 @@ class RuntimeChecks(unittest.TestCase):
                     with self.assertRaises(HTTPError) as error:urlopen(base+path)
                     self.assertEqual(error.exception.code,404)
                 with self.assertRaises(HTTPError) as error:urlopen(Request(base+'/api/status',data=b'{}'))
-                self.assertEqual(error.exception.code,501)
+                self.assertEqual(error.exception.code,404)
             finally:server.shutdown();server.server_close();thread.join()
 
 

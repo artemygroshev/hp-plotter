@@ -1,78 +1,60 @@
 <!doctype html>
-<html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>HP DesignJet · экран и состояние</title>
-<style>
-:root{color-scheme:dark;font:17px system-ui,sans-serif;background:#111820;color:#e5edf5}body{max-width:1000px;margin:35px auto;padding:0 22px}h1{font-size:30px;margin-bottom:8px}p{line-height:1.55;color:#bac8d6}#stamp{font-variant-numeric:tabular-nums}#alert{padding:15px;border:1px solid #62788a;border-radius:8px}.screens{display:flex;gap:20px;flex-wrap:wrap}figure{margin:10px 0;flex:1;min-width:260px}img{width:100%;image-rendering:pixelated;background:white;border:8px solid #354455;border-radius:4px;box-sizing:border-box}figcaption{margin-top:8px;color:#bac8d6;font-size:14px}.facts{display:flex;gap:30px;flex-wrap:wrap;margin:24px 0}strong{display:block;color:white;margin-top:5px}table{border-collapse:collapse;width:100%;font-size:14px}td{padding:7px;border-bottom:1px solid #354455}details{margin-top:24px}summary{cursor:pointer}#stale{color:#ffc675}small{color:#bac8d6}
-</style>
-<style>nav{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}nav a{padding:10px 14px;border:1px solid #62788a;border-radius:6px;color:#e5edf5;text-decoration:none}nav a:hover,nav a:focus-visible{background:#263747}section,details{scroll-margin-top:20px}</style>
-<h1>HP DesignJet 500</h1>
-<p>Экран и состояние через BTT · USB–parallel</p>
-<nav aria-label="Разделы плоттера"><a id="queue-link" href="#queue" target="_blank" rel="noopener">Очередь печати ↗</a><a href="#errors">Сообщение HP</a><a href="#system-errors">Журнал ошибок</a><a href="#heads">Головки</a><a href="#service-fields">Все значения</a></nav>
-<p id="queue"><small>Очередь открывается отдельно: там задания, их состояние и отмена. Пустая очередь не подтверждает готовность плоттера.</small></p>
-<div id="alert">Ожидаем проверенный снимок…</div>
-<p id="stamp">Снимка пока нет.</p><p id="stale"></p>
-<div class="screens"><figure id="phase0" hidden><img id="img0" alt="Основная фаза экрана плоттера"><figcaption id="cap0">Основной экран</figcaption></figure><figure id="phase1" hidden><img id="img1" alt="Альтернативная фаза мигающих значков"><figcaption id="cap1">Вторая фаза мигающих значков</figcaption></figure></div>
-<div class="facts"><div>Бумага<strong id="paper">—</strong></div><div>Прошивка<strong id="firmware">—</strong></div><div>Проверки<strong id="counts">—</strong></div></div>
-<small>Снимок собирается последовательными чтениями и обновляется с задержкой. Две фазы показаны отдельно. Состояние очереди CUPS не означает, что сам плоттер готов печатать.</small>
-<section id="errors" aria-live="polite"><h2>Что сообщает сохранённый снимок</h2><p id="literal">Дословное сообщение ещё не подтверждено.</p><p id="diagnosis"></p><small id="diagnosis-limit">Расшифровка экрана ограничена проверенными состояниями.</small></section>
-<details id="system-errors" open><summary>Системный журнал HP</summary><p id="journal-stamp">Проверенный журнал пока не загружен.</p><p>Это последние сохранённые события, а не установленная причина нынешней остановки. Дата события не подтверждена.</p><div style="overflow-x:auto"><table><thead><tr><th>Код</th><th>Модуль</th><th>Строка</th><th>По руководству HP</th></tr></thead><tbody id="journal-rows"></tbody></table></div></details>
-<details id="heads"><summary>История печатающих головок</summary><p id="heads-stamp">Проверенная история пока не загружена.</p><p>Коды вычислены по штатному алгоритму A.04.02 из сохранённых масок. Текущий слот истории и последний прочитанный ODB-статус показываются отдельно.</p><div id="head-history"></div></details>
-<details><summary>Отчёт предыдущего программного перезапуска</summary><p id="reset-stamp">Проверенный отчёт пока не загружен.</p><p id="reset-note">Этот отчёт хранится отдельно от системного журнала. Связь с нынешней ошибкой не установлена.</p><pre id="reset-report" style="white-space:pre-wrap;overflow-wrap:anywhere"></pre></details>
-<details id="service-fields"><summary>Служебные значения</summary><p id="coverage"></p><p>Числа передаются как есть. Уровень картриджа не подтверждён как процент заполнения внешних банок.</p><table><tbody id="fields"></tbody></table></details>
-<script>
-let lastHash='',snapshot=null;
-const $=id=>document.getElementById(id);
-const queueURL=new URL(window.location.href);queueURL.port='631';queueURL.pathname='/printers/HP-DesignJet-500';queueURL.search='';queueURL.hash='';$('queue-link').href=queueURL.href;
-document.querySelectorAll('nav a[href^="#"]').forEach(link=>link.addEventListener('click',()=>{const target=document.querySelector(link.getAttribute('href'));if(target?.matches('details'))target.open=true;}));
-const names={collecting:'Читаем экран и служебные данные…',waiting:'Последняя проверка завершена.',waiting_for_print:'Опрос уступил USB заданию печати. Показан сохранённый снимок.',retry_wait:'Проверка не завершилась; сохранён предыдущий снимок.',stopped_deadline:'Ночная проверка завершена по времени. Показан сохранённый снимок.',stopped_unsafe_transport:'Опрос остановлен: восстановление USB требует проверки.',storage_limit:'Опрос остановлен: достигнут предел хранения.',stopped_interrupted:'Опрос остановлен.',starting:'Служба запускается…'};
-function diagnose(v){
-  // This exact pair was independently compared to the physical HP panel.
-  // Unknown images are never assigned a cached literal message or an OCR guess.
-  const known0='3073f0a291793adc93f24cbb7a81621b7408b1379664aed4dba123ef174cb689';
-  const known1='e8ac29e01f47a4fd0030f627dfec9966bb039a15d298a939e65896cb9aae79bd';
-  const known=v.screens.some(x=>x.phase_index===0&&x.sha256===known0)&&v.screens.some(x=>x.phase_index===1&&x.sha256===known1);
-  $('literal').textContent=known?'На LCD: «Replace printheads». Отмечена чёрная печатающая головка.':'Текст этого экрана пока не расшифрован. Сообщение видно на снимках выше.';
-  const field=v.fields.head_native_3;
-  const decoded=v.firmware==='A.04.02'&&field?.available===true&&field.raw==='524288';
-  $('diagnosis').textContent=decoded?'Black: PH-STATUS = 524288 (0x80000). Вычисленный код 0033: электрическая ошибка головки.':'';
-  $('diagnosis-limit').textContent=decoded?'Код вычислен из ODB-статуса по A.04.02. Головка, контакты и каретка пока не различены как причина.':'Отсутствие расшифровки этого экрана не означает Ready.';
-}
-function clearSnapshot(){lastHash='';for(const phase of [0,1])$('phase'+phase).hidden=true;$('paper').textContent='—';$('firmware').textContent='—';$('fields').replaceChildren();$('coverage').textContent='Полного снимка нет.';$('literal').textContent='Дословное сообщение ещё не подтверждено.';$('diagnosis').textContent='';$('diagnosis-limit').textContent='Расшифровка экрана ограничена проверенными состояниями.';}
-function historyStamp(s){return 'Чтение завершено '+new Date(s.observed_utc).toLocaleString('ru-RU')+' · '+Math.floor(s.age_seconds/60)+' мин назад'+(s.stale?' · данные устарели':'');}
-function textRow(values,heading=false){const row=document.createElement('tr');for(const value of values){const cell=document.createElement(heading?'th':'td');cell.textContent=value;row.append(cell);}return row;}
-function showJournal(s){
-  if(s.kind!=='system'||!Array.isArray(s.records)||s.records.length>10)throw Error('Invalid history');
-  $('journal-stamp').textContent=historyStamp(s)+(s.records.length?'':' · сохранённых записей нет');
-  $('journal-rows').replaceChildren(...s.records.map(r=>textRow([r.code,r.source_file||'Имя не расшифровано',r.source_line,r.description_ru+(r.manual_page?' (стр. '+r.manual_page+')':'')])));
-}
-function showHeads(s){
-  if(s.kind!=='heads'||!Array.isArray(s.colors)||s.colors.length!==4)throw Error('Invalid head history');
-  $('heads-stamp').textContent=historyStamp(s);const sections=[];
-  for(const color of s.colors){
-    const box=document.createElement('section'),title=document.createElement('h3'),note=document.createElement('p');
-    title.textContent=color.color;
-    note.textContent='ODB при чтении: '+(color.current_ODB_status_raw??'не получен')+'. '+(color.index_valid?(color.current_mask_matches_history?'Маска совпала с текущим слотом истории.':'Совпадение с текущим слотом истории не подтверждено.'):'Индекс истории вне диапазона; он не исправлялся.');
-    const scroll=document.createElement('div');scroll.style.overflowX='auto';const table=document.createElement('table');
-    const head=document.createElement('thead');head.append(textRow(['Слот','Код по маске','Сырая маска','Чернила, см³','Работа, дни','Очистка'],true));
-    const body=document.createElement('tbody');body.append(...color.records.map(r=>textRow([String(r.slot+1)+(r.current_slot?' · текущий':''),r.derived_code||'—',r.status_mask_raw+' (0x'+r.status_mask_raw.toString(16)+')',r.used_ink_cc,r.usage_days,r.cleaning_level])));
-    table.append(head,body);scroll.append(table);box.append(title,note,scroll);sections.push(box);
-  }
-  $('head-history').replaceChildren(...sections);
-}
-function showReset(s){
-  if(s.kind!=='reset'||typeof s.valid_reset_signature!=='boolean'||typeof s.literal_report!=='string'||s.literal_report.length>2048)throw Error('Invalid reset report');
-  $('reset-stamp').textContent=historyStamp(s);
-  $('reset-report').textContent=s.literal_report;
-  $('reset-note').textContent=s.valid_reset_signature?'Сохранены данные предыдущего программного перезапуска. Значение Calling code и связь с нынешней ошибкой не расшифрованы.':'Плоттер не сообщил действительную запись программного перезапуска. Это не означает отсутствия других ошибок.';
-}
-async function refreshHistories(){
-  await Promise.all([
-    ['/api/system-journal',showJournal,'journal-stamp','journal-rows'],
-    ['/api/head-history',showHeads,'heads-stamp','head-history'],
-    ['/api/reset-info',showReset,'reset-stamp','reset-report']
-  ].map(async([url,render,stamp,body])=>{try{const response=await fetch(url,{cache:'no-store'});if(!response.ok)throw Error();render(await response.json());}catch(error){$(stamp).textContent='Проверенный кэш истории недоступен.';$(body).replaceChildren();}}));
-}
-function age(){if(!snapshot)return;const time=snapshot.last_success_utc;if(!time){$('stamp').textContent='Успешного полного снимка пока нет.';return;}const mins=Math.max(0,Math.floor((Date.now()-Date.parse(time))/60000));$('stamp').textContent='Последний полный снимок: '+new Date(time).toLocaleString('ru-RU')+' · '+mins+' мин назад';$('stale').textContent=mins>60?'Данные устарели. Текущее состояние плоттера может отличаться.':'';}
-async function refresh(){try{const r=await fetch('/api/status',{cache:'no-store'});if(!r.ok)throw Error();const s=await r.json();snapshot=s;$('alert').textContent=names[s.state]||'Состояние службы неизвестно.';$('counts').textContent=s.successes+' успешно / '+s.failures+' сбоев';const v=s.latest;if(v){$('coverage').textContent=(v.complete?'Полный сбор: ':'Неполный сбор: ')+Object.keys(v.fields).length+' из '+(v.fields_expected||30)+' полей.';$('firmware').textContent=v.firmware;$('paper').textContent=v.fields.media?.raw||'—';for(const phase of [0,1]){const item=v.screens.filter(x=>x.phase_index===phase).slice(-1)[0];if(item)$('cap'+phase).textContent=(phase?'Вторая фаза':'Основной экран')+' · чтение завершено '+new Date(item.ended_utc).toLocaleTimeString('ru-RU');}const hash=v.screens.map(x=>x.sha256).join(':');if(hash!==lastHash){for(const phase of [0,1]){const item=v.screens.find(x=>x.phase_index===phase);$('phase'+phase).hidden=!item;if(item)$('img'+phase).src='/screen/'+phase+'.png?v='+item.sha256;}lastHash=hash;}const rows=[];for(const [key,value] of Object.entries(v.fields)){const tr=document.createElement('tr');for(const text of [key,value.available?value.raw:'Нет подтверждённого значения']){const td=document.createElement('td');td.textContent=text;tr.append(td);}rows.push(tr);}$('fields').replaceChildren(...rows);diagnose(v);}else{clearSnapshot();}age();}catch(e){$('alert').textContent='Нет связи с веб-службой. Текущий экран не подтверждён.';}}
-refresh();refreshHistories();setInterval(refresh,15000);setInterval(refreshHistories,15000);setInterval(age,1000);
-</script></html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<title>HP DesignJet · плоттер</title>
+<link rel="stylesheet" href="/viewer.css"><script src="/viewer.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">К содержимому</a>
+<div class="shell">
+<aside class="rail">
+<a class="brand" href="#overview" aria-label="HP DesignJet, обзор"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 8h22v16H5zM10 3v10m6-10v10m6-10v10M10 20v9m6-9v9m6-9v9"/></svg><span>DesignJet<strong>Рабочая панель</strong></span></a>
+<nav aria-label="Разделы плоттера">
+<a href="#overview" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h7v7H3zm11 0h7v7h-7zM3 14h7v7H3zm11 0h7v7h-7z"/></svg>Обзор</a>
+<a href="#queue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7V3h10v4M6 17H3V8h18v9h-3M7 14h10v7H7zM17 11h1"/></svg>Очередь печати</a>
+<a href="#errors"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 10 18H2zM12 9v5m0 3v1"/></svg>Ошибки HP</a>
+<a href="#heads"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v13l-3 5H9l-3-5zM6 8h12M9 12v3m3-3v3m3-3v3"/></svg>Головки</a>
+<a href="#service-fields"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18M8 3v6m8 0v6m-9 0v6"/></svg>Все данные</a>
+</nav>
+<div class="rail-bottom"><span class="small">HP DesignJet 500</span><span class="small">BTT · USB–parallel</span><a id="cups-link" href="#queue" target="_blank" rel="noopener">Открыть CUPS<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7M21 3l-11 11M10 3H3v18h18v-7"/></svg></a></div>
+</aside>
+<main id="main">
+<header class="page-header" id="overview"><div><h1>HP DesignJet 500</h1><p id="connection">Подключаемся к панели…</p></div><div class="header-actions"><button id="theme-toggle" class="quiet" type="button">Светлая тема</button><button id="refresh" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 8a8 8 0 1 0 0 8M20 3v5h-5"/></svg>Обновить панель</button></div></header>
+<noscript><p class="notice warning">Для отправки файлов и просмотра очереди включите JavaScript. Очередь также доступна на порту 631.</p></noscript>
+<div class="workspace">
+<section class="panel work-panel" id="queue" aria-labelledby="queue-heading">
+<div class="section-heading"><div><h2 id="queue-heading">Очередь печати</h2><p id="queue-stamp" class="small">Читаем очередь CUPS…</p></div><span id="queue-badge" class="badge">Проверяем</span></div>
+<p id="queue-error" class="notice danger" role="status" hidden></p>
+<div id="queue-empty" class="empty" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7V3h10v4M6 17H3V8h18v9h-3M7 14h10v7H7zM17 11h1"/></svg><div><h3>Очередь пуста</h3><p>Выберите файл ниже, чтобы создать задание.</p></div></div>
+<div id="active-jobs" class="table-scroll" hidden><table><thead><tr><th scope="col">Задание</th><th scope="col">Состояние</th><th scope="col">Действия</th></tr></thead><tbody id="jobs-rows"></tbody></table></div>
+<p id="queue-limit" class="small" hidden>Показаны первые 100 заданий. Полный список доступен в CUPS.</p>
+<form id="print-form">
+<div class="form-heading"><h3>Отправить на плоттер</h3><span class="small">Рулон 610 мм</span></div>
+<label class="file-drop" id="dropzone" for="file"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V3m-5 5 5-5 5 5M3 15v6h18v-6"/></svg><span id="file-label">Выберите или перетащите файл</span><span class="small">PDF, PNG, JPEG · до 25 МиБ</span><input id="file" type="file" accept="application/pdf,image/png,image/jpeg,.pdf,.png,.jpg,.jpeg" aria-describedby="file-help"></label>
+<p id="file-help" class="small">Печатается одна копия. Для PDF — только первая страница.</p>
+<div id="file-preview" class="file-preview" hidden><img id="preview-image" alt="Предпросмотр выбранного изображения" hidden><div><strong id="file-name"></strong><p id="file-info" class="small"></p></div><button type="button" id="clear-file" class="quiet">Убрать</button></div>
+<div class="form-grid"><label>Длина листа, мм<input id="length" type="number" min="80" max="2000" step="1" value="430" required><span class="small">Ширина фиксирована: 610 мм</span></label><label>Качество<select id="quality"><option value="draft">Черновое</option><option value="normal" selected>Обычное</option><option value="presentation">Высокое</option></select><span class="small">Изображение вписывается в лист</span></label></div>
+<label class="checkbox"><input id="hold" type="checkbox"><span>Поставить в очередь на паузе<span class="small">Начать печать позже вручную</span></span></label>
+<p id="upload-state" class="form-message" role="status">Выберите файл для печати.</p>
+<button id="submit-print" class="primary" type="submit" disabled>Проверить и отправить</button>
+</form>
+<details class="recent"><summary>Последние задания</summary><p class="small">Состояние CUPS подтверждает передачу задания, но не качество физического отпечатка.</p><div class="table-scroll"><table><thead><tr><th>Задание</th><th>Результат в CUPS</th></tr></thead><tbody id="recent-rows"></tbody></table></div></details>
+</section>
+<aside class="panel hp-panel" aria-labelledby="hp-heading"><div class="section-heading"><h2 id="hp-heading">Экран плоттера</h2><span id="hp-badge" class="badge">Нет снимка</span></div><p id="stamp" class="small">Сохранённого снимка пока нет.</p><p id="stale" class="notice warning" hidden></p>
+<div class="lcd-frame"><figure id="phase0" hidden><img id="img0" width="128" height="64" alt="Сохранённый основной экран HP DesignJet"><figcaption id="cap0">Основной экран</figcaption></figure><figure id="phase1" hidden><img id="img1" width="128" height="64" alt="Сохранённая фаза экрана с мигающими значками"><figcaption id="cap1">Фаза мигания</figcaption></figure><p id="lcd-empty" class="small">Проверенный экран ещё не получен.</p></div>
+<div class="phase-controls" aria-label="Фаза сохранённого LCD"><button id="show-main" class="quiet" type="button" aria-pressed="true">Основной экран</button><button id="show-blink" class="quiet" type="button" aria-pressed="false">Мигающие значки</button></div>
+<div class="last-message" aria-live="polite"><h3>Последнее сообщение HP</h3><p id="literal">Сообщение ещё не подтверждено.</p><p id="diagnosis"></p><p id="diagnosis-limit" class="small"></p></div>
+<dl class="facts"><div><dt>Бумага по снимку</dt><dd id="paper">—</dd></div><div><dt>Прошивка</dt><dd id="firmware">—</dd></div><div><dt>Сбор данных</dt><dd id="counts">—</dd></div></dl>
+<p id="alert" class="small">Ожидаем сведения об опросе.</p><p class="small">Кнопка «Обновить панель» читает очередь и сохранённые данные. Новый опрос самого HP она не запускает.</p>
+</aside>
+</div>
+<section class="panel data-panel" id="errors" aria-labelledby="errors-heading"><div class="section-heading"><div><h2 id="errors-heading">Журнал ошибок HP</h2><p id="journal-stamp" class="small">Журнал ещё не загружен.</p></div><span class="badge">История</span></div><p class="section-note">Сохранённые события плоттера. Их даты неизвестны; история не определяет причину текущей остановки.</p><div class="table-scroll"><table><thead><tr><th scope="col">Код HP</th><th scope="col">Что означает</th><th scope="col">Место в прошивке</th></tr></thead><tbody id="journal-rows"></tbody></table></div></section>
+<section class="panel data-panel" id="heads" aria-labelledby="heads-heading"><div class="section-heading"><div><h2 id="heads-heading">Печатающие головки</h2><p id="heads-stamp" class="small">История ещё не загружена.</p></div></div><div id="head-summary" class="head-summary"></div><details><summary>История четырёх цветов</summary><p class="small">Коды вычислены штатным алгоритмом A.04.02 из сохранённых масок. Физическая причина между головкой, контактами и кареткой не различена.</p><div id="head-history"></div></details></section>
+<section class="panel data-panel" id="service-fields" aria-labelledby="fields-heading"><div class="section-heading"><div><h2 id="fields-heading">Служебные данные</h2><p id="coverage" class="small">Полный снимок пока не загружен.</p></div><label class="search-label">Найти параметр<input id="field-search" type="search" placeholder="Например, бумага или head"></label></div><p class="section-note">Сырые значения сохранены без преобразования в проценты. Уровень внешних ёмкостей по этим числам не определяется.</p><details id="raw-details"><summary>Показать все параметры</summary><div class="table-scroll"><table><thead><tr><th>Параметр</th><th>Прочитанное значение</th></tr></thead><tbody id="fields"></tbody></table></div><p id="fields-empty" class="small" hidden>Таких параметров нет. Измените запрос.</p></details><details><summary>Отчёт предыдущего программного перезапуска</summary><p id="reset-stamp" class="small">Отчёт ещё не загружен.</p><p id="reset-note"></p><pre id="reset-report"></pre></details></section>
+<footer><span>HP DesignJet 500 · BTT</span><span>Очередь CUPS и данные HP обновляются независимо.</span></footer>
+</main>
+</div>
+<dialog id="confirm-dialog" aria-labelledby="confirm-title"><form method="dialog"><h2 id="confirm-title">Отправить задание?</h2><p id="confirm-copy"></p><p id="confirm-note" class="notice warning" hidden></p><div class="dialog-actions"><button value="cancel" autofocus>Вернуться</button><button id="confirm-action" class="primary" value="confirm">Отправить</button></div></form></dialog>
+</body></html>

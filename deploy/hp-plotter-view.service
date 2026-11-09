@@ -1,11 +1,12 @@
 [Unit]
-Description=Read-only HP DesignJet cached LCD viewer
+Description=HP DesignJet LAN dashboard with cached HP telemetry
 After=network.target
 
 [Service]
 Type=simple
 DynamicUser=yes
 ExecStart=/usr/bin/python3 -B /opt/hp-plotter/current/tools/service/status_server.py --view-root /var/lib/hp-plotter/view --bind 0.0.0.0 --port 8088
+# Add --enable-print to ExecStart only when browser submissions are wanted.
 NoNewPrivileges=yes
 ProtectSystem=strict
 ProtectHome=yes

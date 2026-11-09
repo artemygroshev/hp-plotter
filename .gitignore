@@ -2,6 +2,7 @@ config.local.json
 *.local.json
 .env
 .venv/
+.impeccable/
 __pycache__/
 *.pyc
 build/
