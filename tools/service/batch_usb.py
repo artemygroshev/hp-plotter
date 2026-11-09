@@ -123,6 +123,18 @@ class ReadSession:
     def command_payload(self,kind,nonce,memory=None):
         return payload_for(kind,nonce,memory)
 
+    def validate_reply(self,kind,nonce,raw,memory,report):
+        if memory is not None:
+            _,proof=extract_addressed_reply(raw,nonce,*memory)
+            report['address_proof']=proof
+        elif kind=='reset_info_native':
+            from reset_info import parse_reply
+            report['reset_info_proof']=parse_reply(raw,nonce)
+        else:
+            tag,separator=(('F','_') if kind=='fw_info_tagged' else
+                           (('P',' ') if kind=='lcd_pointer_tagged' else ('R','_')))
+            extract_tagged_value(raw,nonce,tag,separator)
+
     def query(self,kind,memory=None):
         if self.closed or not self.handle or self.poisoned or not self.stream_closed:
             raise RuntimeError('session is closed or has an uncertain prior query')
@@ -178,16 +190,7 @@ class ReadSession:
                 quiet=quiet+1 if end and phase['received_bytes']==0 else 0
                 if quiet==2:
                     raw=bytes(response)
-                    if memory is not None:
-                        _,proof=extract_addressed_reply(raw,nonce,*memory)
-                        report['address_proof']=proof
-                    elif kind=='reset_info_native':
-                        from reset_info import parse_reply
-                        report['reset_info_proof']=parse_reply(raw,nonce)
-                    else:
-                        tag,separator=(('F','_') if kind=='fw_info_tagged' else
-                                       (('P',' ') if kind=='lcd_pointer_tagged' else ('R','_')))
-                        extract_tagged_value(raw,nonce,tag,separator)
+                    self.validate_reply(kind,nonce,raw,memory,report)
                     report['stream_closed']=True;self.stream_closed=True
                     break
             if not self.stream_closed:raise RuntimeError('fresh end and two quiet phases not proven')
