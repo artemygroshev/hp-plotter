@@ -74,9 +74,10 @@ class PaperSession(ReadSession):
         return super().command_payload(kind,nonce,memory)
 
 
-def perform(query,serial,paper=None):
+def perform(query,serial,paper=None,reapply=False):
     """Perform a fixed plan; query returns strictly parsed fresh scalar values."""
     if paper is not None and paper not in PAPERS:raise ValueError('unknown paper profile')
+    if type(reapply) is not bool or (reapply and paper is None):raise ValueError('reapply needs a fixed target')
     if query('fw_info_tagged')!='A.04.02':raise RuntimeError('unreviewed HP firmware')
     if query('telemetry_serial')!=serial:raise RuntimeError('printer serial differs')
     vendor=query(MEDIA_VENDOR)
@@ -96,7 +97,7 @@ def perform(query,serial,paper=None):
         if vendor!='HP':raise RuntimeError('only the reviewed HP media catalogue is supported')
         if previous not in KNOWN_PREVIOUS:
             raise RuntimeError('previous paper is outside the reviewed profile set')
-        if previous!=PAPERS[paper]:
+        if previous!=PAPERS[paper] or reapply:
             result['write_attempted']=True
             rc=query(MEDIA_SET)
             if rc!='0':raise RuntimeError('HP rejected the paper setting; no automatic retry')
@@ -104,14 +105,15 @@ def perform(query,serial,paper=None):
             result['after']=after
             if after!=PAPERS[paper]:raise RuntimeError('paper read-back differs; inspect HP before repeating')
             if query(MEDIA_VENDOR)!=vendor:raise RuntimeError('paper vendor changed unexpectedly')
-            result['changed']=True
+            result['changed']=previous!=after
         result['verified']=True
     if query('telemetry_serial')!=serial:raise RuntimeError('final printer serial differs')
     return result
 
 
-def control(cutoff,paper=None):
+def control(cutoff,paper=None,reapply=False):
     if paper is not None and paper not in PAPERS:raise ValueError('unknown paper profile')
+    if type(reapply) is not bool or (reapply and paper is None):raise ValueError('reapply needs a fixed target')
     if cutoff.tzinfo is None or not 90<=(cutoff-dt.datetime.now(dt.timezone.utc)).total_seconds()<=900:
         raise ValueError('allow a bounded 90..900 second operation window')
     config=configuration()
@@ -126,7 +128,7 @@ def control(cutoff,paper=None):
     folder.mkdir(mode=0o700,parents=True,exist_ok=True)
     stamp=dt.datetime.now(dt.timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
     target=folder/('paper-control-'+stamp+'.json')
-    report={'operation':'set' if paper else 'read','requested':paper,'complete':False,
+    report={'operation':'set' if paper else 'read','requested':paper,'reapply':reapply,'complete':False,
             'print_jobs_created':False,'automatic_retry':False,
             'source_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
     error=None;session=None;trace=None;trace_result={};plan_complete=False
@@ -147,7 +149,7 @@ def control(cutoff,paper=None):
                         value=session.query(kind)
                         tag='F' if kind=='fw_info_tagged' else 'R'
                         return extract_tagged_value(base64.b64decode(value['received_base64']),value['nonce'],tag,'_')
-                    report['result']=perform(query,config['printer_serial'],paper)
+                    report['result']=perform(query,config['printer_serial'],paper,reapply)
                     plan_complete=True
             except BaseException as caught:
                 error=caught;report['error']=str(caught)
@@ -179,9 +181,10 @@ def control(cutoff,paper=None):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--set',choices=tuple(PAPERS),dest='paper')
+    parser.add_argument('--reapply',action='store_true',help='explicitly write the selected profile even if already shown')
     parser.add_argument('--until-utc',required=True)
     args=parser.parse_args()
-    print(json.dumps(control(dt.datetime.fromisoformat(args.until_utc),args.paper),ensure_ascii=False))
+    print(json.dumps(control(dt.datetime.fromisoformat(args.until_utc),args.paper,args.reapply),ensure_ascii=False))
 
 
 if __name__=='__main__':main()

@@ -66,6 +66,13 @@ class PaperControlTests(unittest.TestCase):
         self.assertFalse(r['write_attempted']);self.assertTrue(r['verified'])
         self.assertNotIn(MEDIA_SET,calls)
 
+    def test_explicit_reapply_does_not_claim_a_profile_change(self):
+        q,calls=self.fixture(before='Plain Paper')
+        r=perform(q,'SERIAL','plain',True)
+        self.assertTrue(r['write_attempted']);self.assertTrue(r['verified']);self.assertFalse(r['changed'])
+        self.assertEqual(calls.count(MEDIA_SET),1)
+        with self.assertRaises(ValueError):perform(q,'SERIAL',None,True)
+
     def test_read_is_default_and_does_not_need_idle_or_known_vendor(self):
         q,calls=self.fixture(vendor='OTHER',busy='1',before='Other paper')
         r=perform(q,'SERIAL')
