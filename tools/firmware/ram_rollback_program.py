@@ -41,7 +41,10 @@ class Code:
     def store(self, value, address):
         # ColdFire does not support MOVE.L #immediate,absolute.l. A generic
         # M68K emulator accepts that ten-byte instruction; use D0 explicitly.
-        self.emit('203c'); self.long(value)
+        if 0 <= value <= 127:
+            self.emit('70%02x' % value)  # canonical MOVEQ for small receipts
+        else:
+            self.emit('203c'); self.long(value)
         self.store_d0(address)
 
     def read(self, address):
@@ -85,7 +88,7 @@ def validate_instruction_subset(data):
     Passing this check does not establish hardware/cache/exception behavior.
     """
     sizes = {}
-    for word in ('7400', '4a86', '2600', '2012', 'b084', '4e92', '2485',
+    for word in ('7000', '7001', '7002', '7003', '7004', '7400', '4a86', '2600', '2012', 'b084', '4e92', '2485',
                  'b085', '2484', '2f03', '588f', '2002', '245f', '2c1f',
                  '2a1f', '281f', '261f', '241f', '4e5e', '4e75', '2f02',
                  '2f04', '2f05', '2f06', '2f0a', '42a7'):

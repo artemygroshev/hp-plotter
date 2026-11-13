@@ -4,6 +4,7 @@ import datetime as dt
 import re
 import unittest
 from batch_usb import ReadSession,payload_for,probe
+from quiet_end_reads import QuietEndReadSession
 
 
 class Function:
@@ -66,11 +67,42 @@ class Clock:
 
 
 class SessionChecks(unittest.TestCase):
-    def session(self,fake,clock=None):
+    def session(self,fake,clock=None,cls=ReadSession):
         nonces=iter(('111aaa','222bbb','333ccc'))
-        return ReadSession(5,2,dt.datetime.now(dt.timezone.utc)+dt.timedelta(hours=1),
+        return cls(5,2,dt.datetime.now(dt.timezone.utc)+dt.timedelta(hours=1),
                            lib=fake,alt_observer=lambda:fake.alt,now=clock or Clock(),
                            sleep=lambda _:None,nonce_factory=lambda:next(nonces))
+    def test_quiet_end_uses_no_more_OUT_after_complete_reply(self):
+        fake=Fake();session=self.session(fake,cls=QuietEndReadSession)
+        with session:
+            for kind in ('fw_info_tagged','telemetry_diag_busy'):
+                reply=session.query(kind)
+                self.assertTrue(reply['stream_closed'])
+                self.assertEqual(reply['out_attempts'],1)
+                self.assertEqual(len(reply['phases']),3)
+                self.assertTrue(all(p['waiting_without_OUT'] for p in reply['phases'][1:]))
+                self.assertTrue(all(p['reads'] for p in reply['phases']))
+        self.assertEqual(fake.events.count('device_id'),1)
+        self.assertTrue(session.cleanup_verified)
+
+    def test_quiet_end_still_rejects_stale_nonce_and_poisoned_session(self):
+        fake=Fake('old_reply');session=self.session(fake,cls=QuietEndReadSession)
+        with session:
+            with self.assertRaises(RuntimeError):session.query('fw_info_tagged')
+            before=len(fake.events)
+            with self.assertRaises(RuntimeError):session.query('telemetry_diag_busy')
+            self.assertEqual(len(fake.events),before)
+        self.assertTrue(session.poisoned);self.assertTrue(session.cleanup_verified)
+
+    def test_quiet_end_never_replays_a_partial_command(self):
+        fake=Fake('partial_second');session=self.session(fake,cls=QuietEndReadSession)
+        with session:
+            session.query('fw_info_tagged')
+            with self.assertRaisesRegex(RuntimeError,'incomplete OUT'):session.query('telemetry_diag_busy')
+            before=fake.primary
+            with self.assertRaises(RuntimeError):session.query('telemetry_diag_busy')
+            self.assertEqual(fake.primary,before)
+        self.assertFalse(session.stream_closed);self.assertTrue(session.cleanup_verified)
     def test_short_comment_profile_keeps_every_OUT_off_the_64_byte_boundary(self):
         fake=Fake();session=self.session(fake);session.comment_bytes=63
         with session:reply=session.query('fw_info_tagged')

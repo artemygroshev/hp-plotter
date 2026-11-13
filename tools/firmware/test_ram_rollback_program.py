@@ -14,6 +14,10 @@ class RollbackProgramTests(unittest.TestCase):
         code.store(MAGIC, 0xa1ffe1a8)
         self.assertEqual(code.finish().hex(), '203c4850524223c0a1ffe1a8')
         self.assertEqual([size for _, size, _ in validate_instruction_subset(code.finish())], [6, 6])
+        code = Code()
+        code.store(4, 0xa1ffe1a8)
+        self.assertEqual(code.finish().hex(), '700423c0a1ffe1a8')
+        self.assertEqual([size for _, size, _ in validate_instruction_subset(code.finish())], [2, 6])
 
     def test_subset_rejects_partial_unknown_and_mid_instruction_branches(self):
         for data in (bytes.fromhex('203c0000'), bytes.fromhex('4afc'),
