@@ -103,6 +103,31 @@ class SessionChecks(unittest.TestCase):
             with self.assertRaises(RuntimeError):session.query('telemetry_diag_busy')
             self.assertEqual(fake.primary,before)
         self.assertFalse(session.stream_closed);self.assertTrue(session.cleanup_verified)
+
+    def test_quiet_identity_retries_zero_buffers_but_not_foreign_ids_or_errors(self):
+        class IdentityFake(Fake):
+            def __init__(self,mode):
+                self.mode=mode;self.identity_attempts=0;super().__init__()
+            def control_transfer(self,handle,bm,request,value,index,data,length,timeout):
+                if (bm,request)==(0xa1,0):
+                    self.identity_attempts+=1
+                    if self.mode=='zeros' or (self.mode=='one_zero' and self.identity_attempts==1):return 158
+                    if self.mode=='error':return -9
+                    if self.mode=='foreign':
+                        raw=b'\x00\x1fMANUFACTURER:Other;MODEL:Other;'
+                        C.memmove(data,raw,len(raw));return len(raw)
+                return super().control_transfer(handle,bm,request,value,index,data,length,timeout)
+        for mode,attempts,success in (('one_zero',2,True),('zeros',3,False),
+                                      ('foreign',1,False),('error',1,False)):
+            with self.subTest(mode=mode):
+                fake=IdentityFake(mode);session=self.session(fake,cls=QuietEndReadSession)
+                if success:
+                    with session:session.query('fw_info_tagged')
+                else:
+                    with self.assertRaises(RuntimeError):session.__enter__()
+                    self.assertEqual(fake.primary,0)
+                self.assertEqual(fake.identity_attempts,attempts)
+                self.assertTrue(session.cleanup_verified)
     def test_short_comment_profile_keeps_every_OUT_off_the_64_byte_boundary(self):
         fake=Fake();session=self.session(fake);session.comment_bytes=63
         with session:reply=session.query('fw_info_tagged')

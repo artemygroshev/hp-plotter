@@ -3,8 +3,9 @@
 The host supplies immutable-image copy slices after allocation. Every copied
 byte is compared with the locally built fixed program before execution. The
 native transaction is intended to restore its target before returning. The
-first hardware trial stalled; no successful native rollback has been proved.
-execute() is blocked before any configuration, allocation or USB access.
+first hardware trial stalled. New bounded experiments are documented separately
+in docs/setup-emulation.md; this historical execute() remains blocked before
+any configuration, allocation or USB access.
 """
 import base64
 import datetime as dt

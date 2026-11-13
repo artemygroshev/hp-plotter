@@ -164,9 +164,12 @@ def read_content(client,mode,include_diagnostics=False):
     client.state['complete']=True
 
 
-def collect(cutoff,mode='all',include_diagnostics=False,refresh_id_each_query=False,comment_bytes=64):
+def collect(cutoff,mode='all',include_diagnostics=False,refresh_id_each_query=False,comment_bytes=64,quiet_end=False):
     if mode not in ('all','diagnostics','journal','head-journal','reset-info'):raise ValueError('only fixed read plans exist')
     if type(comment_bytes) is not int or comment_bytes not in (63,64):raise ValueError('comment length must be 63 or 64')
+    if type(quiet_end) is not bool:raise ValueError('quiet-end policy must be boolean')
+    if quiet_end and (comment_bytes!=63 or refresh_id_each_query):
+        raise ValueError('quiet-end requires COMMENT63 and identity only at session open')
     if cutoff.tzinfo is None or (cutoff-dt.datetime.now(dt.timezone.utc)).total_seconds()<90:
         raise ValueError('allow 90 seconds for query and cleanup')
     config=configuration()
@@ -189,11 +192,16 @@ def collect(cutoff,mode='all',include_diagnostics=False,refresh_id_each_query=Fa
                         'include_diagnostics':include_diagnostics,'print_jobs_created':False,
                         'refresh_id_each_query':refresh_id_each_query}
                 report['comment_bytes']=comment_bytes
+                report['quiet_end']=quiet_end
                 for folder in (ROOT/'service',ROOT/'firmware'):
                     for path in folder.glob('*.py'):
                         report['source_sha256'][str(path.relative_to(ROOT))]=hashlib.sha256(path.read_bytes()).hexdigest()
                 trace=USBTrace(bus,address,cutoff);trace.start()
-                session=ReadSession(bus,address,cutoff,refresh_id_each_query=refresh_id_each_query,comment_bytes=comment_bytes)
+                session_type=ReadSession
+                if quiet_end:
+                    from quiet_end_reads import QuietEndReadSession
+                    session_type=QuietEndReadSession
+                session=session_type(bus,address,cutoff,refresh_id_each_query=refresh_id_each_query,comment_bytes=comment_bytes)
                 def before_query():
                     if trace.errors:raise RuntimeError('USB trace stopped during collection')
                     check_active(support.snapshot(class_read=False),before,os.getpid())
@@ -201,6 +209,7 @@ def collect(cutoff,mode='all',include_diagnostics=False,refresh_id_each_query=Fa
                     client=BatchClient(cutoff,mode,2,session,before_query)
                     client.state['refresh_id_each_query']=refresh_id_each_query
                     client.state['comment_bytes']=comment_bytes
+                    client.state['quiet_end']=quiet_end
                     read_content(client,mode,include_diagnostics)
             except BaseException as caught:
                 error=caught;report['error']=str(caught)
@@ -252,9 +261,10 @@ def main():
     parser.add_argument('--include-diagnostics',action='store_true')
     parser.add_argument('--refresh-id',action='store_true',help='refresh class device ID before every query')
     parser.add_argument('--short-comment',action='store_true',help='separate experimental 63-byte COMMENT profile')
+    parser.add_argument('--quiet-end',action='store_true',help='experimental IN-only quiet phases; requires --short-comment and no --refresh-id')
     parser.add_argument('--until-utc',required=True)
     args=parser.parse_args()
-    client=collect(dt.datetime.fromisoformat(args.until_utc),args.mode,args.include_diagnostics,args.refresh_id,63 if args.short_comment else 64)
+    client=collect(dt.datetime.fromisoformat(args.until_utc),args.mode,args.include_diagnostics,args.refresh_id,63 if args.short_comment else 64,args.quiet_end)
     print(json.dumps({'session':str(client.target),'batch':client.state['batch_report'],
                       'complete':client.state['complete'],'queries':len(client.state['queries']),
                       'fields':len(client.state['status']),'seconds':client.state['elapsed_seconds']}),flush=True)

@@ -15,6 +15,7 @@ import io
 import designjet_readonly as native
 from batch_read import BatchClient,read_content,check_queue,check_active,restored,SERIAL
 from batch_usb import ReadSession
+from quiet_end_reads import QuietEndReadSession
 from test_batch_usb import Fake,Clock
 
 
@@ -60,10 +61,10 @@ class NativeFake(Fake):
 
 
 class BatchCollectionChecks(unittest.TestCase):
-    def collect_native(self,include_diagnostics):
+    def collect_native(self,include_diagnostics,transport_class=ReadSession):
         fake=NativeFake();nonces=iter('%06x'%n for n in range(1,100))
         cutoff=dt.datetime.now(dt.timezone.utc)+dt.timedelta(hours=1)
-        session=ReadSession(5,2,cutoff,lib=fake,alt_observer=lambda:fake.alt,
+        session=transport_class(5,2,cutoff,lib=fake,alt_observer=lambda:fake.alt,
                             sleep=lambda _:None,now=Clock(.001),nonce_factory=lambda:next(nonces))
         with tempfile.TemporaryDirectory() as directory, \
              patch.dict(native._CONFIG,capture_root=directory), \
@@ -88,6 +89,18 @@ class BatchCollectionChecks(unittest.TestCase):
 
     def test_extended_44_field_plan_fits_the_same_bounded_session(self):
         self.collect_native(True)
+
+    def test_quiet_end_profile_preserves_the_extended_plan_and_pixels(self):
+        self.collect_native(True,QuietEndReadSession)
+
+    def test_quiet_end_rejects_mixed_experiment_parameters_before_io(self):
+        from batch_read import collect
+        with patch('batch_read.configuration') as configuration:
+            for options in ({'quiet_end':True}, {'quiet_end':True,'comment_bytes':63,'refresh_id_each_query':True},
+                            {'quiet_end':'true','comment_bytes':63}):
+                with self.subTest(options=options), self.assertRaises(ValueError):
+                    collect(dt.datetime.now(dt.timezone.utc)+dt.timedelta(minutes=10),**options)
+            configuration.assert_not_called()
 
     def test_only_own_handle_is_permitted_between_queries_and_jobs_yield(self):
         snapshot={'cups':{'unfinished_job_ids':[],'queue_command':{'rc':0,'out':''},
