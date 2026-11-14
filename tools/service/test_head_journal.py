@@ -4,9 +4,14 @@ import head_journal as history
 
 
 class HeadHistoryChecks(unittest.TestCase):
-    def test_only_runtime_cache_handles_can_differ_in_color_mapping(self):
+    def test_runtime_handles_and_head_flags_preserve_pinned_color_mapping(self):
         raw=bytearray(history.COLOR_MAP)
-        for i in range(4):struct.pack_into('>I',raw,22*i+4,0xa03f6000+80*i)
+        for i in range(4):
+            struct.pack_into('>I',raw,22*i+4,0xa03f6000+80*i)
+            raw[22*i+17]=1
+        # The current Black alignment warning must not prevent reading its
+        # history; it does not change which color the record represents.
+        raw[18]=1
         history.verify_color_map(raw)
         wrong=bytearray(raw);wrong[16]^=1
         with self.assertRaises(ValueError):history.verify_color_map(wrong)

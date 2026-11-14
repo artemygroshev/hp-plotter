@@ -1,0 +1,180 @@
+{
+  "firmware": "A.04.02",
+  "image_sha256": "c882e68d2eb2462745f1ec984ce8f5ed745d2900587dce6b36acee5b89a1f4eb",
+  "analysis_kind": "offline code and registration table; no device writes",
+  "proofs": [
+    {
+      "name": "cartridge_ODB_mapper",
+      "address": "0xa00fadc4",
+      "bytes": 374,
+      "sha256": "f2d8da69d776506a3bdf2d8a60ae730a78652a04a8c6cac5ebeccc88d839dbb2"
+    },
+    {
+      "name": "native_cartridge_info_status_selection",
+      "address": "0xa00f4a86",
+      "bytes": 182,
+      "sha256": "3390977dc30bb2b2296044275b132b3e76971176844cfef102a3e9144c708e49"
+    },
+    {
+      "name": "IO_STATUS_INK_OUT_writer",
+      "address": "0xa0103b08",
+      "bytes": 932,
+      "sha256": "830bea63fe9e410caf7e81f7fb1b59378f0322eaf3b9be238634e4676a84cbc8"
+    },
+    {
+      "name": "IO_ink_status_input_registration",
+      "address": "0xa010446a",
+      "bytes": 162,
+      "sha256": "06b02030fe78f5ba862ebfa8004f53f8d1db8091bc645f15e4b0c8cb58e914e3"
+    },
+    {
+      "name": "shutdown_flags_writer",
+      "address": "0xa00beea4",
+      "bytes": 100,
+      "sha256": "095812803206e5f3b255a66c03ce7514db8ee29fed42b3916cea61352b7c0991"
+    },
+    {
+      "name": "cartridge_writing_system_error_aggregator",
+      "address": "0xa00fb268",
+      "bytes": 358,
+      "sha256": "e854dc1a9aea951ea1ec5367dba6cafe4ac8e171588f0b1041e17408356e9770"
+    }
+  ],
+  "findings": {
+    "CRTGE_STATUS_7_source_mask": "0x1010 (bits 4 and 12), after earlier mapper branches",
+    "native_cartridge_information_bits_4_12_text": "Out of ink",
+    "higher_priority_formatter_mask": "0x2003 -> Inserted; 0x0c -> Low on ink",
+    "IO_STATUS_INK_OUT_3": "any CRTGE-STATUS-i == 7, after earlier cartridge-status1/head-user-status7 branches",
+    "IO_STATUS_INK_OUT_is_boolean": false,
+    "physical_ink_volume_or_flow_proven": false,
+    "software_override_attempted": false,
+    "cartridge_writing_system_error_mask": "0x1fc0; excludes soft flag 0x10, includes 0x1000",
+    "raw_0x10_alone_proves_printing_blocked": false
+  },
+  "registration_rows": [
+    {
+      "name": "CRTGE-STATUS-0",
+      "runtime_handle_address": "0xa039fcf4",
+      "handler": "0xa0103b08"
+    },
+    {
+      "name": "CRTGE-STATUS-1",
+      "runtime_handle_address": "0xa039fcf8",
+      "handler": "0xa0103b08"
+    },
+    {
+      "name": "CRTGE-STATUS-2",
+      "runtime_handle_address": "0xa039fcfc",
+      "handler": "0xa0103b08"
+    },
+    {
+      "name": "CRTGE-STATUS-3",
+      "runtime_handle_address": "0xa039fd00",
+      "handler": "0xa0103b08"
+    },
+    {
+      "name": "PH-USER-STATUS-0",
+      "runtime_handle_address": "0xa039fd04",
+      "handler": "0xa0103b08"
+    },
+    {
+      "name": "PH-USER-STATUS-1",
+      "runtime_handle_address": "0xa039fd08",
+      "handler": "0xa0103b08"
+    },
+    {
+      "name": "PH-USER-STATUS-2",
+      "runtime_handle_address": "0xa039fd0c",
+      "handler": "0xa0103b08"
+    },
+    {
+      "name": "PH-USER-STATUS-3",
+      "runtime_handle_address": "0xa039fd10",
+      "handler": "0xa0103b08"
+    },
+    {
+      "name": "WS-B-ERROR",
+      "runtime_handle_address": "0xa039fcec",
+      "handler": "0xa0103b08"
+    }
+  ],
+  "branch_emulation": {
+    "accepted": true,
+    "method": "actual official branch code in Unicorn, from loaded D6 through status selection; no stubs, setters or USB",
+    "cases": [
+      {
+        "native_flags": "0x1",
+        "CRTGE_STATUS": 0
+      },
+      {
+        "native_flags": "0x2",
+        "CRTGE_STATUS": 8
+      },
+      {
+        "native_flags": "0x4",
+        "CRTGE_STATUS": 9
+      },
+      {
+        "native_flags": "0x8",
+        "CRTGE_STATUS": 10
+      },
+      {
+        "native_flags": "0x10",
+        "CRTGE_STATUS": 7
+      },
+      {
+        "native_flags": "0x20",
+        "CRTGE_STATUS": 4
+      },
+      {
+        "native_flags": "0x40",
+        "CRTGE_STATUS": 1
+      },
+      {
+        "native_flags": "0x80",
+        "CRTGE_STATUS": 2
+      },
+      {
+        "native_flags": "0x100",
+        "CRTGE_STATUS": 3
+      },
+      {
+        "native_flags": "0x200",
+        "CRTGE_STATUS": 4
+      },
+      {
+        "native_flags": "0x400",
+        "CRTGE_STATUS": 5
+      },
+      {
+        "native_flags": "0x800",
+        "CRTGE_STATUS": 6
+      },
+      {
+        "native_flags": "0x1000",
+        "CRTGE_STATUS": 7
+      },
+      {
+        "native_flags": "0x2000",
+        "CRTGE_STATUS": 0
+      },
+      {
+        "native_flags": "0x14",
+        "CRTGE_STATUS": 9
+      },
+      {
+        "native_flags": "0x1010",
+        "CRTGE_STATUS": 7
+      },
+      {
+        "native_flags": "0x2010",
+        "CRTGE_STATUS": 7
+      },
+      {
+        "native_flags": "0x101",
+        "CRTGE_STATUS": 3
+      }
+    ],
+    "physical_ink_or_printing_proven": false
+  }
+}

@@ -26,9 +26,10 @@ def verify_color_map(data):
     if len(data)!=88:raise ValueError('incomplete native color map')
     for i in range(4):
         live=data[22*i:22*(i+1)];expected=COLOR_MAP[22*i:22*(i+1)]
-        # +4 holds the cached ODB object handle, initialized at runtime. Name
-        # pointers, native indices, display order and code prefixes stay pinned.
-        if live[:4]!=expected[:4] or live[8:]!=expected[8:]:
+        # +4 is a runtime ODB handle. +17..21 are runtime head-state flags
+        # (including the alignment/quality flags at +18/+19), not color-map
+        # constants. Pin name, native index, display order and code prefix.
+        if live[:4]!=expected[:4] or live[8:17]!=expected[8:17]:
             raise ValueError('live immutable color mapping differs')
         handle=struct.unpack_from('>I',live,4)[0]
         if handle and (handle%4 or not 0xa0001000<=handle<0xa1000000):
