@@ -1,0 +1,78 @@
+{
+  "date": "2026-11-15",
+  "scope": "full_Setup_worker_attempt_unverified",
+  "readonly_preflight": {
+    "closed_queries": 53,
+    "live_code_ranges": 9,
+    "independent_raw_MD_matches_pinned_image": true
+  },
+  "hardware": {
+    "stock_worker_calls_attempted": 1,
+    "original_payload_bytes": 257,
+    "original_payload_fully_written": true,
+    "initial_marker_received": true,
+    "native_result": null,
+    "end_marker_received": false,
+    "native_replays": 0,
+    "guard_retained": true,
+    "stock_code_patches": 0,
+    "IDS_state_writes": 0,
+    "owned_allocations": 0,
+    "pump_commands": 0,
+    "explicit_flash_EEPROM_writes": 0,
+    "worker_accounting_side_effects_possible": true,
+    "HP_OS_restart_commands": 0,
+    "current_HP_LCD_known": false
+  },
+  "recovery": {
+    "additional_IN_seconds": 180,
+    "USB_adapter_bus_resets": 1,
+    "USB_adapter_bus_reset_rc": 0,
+    "fresh_HP_Device_ID_after_reset": false,
+    "bulk_IN_OUT_HALT_bits": [
+      0,
+      0
+    ],
+    "Printer_Class_SOFT_RESET_requests": 2,
+    "Printer_Class_SOFT_RESET_acknowledged": false,
+    "own_EOJ_bytes_written": 0,
+    "own_EOJ_bytes_expected": 63,
+    "following_empty_IN_reads": 30,
+    "physical_Cancel_requested": true
+  },
+  "offline_clone": {
+    "blob_bytes": 256,
+    "worker_bytes": 160,
+    "unchanged_worker_bytes": 152,
+    "new_hook_bytes": 62,
+    "GNU_exact_new_instruction_checks_two_addresses": 12,
+    "hook_emulation_cases": 40,
+    "complete_body_cases_with_stubbed_peripherals": 8,
+    "allocated_on_HP": false,
+    "executed_on_HP": false,
+    "writes_stock_code": false,
+    "writes_IDS_state": false,
+    "override_context": {
+      "IDS_state": 35,
+      "worker_request": 6,
+      "AND_mask": 10,
+      "callback_preserved": true
+    }
+  },
+  "standalone_live_entry_disabled": true,
+  "real_Setup_test_confirmed": false,
+  "physical_priming_confirmed": false,
+  "physical_black_recovery_proven": false,
+  "remaining": [
+    "restore fresh HP communication and resolve original pending call",
+    "validate asynchronous IDS preparation, check and exit",
+    "physical Setup air/ink path and cartridge prerequisites",
+    "confirm black output"
+  ],
+  "software_tests": {
+    "discovered_tests": 309,
+    "passed": 303,
+    "skipped_external_fixtures": 6,
+    "failed": 0
+  }
+}
