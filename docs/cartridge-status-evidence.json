@@ -176,5 +176,21 @@
       }
     ],
     "physical_ink_or_printing_proven": false
+  },
+  "fresh_read_20261115": {
+    "CRTGE_IDS_STATUS_0_1_2_3": [
+      16,
+      16,
+      1,
+      16
+    ],
+    "MEDIA_INPUT_PRESENT_u32": 4,
+    "PAPER_NEEDED": 0,
+    "MEDIA_INPUT_TRAY": 1,
+    "pen_shutdown_flags_hex": "0000000000000000",
+    "shutdown_writer_live_proof_matches": true,
+    "selected_blocking_fields_all_zero": true,
+    "old_byte_presence_is_not_valid_loaded_state": true,
+    "physical_black_result_proven": false
   }
 }
