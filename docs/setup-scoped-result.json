@@ -1,0 +1,85 @@
+{
+  "date": "2026-11-15",
+  "firmware": "A.04.02",
+  "scope": "IRQ-locked scoped recognition transaction; not the complete Setup state machine",
+  "accepted": true,
+  "predicate": {
+    "override_only_in_IDS_state": 35,
+    "override_only_for_cached_head_AND": 10,
+    "otherwise": "preserve original mask bit 0"
+  },
+  "device_results": [
+    {
+      "case": "unmodified idle state 1",
+      "result": 0
+    },
+    {
+      "case": "scoped hook, idle state 1",
+      "result": 0
+    },
+    {
+      "case": "scoped hook, temporarily injected state 35",
+      "result": 1
+    },
+    {
+      "case": "scoped hook, temporarily injected removal state 26",
+      "result": 0
+    },
+    {
+      "case": "restored stock code and idle state 1",
+      "result": 0
+    }
+  ],
+  "transaction_code_bytes": 610,
+  "wrapper_bytes": 20,
+  "hook_bytes": 52,
+  "constructed_bytes": 832,
+  "copy_calls": 220,
+  "closed_queries": 80,
+  "native_query_frames": 59,
+  "scoped_native_transaction_calls": 1,
+  "receipt_words": 19,
+  "stock_code_and_IDS_context_restored_bytewise": true,
+  "owned_allocation_freed": true,
+  "guard_cleared": true,
+  "persistent_override": false,
+  "full_IDS_worker_calls": 0,
+  "pump_commands": 0,
+  "physical_black_recovery_proven": false,
+  "fresh_cartridge_evidence": {
+    "native_flags": [
+      16,
+      16,
+      1,
+      16
+    ],
+    "OR": 17,
+    "priming_blocking_mask": "0x1fd0",
+    "priming_blocking_bits": "0x10",
+    "writing_system_blocking_mask": "0x1fc0",
+    "writing_system_blocking_bits": "0x0",
+    "physical_ink_quantity_proven": false
+  },
+  "validation": {
+    "unit_tests": 304,
+    "passed": 298,
+    "external_fixture_skips": 6,
+    "new_tests": 11,
+    "modeled_state_mask_pairs": 512,
+    "GNU_bytewise_checks_two_workspaces": 18,
+    "GNU_bytewise_checks_actual_workspace": 9
+  },
+  "preparation_failure_preserved": {
+    "initial_legacy_576_byte_limit_refused_before_execution": true,
+    "free_was_not_sent_from_closed_session": true,
+    "separate_fresh_cleanup_verified_561_copied_bytes_and_one_free": true,
+    "new_832_byte_transport_and_in_session_cleanup_added": true
+  },
+  "limits": [
+    "IDS states 35 and 26 were deliberately injected briefly under IRQ lock; the real asynchronous installation workflow did not reach them",
+    "cartridge flags and counters were not changed",
+    "no physical Setup air/ink path was emulated",
+    "tick floor is not a unique HP boot identifier",
+    "rollback does not cover arbitrary CPU faults or power failure"
+  ]
+}
