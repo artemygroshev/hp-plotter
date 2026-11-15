@@ -1,0 +1,1211 @@
+{
+  "date_utc": "2026-11-15",
+  "scope": "offline_IDS_route_with_stubbed_kernel_and_peripherals",
+  "real_Setup_test_verified": false,
+  "black_ink_restored": false,
+  "uploaded_to_HP": false,
+  "live_coordinator_available": false,
+  "device_recheck": {
+    "observed_utc": "2026-11-15T19:39:26.230815+00:00",
+    "new_bulk_OUT": 0,
+    "new_native_calls": 0,
+    "HP_restart_commands": 0,
+    "empty_Bulk_IN": 12,
+    "empty_Device_ID": 3,
+    "original_native_result_verified": false,
+    "original_E_verified": false,
+    "guard_retained": true,
+    "cleanup_verified": true
+  },
+  "software_tests": {
+    "discovered": 313,
+    "passed": 307,
+    "external_fixtures_skipped": 6,
+    "failed": 0
+  },
+  "own_source_sha256": {
+    "tools/firmware/setup_ids_route.py": "f5cf123ab764bcc27a6c0b6aba378b7c57ee6401f1f7b1e7c7f9ccebca34b6d9",
+    "tools/firmware/check_setup_ids_route.py": "7eef37828abe3ac89bc4c03bd1b2e7c617455dfc8e1f7c353b1e758071b57086",
+    "tools/firmware/test_setup_ids_route.py": "9067c2bb97cb7282740a0242650b0b2abefbefd3c128732d7aa7c5bcf4a7aaed"
+  },
+  "offline_reports": [
+    {
+      "scope": "offline_stock_IDS_with_stubbed_kernel_and_peripherals",
+      "workspace": "0xa0800000",
+      "route_bytes": 106,
+      "GNU_checks": [
+        {
+          "cpu": "5206",
+          "bytes": 106,
+          "exact": true
+        },
+        {
+          "cpu": "5307",
+          "bytes": 106,
+          "exact": true
+        },
+        {
+          "cpu": "5475",
+          "bytes": 106,
+          "exact": true
+        }
+      ],
+      "stock_action_dispatch_arguments": [
+        [
+          3,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          6,
+          1,
+          17,
+          18,
+          0,
+          0
+        ]
+      ],
+      "stock_Setup_transitions": [
+        {
+          "address": "0xa039f210",
+          "type": 1,
+          "event": 0,
+          "timeout_raw": 600,
+          "guard": 0,
+          "following": 35,
+          "action": "0xa00f7484"
+        },
+        {
+          "address": "0xa039f22c",
+          "type": 0,
+          "event": 17,
+          "timeout_raw": 0,
+          "guard": 0,
+          "following": 37,
+          "action": "0xa00f6f28"
+        },
+        {
+          "address": "0xa039f248",
+          "type": 0,
+          "event": 18,
+          "timeout_raw": 0,
+          "guard": 0,
+          "following": 21,
+          "action": "0xa00f7044"
+        },
+        {
+          "address": "0xa039f280",
+          "type": 0,
+          "event": 2,
+          "timeout_raw": 0,
+          "guard": 0,
+          "following": 35,
+          "action": "0x0"
+        },
+        {
+          "address": "0xa039f30c",
+          "type": 0,
+          "event": 7,
+          "timeout_raw": 0,
+          "guard": 0,
+          "following": 35,
+          "action": "0x0"
+        }
+      ],
+      "nonwaiting_submissions": [
+        {
+          "previous_request": 0,
+          "return_u32": 0,
+          "kernel_calls": [
+            [
+              "0xa0292c7c",
+              [
+                2716425356,
+                4294967295
+              ]
+            ],
+            [
+              "0xa02931e4",
+              [
+                2716425356
+              ]
+            ],
+            [
+              "0xa0292da8",
+              [
+                2716425356
+              ]
+            ]
+          ]
+        },
+        {
+          "previous_request": 3,
+          "return_u32": 4294967295,
+          "kernel_calls": [
+            [
+              "0xa0292c7c",
+              [
+                2716425356,
+                4294967295
+              ]
+            ],
+            [
+              "0xa0292da8",
+              [
+                2716425356
+              ]
+            ]
+          ]
+        },
+        {
+          "previous_request": 6,
+          "return_u32": 4294967295,
+          "kernel_calls": [
+            [
+              "0xa0292c7c",
+              [
+                2716425356,
+                4294967295
+              ]
+            ],
+            [
+              "0xa0292da8",
+              [
+                2716425356
+              ]
+            ]
+          ]
+        },
+        {
+          "previous_request": 8,
+          "return_u32": 4294967295,
+          "kernel_calls": [
+            [
+              "0xa0292c7c",
+              [
+                2716425356,
+                4294967295
+              ]
+            ],
+            [
+              "0xa0292da8",
+              [
+                2716425356
+              ]
+            ]
+          ]
+        }
+      ],
+      "worker_executions": [
+        {
+          "routed": false,
+          "state": 35,
+          "mask": 10,
+          "blocked_stub": false,
+          "expected_result": 0,
+          "receipt": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "events_enqueued_to_stub": [
+            [
+              18,
+              0
+            ]
+          ],
+          "peripheral_calls_stubbed": [
+            "0xa00f0924",
+            "0xa0090d60",
+            "0xa00f0480",
+            "0xa00eefcc",
+            "0xa00fb4a0",
+            "0xa00fa1ac"
+          ],
+          "direct_writes": [
+            [
+              "0xa039d3b0",
+              4,
+              0
+            ]
+          ],
+          "stock_slot_restored": true,
+          "pending_request": 0
+        },
+        {
+          "routed": true,
+          "state": 35,
+          "mask": 10,
+          "blocked_stub": false,
+          "expected_result": 1,
+          "receipt": [
+            2,
+            1,
+            35,
+            6
+          ],
+          "events_enqueued_to_stub": [
+            [
+              17,
+              0
+            ]
+          ],
+          "peripheral_calls_stubbed": [
+            "0xa00f0924",
+            "0xa0090d60",
+            "0xa00f0480",
+            "0xa00eefcc",
+            "0xa00fb4a0"
+          ],
+          "direct_writes": [
+            [
+              "0xa00f1270",
+              4,
+              2685342404
+            ],
+            [
+              "0xa0800200",
+              4,
+              1
+            ],
+            [
+              "0xa0800208",
+              4,
+              35
+            ],
+            [
+              "0xa080020c",
+              4,
+              6
+            ],
+            [
+              "0xa0800204",
+              4,
+              1
+            ],
+            [
+              "0xa0800200",
+              4,
+              2
+            ],
+            [
+              "0xa039d3b0",
+              4,
+              0
+            ]
+          ],
+          "stock_slot_restored": true,
+          "pending_request": 0
+        },
+        {
+          "routed": true,
+          "state": 26,
+          "mask": 10,
+          "blocked_stub": false,
+          "expected_result": 0,
+          "receipt": [
+            2,
+            0,
+            26,
+            6
+          ],
+          "events_enqueued_to_stub": [
+            [
+              18,
+              0
+            ]
+          ],
+          "peripheral_calls_stubbed": [
+            "0xa00f0924",
+            "0xa0090d60",
+            "0xa00f0480",
+            "0xa00eefcc",
+            "0xa00fb4a0",
+            "0xa00fa1ac"
+          ],
+          "direct_writes": [
+            [
+              "0xa00f1270",
+              4,
+              2685342404
+            ],
+            [
+              "0xa0800200",
+              4,
+              1
+            ],
+            [
+              "0xa0800208",
+              4,
+              26
+            ],
+            [
+              "0xa080020c",
+              4,
+              6
+            ],
+            [
+              "0xa0800204",
+              4,
+              0
+            ],
+            [
+              "0xa0800200",
+              4,
+              2
+            ],
+            [
+              "0xa039d3b0",
+              4,
+              0
+            ]
+          ],
+          "stock_slot_restored": true,
+          "pending_request": 0
+        },
+        {
+          "routed": true,
+          "state": 1,
+          "mask": 10,
+          "blocked_stub": false,
+          "expected_result": 0,
+          "receipt": [
+            2,
+            0,
+            1,
+            6
+          ],
+          "events_enqueued_to_stub": [
+            [
+              18,
+              0
+            ]
+          ],
+          "peripheral_calls_stubbed": [
+            "0xa00f0924",
+            "0xa0090d60",
+            "0xa00f0480",
+            "0xa00eefcc",
+            "0xa00fb4a0",
+            "0xa00fa1ac"
+          ],
+          "direct_writes": [
+            [
+              "0xa00f1270",
+              4,
+              2685342404
+            ],
+            [
+              "0xa0800200",
+              4,
+              1
+            ],
+            [
+              "0xa0800208",
+              4,
+              1
+            ],
+            [
+              "0xa080020c",
+              4,
+              6
+            ],
+            [
+              "0xa0800204",
+              4,
+              0
+            ],
+            [
+              "0xa0800200",
+              4,
+              2
+            ],
+            [
+              "0xa039d3b0",
+              4,
+              0
+            ]
+          ],
+          "stock_slot_restored": true,
+          "pending_request": 0
+        },
+        {
+          "routed": true,
+          "state": 35,
+          "mask": 2,
+          "blocked_stub": false,
+          "expected_result": 0,
+          "receipt": [
+            2,
+            0,
+            35,
+            6
+          ],
+          "events_enqueued_to_stub": [
+            [
+              18,
+              0
+            ]
+          ],
+          "peripheral_calls_stubbed": [
+            "0xa00f0924",
+            "0xa0090d60",
+            "0xa00f0480",
+            "0xa00eefcc",
+            "0xa00fb4a0",
+            "0xa00fa1ac"
+          ],
+          "direct_writes": [
+            [
+              "0xa00f1270",
+              4,
+              2685342404
+            ],
+            [
+              "0xa0800200",
+              4,
+              1
+            ],
+            [
+              "0xa0800208",
+              4,
+              35
+            ],
+            [
+              "0xa080020c",
+              4,
+              6
+            ],
+            [
+              "0xa0800204",
+              4,
+              0
+            ],
+            [
+              "0xa0800200",
+              4,
+              2
+            ],
+            [
+              "0xa039d3b0",
+              4,
+              0
+            ]
+          ],
+          "stock_slot_restored": true,
+          "pending_request": 0
+        },
+        {
+          "routed": true,
+          "state": 35,
+          "mask": 1,
+          "blocked_stub": false,
+          "expected_result": 1,
+          "receipt": [
+            2,
+            1,
+            35,
+            6
+          ],
+          "events_enqueued_to_stub": [
+            [
+              17,
+              0
+            ]
+          ],
+          "peripheral_calls_stubbed": [
+            "0xa00f0924",
+            "0xa0090d60",
+            "0xa00f0480",
+            "0xa00eefcc",
+            "0xa00fb4a0"
+          ],
+          "direct_writes": [
+            [
+              "0xa00f1270",
+              4,
+              2685342404
+            ],
+            [
+              "0xa0800200",
+              4,
+              1
+            ],
+            [
+              "0xa0800208",
+              4,
+              35
+            ],
+            [
+              "0xa080020c",
+              4,
+              6
+            ],
+            [
+              "0xa0800204",
+              4,
+              1
+            ],
+            [
+              "0xa0800200",
+              4,
+              2
+            ],
+            [
+              "0xa039d3b0",
+              4,
+              0
+            ]
+          ],
+          "stock_slot_restored": true,
+          "pending_request": 0
+        },
+        {
+          "routed": true,
+          "state": 35,
+          "mask": 10,
+          "blocked_stub": true,
+          "expected_result": null,
+          "receipt": [
+            1,
+            0,
+            35,
+            6
+          ],
+          "events_enqueued_to_stub": [],
+          "peripheral_calls_stubbed": [
+            "0xa00f0924",
+            "0xa0090d60"
+          ],
+          "direct_writes": [
+            [
+              "0xa00f1270",
+              4,
+              2685342404
+            ],
+            [
+              "0xa0800200",
+              4,
+              1
+            ],
+            [
+              "0xa0800208",
+              4,
+              35
+            ],
+            [
+              "0xa080020c",
+              4,
+              6
+            ]
+          ],
+          "stock_slot_restored": true,
+          "pending_request": 6
+        }
+      ],
+      "scheduler_cache_and_cancellation_not_emulated": true,
+      "initial_dispatch_mutex_timeout_is_infinite": true,
+      "IDS_KEY_CANCEL_does_not_abort_state35": true,
+      "device_commands": 0,
+      "real_Setup_test_verified": false,
+      "live_coordinator_available": false
+    },
+    {
+      "scope": "offline_stock_IDS_with_stubbed_kernel_and_peripherals",
+      "workspace": "0xa1801000",
+      "route_bytes": 106,
+      "GNU_checks": [
+        {
+          "cpu": "5206",
+          "bytes": 106,
+          "exact": true
+        },
+        {
+          "cpu": "5307",
+          "bytes": 106,
+          "exact": true
+        },
+        {
+          "cpu": "5475",
+          "bytes": 106,
+          "exact": true
+        }
+      ],
+      "stock_action_dispatch_arguments": [
+        [
+          3,
+          0,
+          0,
+          0,
+          1,
+          1
+        ],
+        [
+          6,
+          1,
+          17,
+          18,
+          0,
+          0
+        ]
+      ],
+      "stock_Setup_transitions": [
+        {
+          "address": "0xa039f210",
+          "type": 1,
+          "event": 0,
+          "timeout_raw": 600,
+          "guard": 0,
+          "following": 35,
+          "action": "0xa00f7484"
+        },
+        {
+          "address": "0xa039f22c",
+          "type": 0,
+          "event": 17,
+          "timeout_raw": 0,
+          "guard": 0,
+          "following": 37,
+          "action": "0xa00f6f28"
+        },
+        {
+          "address": "0xa039f248",
+          "type": 0,
+          "event": 18,
+          "timeout_raw": 0,
+          "guard": 0,
+          "following": 21,
+          "action": "0xa00f7044"
+        },
+        {
+          "address": "0xa039f280",
+          "type": 0,
+          "event": 2,
+          "timeout_raw": 0,
+          "guard": 0,
+          "following": 35,
+          "action": "0x0"
+        },
+        {
+          "address": "0xa039f30c",
+          "type": 0,
+          "event": 7,
+          "timeout_raw": 0,
+          "guard": 0,
+          "following": 35,
+          "action": "0x0"
+        }
+      ],
+      "nonwaiting_submissions": [
+        {
+          "previous_request": 0,
+          "return_u32": 0,
+          "kernel_calls": [
+            [
+              "0xa0292c7c",
+              [
+                2716425356,
+                4294967295
+              ]
+            ],
+            [
+              "0xa02931e4",
+              [
+                2716425356
+              ]
+            ],
+            [
+              "0xa0292da8",
+              [
+                2716425356
+              ]
+            ]
+          ]
+        },
+        {
+          "previous_request": 3,
+          "return_u32": 4294967295,
+          "kernel_calls": [
+            [
+              "0xa0292c7c",
+              [
+                2716425356,
+                4294967295
+              ]
+            ],
+            [
+              "0xa0292da8",
+              [
+                2716425356
+              ]
+            ]
+          ]
+        },
+        {
+          "previous_request": 6,
+          "return_u32": 4294967295,
+          "kernel_calls": [
+            [
+              "0xa0292c7c",
+              [
+                2716425356,
+                4294967295
+              ]
+            ],
+            [
+              "0xa0292da8",
+              [
+                2716425356
+              ]
+            ]
+          ]
+        },
+        {
+          "previous_request": 8,
+          "return_u32": 4294967295,
+          "kernel_calls": [
+            [
+              "0xa0292c7c",
+              [
+                2716425356,
+                4294967295
+              ]
+            ],
+            [
+              "0xa0292da8",
+              [
+                2716425356
+              ]
+            ]
+          ]
+        }
+      ],
+      "worker_executions": [
+        {
+          "routed": false,
+          "state": 35,
+          "mask": 10,
+          "blocked_stub": false,
+          "expected_result": 0,
+          "receipt": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "events_enqueued_to_stub": [
+            [
+              18,
+              0
+            ]
+          ],
+          "peripheral_calls_stubbed": [
+            "0xa00f0924",
+            "0xa0090d60",
+            "0xa00f0480",
+            "0xa00eefcc",
+            "0xa00fb4a0",
+            "0xa00fa1ac"
+          ],
+          "direct_writes": [
+            [
+              "0xa039d3b0",
+              4,
+              0
+            ]
+          ],
+          "stock_slot_restored": true,
+          "pending_request": 0
+        },
+        {
+          "routed": true,
+          "state": 35,
+          "mask": 10,
+          "blocked_stub": false,
+          "expected_result": 1,
+          "receipt": [
+            2,
+            1,
+            35,
+            6
+          ],
+          "events_enqueued_to_stub": [
+            [
+              17,
+              0
+            ]
+          ],
+          "peripheral_calls_stubbed": [
+            "0xa00f0924",
+            "0xa0090d60",
+            "0xa00f0480",
+            "0xa00eefcc",
+            "0xa00fb4a0"
+          ],
+          "direct_writes": [
+            [
+              "0xa00f1270",
+              4,
+              2685342404
+            ],
+            [
+              "0xa1801200",
+              4,
+              1
+            ],
+            [
+              "0xa1801208",
+              4,
+              35
+            ],
+            [
+              "0xa180120c",
+              4,
+              6
+            ],
+            [
+              "0xa1801204",
+              4,
+              1
+            ],
+            [
+              "0xa1801200",
+              4,
+              2
+            ],
+            [
+              "0xa039d3b0",
+              4,
+              0
+            ]
+          ],
+          "stock_slot_restored": true,
+          "pending_request": 0
+        },
+        {
+          "routed": true,
+          "state": 26,
+          "mask": 10,
+          "blocked_stub": false,
+          "expected_result": 0,
+          "receipt": [
+            2,
+            0,
+            26,
+            6
+          ],
+          "events_enqueued_to_stub": [
+            [
+              18,
+              0
+            ]
+          ],
+          "peripheral_calls_stubbed": [
+            "0xa00f0924",
+            "0xa0090d60",
+            "0xa00f0480",
+            "0xa00eefcc",
+            "0xa00fb4a0",
+            "0xa00fa1ac"
+          ],
+          "direct_writes": [
+            [
+              "0xa00f1270",
+              4,
+              2685342404
+            ],
+            [
+              "0xa1801200",
+              4,
+              1
+            ],
+            [
+              "0xa1801208",
+              4,
+              26
+            ],
+            [
+              "0xa180120c",
+              4,
+              6
+            ],
+            [
+              "0xa1801204",
+              4,
+              0
+            ],
+            [
+              "0xa1801200",
+              4,
+              2
+            ],
+            [
+              "0xa039d3b0",
+              4,
+              0
+            ]
+          ],
+          "stock_slot_restored": true,
+          "pending_request": 0
+        },
+        {
+          "routed": true,
+          "state": 1,
+          "mask": 10,
+          "blocked_stub": false,
+          "expected_result": 0,
+          "receipt": [
+            2,
+            0,
+            1,
+            6
+          ],
+          "events_enqueued_to_stub": [
+            [
+              18,
+              0
+            ]
+          ],
+          "peripheral_calls_stubbed": [
+            "0xa00f0924",
+            "0xa0090d60",
+            "0xa00f0480",
+            "0xa00eefcc",
+            "0xa00fb4a0",
+            "0xa00fa1ac"
+          ],
+          "direct_writes": [
+            [
+              "0xa00f1270",
+              4,
+              2685342404
+            ],
+            [
+              "0xa1801200",
+              4,
+              1
+            ],
+            [
+              "0xa1801208",
+              4,
+              1
+            ],
+            [
+              "0xa180120c",
+              4,
+              6
+            ],
+            [
+              "0xa1801204",
+              4,
+              0
+            ],
+            [
+              "0xa1801200",
+              4,
+              2
+            ],
+            [
+              "0xa039d3b0",
+              4,
+              0
+            ]
+          ],
+          "stock_slot_restored": true,
+          "pending_request": 0
+        },
+        {
+          "routed": true,
+          "state": 35,
+          "mask": 2,
+          "blocked_stub": false,
+          "expected_result": 0,
+          "receipt": [
+            2,
+            0,
+            35,
+            6
+          ],
+          "events_enqueued_to_stub": [
+            [
+              18,
+              0
+            ]
+          ],
+          "peripheral_calls_stubbed": [
+            "0xa00f0924",
+            "0xa0090d60",
+            "0xa00f0480",
+            "0xa00eefcc",
+            "0xa00fb4a0",
+            "0xa00fa1ac"
+          ],
+          "direct_writes": [
+            [
+              "0xa00f1270",
+              4,
+              2685342404
+            ],
+            [
+              "0xa1801200",
+              4,
+              1
+            ],
+            [
+              "0xa1801208",
+              4,
+              35
+            ],
+            [
+              "0xa180120c",
+              4,
+              6
+            ],
+            [
+              "0xa1801204",
+              4,
+              0
+            ],
+            [
+              "0xa1801200",
+              4,
+              2
+            ],
+            [
+              "0xa039d3b0",
+              4,
+              0
+            ]
+          ],
+          "stock_slot_restored": true,
+          "pending_request": 0
+        },
+        {
+          "routed": true,
+          "state": 35,
+          "mask": 1,
+          "blocked_stub": false,
+          "expected_result": 1,
+          "receipt": [
+            2,
+            1,
+            35,
+            6
+          ],
+          "events_enqueued_to_stub": [
+            [
+              17,
+              0
+            ]
+          ],
+          "peripheral_calls_stubbed": [
+            "0xa00f0924",
+            "0xa0090d60",
+            "0xa00f0480",
+            "0xa00eefcc",
+            "0xa00fb4a0"
+          ],
+          "direct_writes": [
+            [
+              "0xa00f1270",
+              4,
+              2685342404
+            ],
+            [
+              "0xa1801200",
+              4,
+              1
+            ],
+            [
+              "0xa1801208",
+              4,
+              35
+            ],
+            [
+              "0xa180120c",
+              4,
+              6
+            ],
+            [
+              "0xa1801204",
+              4,
+              1
+            ],
+            [
+              "0xa1801200",
+              4,
+              2
+            ],
+            [
+              "0xa039d3b0",
+              4,
+              0
+            ]
+          ],
+          "stock_slot_restored": true,
+          "pending_request": 0
+        },
+        {
+          "routed": true,
+          "state": 35,
+          "mask": 10,
+          "blocked_stub": true,
+          "expected_result": null,
+          "receipt": [
+            1,
+            0,
+            35,
+            6
+          ],
+          "events_enqueued_to_stub": [],
+          "peripheral_calls_stubbed": [
+            "0xa00f0924",
+            "0xa0090d60"
+          ],
+          "direct_writes": [
+            [
+              "0xa00f1270",
+              4,
+              2685342404
+            ],
+            [
+              "0xa1801200",
+              4,
+              1
+            ],
+            [
+              "0xa1801208",
+              4,
+              35
+            ],
+            [
+              "0xa180120c",
+              4,
+              6
+            ]
+          ],
+          "stock_slot_restored": true,
+          "pending_request": 6
+        }
+      ],
+      "scheduler_cache_and_cancellation_not_emulated": true,
+      "initial_dispatch_mutex_timeout_is_infinite": true,
+      "IDS_KEY_CANCEL_does_not_abort_state35": true,
+      "device_commands": 0,
+      "real_Setup_test_verified": false,
+      "live_coordinator_available": false
+    }
+  ],
+  "remaining": [
+    "restore fresh HP service exchange",
+    "confirm actual current HP context",
+    "validate live arming, cache and disarming without freeing an active worker",
+    "enter actual Setup state through the stock preparation sequence",
+    "obtain actual worker completion and observe subsequent FSM result",
+    "verify physical air/ink path before any priming"
+  ]
+}
