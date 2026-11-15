@@ -24,7 +24,7 @@ def source_for(code, base):
     lines = ['.text', '.globl _start', '_start:']
     for item in instructions:
         operands = item.op_str.replace('$', '0x')
-        if item.mnemonic in ('bne.w', 'beq.w', 'bhi.w'):
+        if item.mnemonic in ('bne.w', 'beq.w', 'bhi.w', 'bra.w'):
             target = int(operands, 16)
             if target not in boundaries:
                 raise ValueError('branch target is outside instruction boundaries')

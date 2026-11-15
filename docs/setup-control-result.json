@@ -1,0 +1,365 @@
+{
+  "date_utc": "2026-11-15",
+  "scope": "offline_IRQ_control_and_targeted_USB_recovery",
+  "real_Setup_test_verified": false,
+  "new_HP_native_commands": 0,
+  "new_HP_print_jobs": 0,
+  "HP_processor_restart_commands": 0,
+  "new_control_uploaded_to_HP": false,
+  "live_coordinator_available": false,
+  "guard_retained": true,
+  "hardware_recovery": {
+    "controller_cycle_UTC": "2026-11-15T20:28:57.723944+00:00",
+    "controller_unbound_rebound_verified": true,
+    "controller_cleanup_verified": true,
+    "fresh_HP_identity_after_cycle": false,
+    "original_native_return_verified": false,
+    "original_E_verified": false,
+    "alternate_class_results": [
+      {
+        "alternate": 0,
+        "device_ID_index": 0,
+        "device_ID_rc": 0,
+        "device_ID_hex": "",
+        "decoded": {
+          "raw_hex": "",
+          "valid": false,
+          "hp_c7769b_identified": false,
+          "error": "missing IEEE-1284 length"
+        },
+        "GET_PORT_STATUS": {
+          "rc": -9,
+          "hex": ""
+        }
+      },
+      {
+        "alternate": 1,
+        "device_ID_index": 1,
+        "device_ID_rc": 0,
+        "device_ID_hex": "",
+        "decoded": {
+          "raw_hex": "",
+          "valid": false,
+          "hp_c7769b_identified": false,
+          "error": "missing IEEE-1284 length"
+        },
+        "GET_PORT_STATUS": {
+          "rc": -9,
+          "hex": ""
+        }
+      }
+    ],
+    "alt0_soft_reset_results": [
+      {
+        "bmRequestType": 33,
+        "bRequest": 2,
+        "wValue": 0,
+        "wIndex": 0,
+        "attempt_started": true,
+        "rc": -9
+      },
+      {
+        "bmRequestType": 35,
+        "bRequest": 2,
+        "wValue": 0,
+        "wIndex": 0,
+        "attempt_started": true,
+        "rc": -9
+      }
+    ],
+    "soft_reset_acknowledged": false,
+    "forward_echo_UTC": "2026-11-15T20:43:05.104953+00:00",
+    "forward_echo_expected_bytes": 56,
+    "forward_echo_confirmed_bytes": 0,
+    "forward_echo_rc": -7,
+    "forward_echo_replayed": false,
+    "forward_echo_empty_IN_reads": 12,
+    "USB_VBUS_switching_advertised": false,
+    "physical_VBUS_power_cycle_verified": false,
+    "paired_controller_cycle": {
+      "observed_UTC": "2026-11-15T20:59:06.804902+00:00",
+      "shared_PHY_DT_reference_verified": true,
+      "unbound_rebound_verified": true,
+      "cleanup_verified": true,
+      "VBUS_power_cycle_verified": false,
+      "fresh_HP_identity_afterwards": false,
+      "original_native_return_verified": false,
+      "original_E_verified": false
+    },
+    "forward_echo_after_pair": {
+      "observed_UTC": "2026-11-15T21:01:58.305566+00:00",
+      "expected_bytes": 56,
+      "confirmed_bytes": 0,
+      "rc": -7,
+      "replayed": false,
+      "empty_IN_reads": 12,
+      "cleanup_verified": true
+    }
+  },
+  "software_tests": {
+    "discovered": 320,
+    "passed": 314,
+    "skipped_external_fixtures": 6,
+    "failed": 0
+  },
+  "own_source_sha256": {
+    "tools/firmware/setup_ids_control.py": "e5b604f327ec38c01e37cd300b76d84ea29fcdce92a2ef6c4eab4b553c2bcb05",
+    "tools/firmware/check_setup_ids_control.py": "34e11def8cb210c0c20e68e032d9ecc894996a9e69ab69f7773af7d22a3e6a04",
+    "tools/firmware/test_setup_ids_control.py": "efc27aed5c893173d7d63b617cece6430d6d5620e2f4c3f418b57d4d01c7eb15",
+    "tools/firmware/check_ram_coldfire.py": "1a0d1978d3d3137b54f995a0a78c57f3f3ca7b29897f05fb90e87c0602f19b01"
+  },
+  "GNU_reports": [
+    {
+      "scope": "offline_GNU_instruction_and_layout_check",
+      "workspace": "0xa0800000",
+      "image_sha256": "c882e68d2eb2462745f1ec984ce8f5ed745d2900587dce6b36acee5b89a1f4eb",
+      "allocation_bytes": 1024,
+      "control_bytes": 362,
+      "arm_state_names": [
+        "PG_WAIT_WIN_OPEN_INST_SETUP",
+        "PG_WAIT_WIN_CLOSED_INST_SETUP"
+      ],
+      "checks": [
+        {
+          "part": "worker_redirect",
+          "address": "0xa0800084",
+          "cpu": "5206",
+          "bytes": 8,
+          "sha256": "f571a7d9b9da704c4df0638f0c653f3186eaedd0838042840796389b4cf3d45a",
+          "exact": true
+        },
+        {
+          "part": "worker_redirect",
+          "address": "0xa0800084",
+          "cpu": "5307",
+          "bytes": 8,
+          "sha256": "f571a7d9b9da704c4df0638f0c653f3186eaedd0838042840796389b4cf3d45a",
+          "exact": true
+        },
+        {
+          "part": "worker_redirect",
+          "address": "0xa0800084",
+          "cpu": "5475",
+          "bytes": 8,
+          "sha256": "f571a7d9b9da704c4df0638f0c653f3186eaedd0838042840796389b4cf3d45a",
+          "exact": true
+        },
+        {
+          "part": "worker_hook",
+          "address": "0xa08000a0",
+          "cpu": "5206",
+          "bytes": 62,
+          "sha256": "25ec53e87e5f0a6aef6955afac3f06c6aab33cbaa6526c735e12958c466650f5",
+          "exact": true
+        },
+        {
+          "part": "worker_hook",
+          "address": "0xa08000a0",
+          "cpu": "5307",
+          "bytes": 62,
+          "sha256": "25ec53e87e5f0a6aef6955afac3f06c6aab33cbaa6526c735e12958c466650f5",
+          "exact": true
+        },
+        {
+          "part": "worker_hook",
+          "address": "0xa08000a0",
+          "cpu": "5475",
+          "bytes": 62,
+          "sha256": "25ec53e87e5f0a6aef6955afac3f06c6aab33cbaa6526c735e12958c466650f5",
+          "exact": true
+        },
+        {
+          "part": "route",
+          "address": "0xa0800100",
+          "cpu": "5206",
+          "bytes": 106,
+          "sha256": "88b7733cc80d49e38ecc25cdf3de1f431f6dcbda757434f6c78f56b992a0b2f5",
+          "exact": true
+        },
+        {
+          "part": "route",
+          "address": "0xa0800100",
+          "cpu": "5307",
+          "bytes": 106,
+          "sha256": "88b7733cc80d49e38ecc25cdf3de1f431f6dcbda757434f6c78f56b992a0b2f5",
+          "exact": true
+        },
+        {
+          "part": "route",
+          "address": "0xa0800100",
+          "cpu": "5475",
+          "bytes": 106,
+          "sha256": "88b7733cc80d49e38ecc25cdf3de1f431f6dcbda757434f6c78f56b992a0b2f5",
+          "exact": true
+        },
+        {
+          "part": "control",
+          "address": "0xa0800220",
+          "cpu": "5206",
+          "bytes": 362,
+          "sha256": "0f823545ee13a65ed2a3f7ac72f1014969299ece6276811d4bb3fa0e36196180",
+          "exact": true
+        },
+        {
+          "part": "control",
+          "address": "0xa0800220",
+          "cpu": "5307",
+          "bytes": 362,
+          "sha256": "0f823545ee13a65ed2a3f7ac72f1014969299ece6276811d4bb3fa0e36196180",
+          "exact": true
+        },
+        {
+          "part": "control",
+          "address": "0xa0800220",
+          "cpu": "5475",
+          "bytes": 362,
+          "sha256": "0f823545ee13a65ed2a3f7ac72f1014969299ece6276811d4bb3fa0e36196180",
+          "exact": true
+        }
+      ],
+      "device_commands": 0,
+      "uploaded_to_HP": false,
+      "live_coordinator_available": false,
+      "real_Setup_test_verified": false
+    },
+    {
+      "scope": "offline_GNU_instruction_and_layout_check",
+      "workspace": "0xa1801000",
+      "image_sha256": "c882e68d2eb2462745f1ec984ce8f5ed745d2900587dce6b36acee5b89a1f4eb",
+      "allocation_bytes": 1024,
+      "control_bytes": 362,
+      "arm_state_names": [
+        "PG_WAIT_WIN_OPEN_INST_SETUP",
+        "PG_WAIT_WIN_CLOSED_INST_SETUP"
+      ],
+      "checks": [
+        {
+          "part": "worker_redirect",
+          "address": "0xa1801084",
+          "cpu": "5206",
+          "bytes": 8,
+          "sha256": "8c2924412b0e6ec35dea095050868563ebe8055165dafa8ca07f0ca6d3e38b32",
+          "exact": true
+        },
+        {
+          "part": "worker_redirect",
+          "address": "0xa1801084",
+          "cpu": "5307",
+          "bytes": 8,
+          "sha256": "8c2924412b0e6ec35dea095050868563ebe8055165dafa8ca07f0ca6d3e38b32",
+          "exact": true
+        },
+        {
+          "part": "worker_redirect",
+          "address": "0xa1801084",
+          "cpu": "5475",
+          "bytes": 8,
+          "sha256": "8c2924412b0e6ec35dea095050868563ebe8055165dafa8ca07f0ca6d3e38b32",
+          "exact": true
+        },
+        {
+          "part": "worker_hook",
+          "address": "0xa18010a0",
+          "cpu": "5206",
+          "bytes": 62,
+          "sha256": "7fd786a137644afb2eeba549fcc8a4d34403d38c1bff59a7d6dc527b5a95cbdb",
+          "exact": true
+        },
+        {
+          "part": "worker_hook",
+          "address": "0xa18010a0",
+          "cpu": "5307",
+          "bytes": 62,
+          "sha256": "7fd786a137644afb2eeba549fcc8a4d34403d38c1bff59a7d6dc527b5a95cbdb",
+          "exact": true
+        },
+        {
+          "part": "worker_hook",
+          "address": "0xa18010a0",
+          "cpu": "5475",
+          "bytes": 62,
+          "sha256": "7fd786a137644afb2eeba549fcc8a4d34403d38c1bff59a7d6dc527b5a95cbdb",
+          "exact": true
+        },
+        {
+          "part": "route",
+          "address": "0xa1801100",
+          "cpu": "5206",
+          "bytes": 106,
+          "sha256": "9f1c4495439991bcffcbab6e8bd336ff3589413b12f79304275deacb0b2bf99e",
+          "exact": true
+        },
+        {
+          "part": "route",
+          "address": "0xa1801100",
+          "cpu": "5307",
+          "bytes": 106,
+          "sha256": "9f1c4495439991bcffcbab6e8bd336ff3589413b12f79304275deacb0b2bf99e",
+          "exact": true
+        },
+        {
+          "part": "route",
+          "address": "0xa1801100",
+          "cpu": "5475",
+          "bytes": 106,
+          "sha256": "9f1c4495439991bcffcbab6e8bd336ff3589413b12f79304275deacb0b2bf99e",
+          "exact": true
+        },
+        {
+          "part": "control",
+          "address": "0xa1801220",
+          "cpu": "5206",
+          "bytes": 362,
+          "sha256": "d67245f8f99bccacb49f4a08adbec554392b0a9208f5a55ec692386692c5e1ff",
+          "exact": true
+        },
+        {
+          "part": "control",
+          "address": "0xa1801220",
+          "cpu": "5307",
+          "bytes": 362,
+          "sha256": "d67245f8f99bccacb49f4a08adbec554392b0a9208f5a55ec692386692c5e1ff",
+          "exact": true
+        },
+        {
+          "part": "control",
+          "address": "0xa1801220",
+          "cpu": "5475",
+          "bytes": 362,
+          "sha256": "d67245f8f99bccacb49f4a08adbec554392b0a9208f5a55ec692386692c5e1ff",
+          "exact": true
+        }
+      ],
+      "device_commands": 0,
+      "uploaded_to_HP": false,
+      "live_coordinator_available": false,
+      "real_Setup_test_verified": false
+    }
+  ],
+  "copy_plan_feasibility": [
+    {
+      "workspace": "0xa0800000",
+      "copies": 168,
+      "copy_queries_with_existing_four_call_frames": 42,
+      "construction_read_queries": 8,
+      "blob_sha256": "8ca46126cd83092026da84bb9c33cd4463a5446b348e29a00f675fddbabf3ec6",
+      "real_upload_performed": false
+    },
+    {
+      "workspace": "0xa1801000",
+      "copies": 185,
+      "copy_queries_with_existing_four_call_frames": 47,
+      "construction_read_queries": 8,
+      "blob_sha256": "e8eb9375e2eafcac087a818d712b755fd5b0c7a6eaed5f88cecdee3e45572061",
+      "real_upload_performed": false
+    }
+  ],
+  "remaining": [
+    "restore HP forward and reverse service exchange",
+    "fresh HP identity/context/code proofs",
+    "validate a live allocation/upload/cache and durable host coordinator",
+    "enter actual Setup FSM and confirm worker completion without starting unverified priming",
+    "verify physical black ink output"
+  ],
+  "black_ink_restoration_verified": false
+}
