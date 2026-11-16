@@ -361,5 +361,36 @@
     "enter actual Setup FSM and confirm worker completion without starting unverified priming",
     "verify physical black ink output"
   ],
-  "black_ink_restoration_verified": false
+  "black_ink_restoration_verified": false,
+  "VBUS_followup_20261116": {
+    "date_utc": "2026-11-16",
+    "scope": "readonly_live_BTT_VBUS_investigation",
+    "observed_utc": [
+      "2026-11-16T10:47:14.805152+00:00",
+      "2026-11-16T10:51:28.271717+00:00"
+    ],
+    "target_PHY_index": 1,
+    "live_USB_VBUS_supply_in_DT": false,
+    "live_VCC5V_always_on": true,
+    "live_VCC5V_GPIO_or_clock_control": false,
+    "USB_VBUS_power_cycle_performed": false,
+    "HP_commands_sent": 0,
+    "USB_sysfs_writes": 0,
+    "BTT_reboot": false,
+    "pending_guard_retained": true,
+    "queue_empty": true,
+    "USB_handles_empty": true,
+    "live_HP_reply_tested_this_followup": false,
+    "real_Setup_test_verified": false,
+    "schematic": {
+      "URL": "https://github.com/bigtreetech/BTT-Pi/blob/master/Hardware/BIGTREETECH_Pi_V1.2.1.pdf",
+      "sha256": "ac996e4147c97ba860ceddc06fca451608e7859c6dd6b9c916b21a8f478424d9",
+      "sheet": 15,
+      "internal_sheet_revision": "V1.1",
+      "exact_live_board_revision_verified": false,
+      "VBUS_net": "VCC-5V through ferrite L5 to common VBUS5V",
+      "GPIO_power_switch_shown": false
+    },
+    "conclusion": "No verified software path to interrupt USB VBUS on the current BTT; physical USB unplug/replug remains necessary for an adapter power-cycle experiment."
+  }
 }
